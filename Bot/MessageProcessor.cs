@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,13 +15,17 @@ public class MessageProcessor
 {
     private readonly ITelegramBotClient botClient;
     private readonly QuestStateManager stateManager;
-    private readonly SemaphoreSlim synchronizer = new SemaphoreSlim(1, 1);
+    private readonly ConcurrentDictionary<string, SemaphoreSlim> synchronizerDict = new ConcurrentDictionary<string, SemaphoreSlim>();
 
     public async Task Process(string chatId,
         string messageText,
         string user,
         int? answerToMessageId = null)
     {
+        var synchronizer = synchronizerDict.ContainsKey(chatId)
+            ? synchronizerDict[chatId]
+            : (synchronizerDict[chatId] = new SemaphoreSlim(1, 1));
+
         await synchronizer.WaitAsync();
         try {
              // initialize new state if new player, or on "reset" command
