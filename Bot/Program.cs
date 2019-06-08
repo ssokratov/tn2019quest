@@ -25,7 +25,7 @@ namespace Bot
                 var messageText = query.Data;
                 var user = query.From.Username;
                 var chatId = query?.Message.Chat.Id.ToString();
-                await processor.Process(chatId, messageText, user);
+                await processor.Process(chatId, messageText, user, query.Message.MessageId);
                 try {
                     await botClient.AnswerCallbackQueryAsync(query.Id);
                 }

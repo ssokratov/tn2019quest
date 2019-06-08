@@ -16,7 +16,10 @@ public class MessageProcessor
     private readonly QuestStateManager stateManager;
     private readonly SemaphoreSlim synchronizer = new SemaphoreSlim(1, 1);
 
-    public async Task Process(string chatId, string messageText, string user)
+    public async Task Process(string chatId,
+        string messageText,
+        string user,
+        int? answerToMessageId = null)
     {
         await synchronizer.WaitAsync();
         try {
@@ -29,7 +32,6 @@ public class MessageProcessor
             // reset all hashcodes to send all messages again if "play" commend is received
             else if (messageText.StartsWith("/play")) {
                 var oldState = stateManager.GetState(chatId);
-                oldState.PreviousMediaMessageHash = -1;
                 oldState.PreviousMessageHash = -1;
                 stateManager.SetState(chatId, oldState);
             }
@@ -45,25 +47,29 @@ public class MessageProcessor
                 ? messageText.FromSmile().ToString()
                 : messageText);
             var answerButtons = RenderButtons(currentMove);
-            var mediaMessage = await SendMediaMessage(chatId, currentMove, questState, answerButtons);
-            await SendTextMessage(chatId, currentMove, questState, mediaMessage == null ? answerButtons : null);
+            var message = currentMove.Photo != null
+                ? await SendMediaMessage(chatId, currentMove, questState, answerButtons, answerToMessageId)
+                : await SendTextMessage(chatId, currentMove, questState, answerButtons, answerToMessageId);
         }
         finally {
             synchronizer.Release();
         }
     }
 
-    private async Task<Message> SendTextMessage(string chatId, VisibleState currentMove, QuestState questState,
-        InlineKeyboardMarkup answerButtons)
+    private async Task<Message> SendTextMessage(string chatId,
+        VisibleState currentMove,
+        QuestState questState,
+        InlineKeyboardMarkup answerButtons,
+        int? answerToMessageId = null)
     {
         var response = currentMove.Message;
         Message message = null;
         if (response != null && response.GetHashCode() != questState.PreviousMessageHash) {
-            if (questState.PreviousMessageId.HasValue) {
+            if (answerToMessageId.HasValue && questState.PreviousMessageIsText) {
                 try {
                     message = await botClient.EditMessageTextAsync(
                         chatId: chatId,
-                        messageId: questState.PreviousMessageId.Value,
+                        messageId: answerToMessageId.Value,
                         text: response,
                         replyMarkup: answerButtons,
                         parseMode: ParseMode.Markdown
@@ -75,6 +81,20 @@ public class MessageProcessor
             }
 
             if (message == null) {
+                var messageToDelete = questState.PreviousMessageIsText
+                    ? questState.PreviousMessageId
+                    : answerToMessageId;
+                if (messageToDelete.HasValue) {
+                    try {
+                        await botClient.DeleteMessageAsync(
+                            chatId: chatId,
+                            messageId: messageToDelete.Value
+                        );
+                    }
+                    catch (Exception exception) {
+                        Console.WriteLine(exception);
+                    }
+                }
                 try {
                     message = await botClient.SendTextMessageAsync(
                         chatId: chatId,
@@ -88,6 +108,7 @@ public class MessageProcessor
                 }
             }
 
+            questState.PreviousMessageIsText = true;
             questState.PreviousMessageId = message?.MessageId;
             questState.PreviousMessageHash = response.GetHashCode();
         }
@@ -98,34 +119,35 @@ public class MessageProcessor
     private async Task<Message> SendMediaMessage(string chatId,
         VisibleState currentMove, 
         QuestState questState,
-        InlineKeyboardMarkup answerButtons)
+        InlineKeyboardMarkup answerButtons,
+        int? answerToMessageId = null)
     {
+        var response = currentMove.Message;
         var photo = currentMove.Photo;
-        Message mediaMessage = null;
-        if (photo == null && questState.PreviousMediaMessageId.HasValue) {
-            try {
-                await botClient.DeleteMessageAsync(
-                    chatId: chatId,
-                    messageId: questState.PreviousMediaMessageId.Value
-                );
-                questState.PreviousMediaMessageHash = null;
-                questState.PreviousMediaMessageId = null;
-            }
-            catch (Exception exception) {
-                Console.WriteLine(exception);
-            }
-        }
-
-        if (photo != null && photo.GetHashCode() != questState.PreviousMediaMessageHash) {
+        Message message = null;
+        if (photo != null && photo.GetHashCode() != questState.PreviousMessageHash) {
             var filePath = photo.Split(new[] { "***" }, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault();
             var fileId = photo.Split(new[] { "***" }, StringSplitOptions.RemoveEmptyEntries).LastOrDefault();
 
+            if (answerToMessageId.HasValue) {
+                try {
+                    await botClient.DeleteMessageAsync(
+                        chatId: chatId,
+                        messageId: answerToMessageId.Value
+                    );
+                }
+                catch (Exception exception) {
+                    Console.WriteLine(exception);
+                }
+            }
+
             if (fileId != null) {
                 try {
-                    mediaMessage = await botClient.SendPhotoAsync(
+                    message = await botClient.SendPhotoAsync(
                         chatId: chatId,
                         photo: new InputMedia(fileId),
-                        replyMarkup: answerButtons
+                        replyMarkup: answerButtons,
+                        caption: response
                     );
                 }
                 catch (Exception e) {
@@ -133,17 +155,17 @@ public class MessageProcessor
                 }
             }
 
-            if (mediaMessage == null && filePath != null) {
+            if (message == null && filePath != null) {
                 try {
                     using (var fileStream = new FileStream(filePath, FileMode.Open)) {
-                        mediaMessage = await botClient.SendPhotoAsync(
+                        message = await botClient.SendPhotoAsync(
                             chatId: chatId,
                             photo: new InputMedia(fileStream, photo),
-                            replyMarkup: answerButtons
+                            replyMarkup: answerButtons,
+                            caption: response
                         );
-                        Console.WriteLine("FILE UPLOADED. " + string.Join("\n",
-                                              mediaMessage.Photo.Select(p =>
-                                                  $"W: {p.Width}, H: {p.Height}, ID:{p.FileId}")));
+                        Console.WriteLine("FILE UPLOADED. " + string.Join("\n", message.Photo.Select(p =>
+                                              $"W: {p.Width}, H: {p.Height}, ID:{p.FileId}")));
                     }
                 }
                 catch (Exception e) {
@@ -151,11 +173,12 @@ public class MessageProcessor
                 }
             }
 
-            questState.PreviousMediaMessageHash = photo.GetHashCode();
-            questState.PreviousMediaMessageId = mediaMessage?.MessageId;
+            questState.PreviousMessageIsText = false;
+            questState.PreviousMessageId = message?.MessageId;
+            questState.PreviousMessageHash = photo.GetHashCode();
         }
 
-        return mediaMessage;
+        return message;
     }
 
     private static InlineKeyboardMarkup RenderButtons(VisibleState currentMove)

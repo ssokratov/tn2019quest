@@ -7,8 +7,7 @@ namespace Bot
         public QuestService Service { get; set; }
         public int? PreviousMessageHash { get; set; }
         public int? PreviousMessageId { get; set; }
-        public int? PreviousMediaMessageId { get; set; }
-        public int? PreviousMediaMessageHash { get; set; }
+        public bool PreviousMessageIsText { get; set; }
     }
 
     public class QuestStateManager
