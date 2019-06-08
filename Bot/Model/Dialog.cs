@@ -16,12 +16,12 @@ namespace Bot
     public class DialogAnswer
     {
         public string Message { get; set; }
-        public string NextDialogName { get; set; }
+        public string MoveToDialog { get; set; }
 
         public bool IsHidden { get; set; }
-        public Func<Inventory, bool> IsAvailable { get; set; } = (i => true);
+        public Func<Inventory, bool> Available { get; set; } = (i => true);
         public Action<Inventory> ChangeInventory { get; set; }
-        public Func<int, string, int> Move { get; set; }
+        public Func<int, string, int> MoveToPos { get; set; }
         public bool ClearMapCell { get; set; }
     }
 }

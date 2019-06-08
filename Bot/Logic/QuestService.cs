@@ -16,20 +16,20 @@ namespace Bot
 
         public VisibleState ProcessAnswer(string answer)
         {
-            var dialogAnswer = OpenDialog.Answers.Where(a => a.IsAvailable(Inventory))
+            var dialogAnswer = OpenDialog.Answers.Where(a => a.Available(Inventory))
                 .FirstOrDefault(a => a.Message.SameAs(answer));
             if (dialogAnswer != null) {
                 dialogAnswer.ChangeInventory?.Invoke(Inventory);
-                if (dialogAnswer.NextDialogName != null) {
-                    OpenDialog = Dialogs[dialogAnswer.NextDialogName];
+                if (dialogAnswer.MoveToDialog != null) {
+                    OpenDialog = Dialogs[dialogAnswer.MoveToDialog];
                 }
 
                 if (dialogAnswer.ClearMapCell) {
                     ClearCell();
                 }
 
-                if (dialogAnswer.Move != null) {
-                    var newPos = dialogAnswer.Move(Pos, Map);
+                if (dialogAnswer.MoveToPos != null) {
+                    var newPos = dialogAnswer.MoveToPos(Pos, Map);
                     Move(newPos);
                 }
             }
@@ -41,7 +41,7 @@ namespace Bot
         {
             return new VisibleState {
                 Message = GetVisibleMap() + (OpenDialog.Message ?? ""),
-                Answers = OpenDialog.Answers.Where(a => a.IsAvailable(Inventory)).Where(a => !a.IsHidden)
+                Answers = OpenDialog.Answers.Where(a => a.Available(Inventory)).Where(a => !a.IsHidden)
                     .Select(a => a.Message).ToArray(),
                 Photo = OpenDialog.Photo,
             };

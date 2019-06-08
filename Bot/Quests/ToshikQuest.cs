@@ -27,38 +27,38 @@ namespace Bot
                 Answers = new[] {
                     new DialogAnswer {
                         Message = Directions.Left.ToString(),
-                        NextDialogName = Dialog.Map,
-                        Move = (pos, map) => pos - 1
+                        MoveToDialog = Dialog.Map,
+                        MoveToPos = (pos, map) => pos - 1
                     },
                     new DialogAnswer {
                         Message = Directions.Up.ToString(),
-                        NextDialogName = Dialog.Map,
-                        Move = (pos, map) => map.PosUp(pos)
+                        MoveToDialog = Dialog.Map,
+                        MoveToPos = (pos, map) => map.PosUp(pos)
                     },
                     new DialogAnswer {
                         Message = Directions.Down.ToString(),
-                        NextDialogName = Dialog.Map,
-                        Move = (pos, map) => map.PosDown(pos)
+                        MoveToDialog = Dialog.Map,
+                        MoveToPos = (pos, map) => map.PosDown(pos)
                     },
                     new DialogAnswer {
                         Message = Directions.Right.ToString(),
-                        NextDialogName = Dialog.Map,
-                        Move = (pos, map) => pos + 1
+                        MoveToDialog = Dialog.Map,
+                        MoveToPos = (pos, map) => pos + 1
                     },
                     new DialogAnswer {
-                        IsAvailable = i => i.Has(Item.Veil),
+                        Available = i => i.Has(Item.Veil),
                         Message = "Подойти к...",
-                        NextDialogName = Dialog.MapMoveTo
+                        MoveToDialog = Dialog.MapMoveTo
                     },
                     new DialogAnswer {
-                        IsAvailable = i => i.Has(Item.PhoneRequest) && !i.Has(Item.Phone),
+                        Available = i => i.Has(Item.PhoneRequest) && !i.Has(Item.Phone),
                         Message = "Позвонить Жене Демьянову",
-                        NextDialogName = Dialog.Demianov1,
+                        MoveToDialog = Dialog.Demianov1,
                     },
                     new DialogAnswer {
-                        IsAvailable = i => i.Has(Item.PhoneNumber),
+                        Available = i => i.Has(Item.PhoneNumber),
                         Message = "Позвонить на цифры",
-                        NextDialogName = Dialog.FoundFear,
+                        MoveToDialog = Dialog.FoundFear,
                     }
                 },
                 DisplayMap = true
@@ -70,32 +70,32 @@ namespace Bot
                 Answers = new[] {
                     new DialogAnswer {
                         Message = "К Капитану",
-                        NextDialogName = Dialog.Sedosh1,
-                        Move = (pos, map) => map.PosRight(MapIcon.Sedosh)
+                        MoveToDialog = Dialog.Sedosh1,
+                        MoveToPos = (pos, map) => map.PosRight(MapIcon.Sedosh)
                     },
                     new DialogAnswer {
                         Message = "К Сократу",
-                        NextDialogName = Dialog.Sokrat1,
-                        Move = (pos, map) => map.PosLeft(MapIcon.Sokrat)
+                        MoveToDialog = Dialog.Sokrat1,
+                        MoveToPos = (pos, map) => map.PosLeft(MapIcon.Sokrat)
                     },
                     new DialogAnswer {
                         Message = "К Репе",
-                        NextDialogName = Dialog.Repa1,
-                        Move = (pos, map) => map.PosLeft(MapIcon.Repa)
+                        MoveToDialog = Dialog.Repa1,
+                        MoveToPos = (pos, map) => map.PosLeft(MapIcon.Repa)
                     },
                     new DialogAnswer {
                         Message = "К Якову",
-                        NextDialogName = Dialog.Jacob1,
-                        Move = (pos, map) => map.PosRight(MapIcon.Jacob)
+                        MoveToDialog = Dialog.Jacob1,
+                        MoveToPos = (pos, map) => map.PosRight(MapIcon.Jacob)
                     },
                     new DialogAnswer {
                         Message = "К работнице ЗАГСа",
-                        NextDialogName = Dialog.ZagsWorker1,
-                        Move = (pos, map) => map.PosDown(MapIcon.ZagsWorker)
+                        MoveToDialog = Dialog.ZagsWorker1,
+                        MoveToPos = (pos, map) => map.PosDown(MapIcon.ZagsWorker)
                     },
                     new DialogAnswer {
                         Message = "<<<",
-                        NextDialogName = Dialog.Map
+                        MoveToDialog = Dialog.Map
                     },
                 },
                 DisplayMap = true
@@ -108,13 +108,13 @@ namespace Bot
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Поднять",
-                            NextDialogName = Dialog.FoundGlasses,
+                            MoveToDialog = Dialog.FoundGlasses,
                             ChangeInventory = i => i.Give(Item.Glasses),
                             ClearMapCell = true
                         },
                         new DialogAnswer {
                             Message = "Оставить",
-                            NextDialogName = Dialog.Map
+                            MoveToDialog = Dialog.Map
                         },
                     },
                     MapIcon = MapIcon.Glasses
@@ -134,17 +134,17 @@ namespace Bot
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Потянуть за ручку",
-                            NextDialogName = Dialog.Map,
+                            MoveToDialog = Dialog.Map,
                             ClearMapCell = true
                         },
                         new DialogAnswer {
                             Message = "Прочитать табличку",
-                            NextDialogName = Dialog.StartDoors2
+                            MoveToDialog = Dialog.StartDoors2
                         },
                         new DialogAnswer {
                             Message = "Уйти",
-                            NextDialogName = Dialog.Map,
-                            Move = (pos, map) => map.PosDown(pos)
+                            MoveToDialog = Dialog.Map,
+                            MoveToPos = (pos, map) => map.PosDown(pos)
                         },
                     },
                     MapIcon = MapIcon.StartDoors
@@ -155,17 +155,17 @@ namespace Bot
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Решительно потянуть за ручку",
-                            NextDialogName = Dialog.Map,
+                            MoveToDialog = Dialog.Map,
                             ClearMapCell = true
                         },
                         new DialogAnswer {
                             Message = "Осмотреться",
-                            NextDialogName = Dialog.StartDoors3
+                            MoveToDialog = Dialog.StartDoors3
                         },
                         new DialogAnswer {
                             Message = "Уйти",
-                            NextDialogName = Dialog.Map,
-                            Move = (pos, map) => map.PosDown(pos)
+                            MoveToDialog = Dialog.Map,
+                            MoveToPos = (pos, map) => map.PosDown(pos)
                         },
                     },
                 },
@@ -176,17 +176,17 @@ namespace Bot
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Потянуть за ручку двери",
-                            NextDialogName = Dialog.Map,
+                            MoveToDialog = Dialog.Map,
                             ClearMapCell = true
                         },
                         new DialogAnswer {
                             Message = "Замереть в нерешительности",
-                            NextDialogName = Dialog.StartDoors4
+                            MoveToDialog = Dialog.StartDoors4
                         },
                         new DialogAnswer {
                             Message = "Уйти",
-                            NextDialogName = Dialog.Map,
-                            Move = (pos, map) => map.PosDown(pos)
+                            MoveToDialog = Dialog.Map,
+                            MoveToPos = (pos, map) => map.PosDown(pos)
                         },
                     },
                 },
@@ -196,13 +196,13 @@ namespace Bot
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Потянуть за ручку двери",
-                            NextDialogName = Dialog.Map,
+                            MoveToDialog = Dialog.Map,
                             ClearMapCell = true
                         },
                         new DialogAnswer {
                             Message = "Уйти",
-                            NextDialogName = Dialog.Map,
-                            Move = (pos, map) => map.PosDown(pos)
+                            MoveToDialog = Dialog.Map,
+                            MoveToPos = (pos, map) => map.PosDown(pos)
                         },
                     },
                 },
@@ -215,13 +215,13 @@ namespace Bot
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Поднять",
-                            NextDialogName = Dialog.Veil2,
+                            MoveToDialog = Dialog.Veil2,
                             ClearMapCell = true,
                             ChangeInventory = i => i.Give(Item.Veil)
                         },
                         new DialogAnswer {
                             Message = "Перешагнуть",
-                            NextDialogName = Dialog.EnteredHall,
+                            MoveToDialog = Dialog.EnteredHall,
                             ClearMapCell = true,
                             ChangeInventory = i => i.Give(Item.Veil)
                         }
@@ -236,7 +236,7 @@ namespace Bot
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Посмотреть",
-                            NextDialogName = Dialog.Veil3
+                            MoveToDialog = Dialog.Veil3
                         },
                     },
                 },
@@ -247,7 +247,7 @@ namespace Bot
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "ФФФФУУУУУУ",
-                            NextDialogName = Dialog.EnteredHall,
+                            MoveToDialog = Dialog.EnteredHall,
                         },
                     },
                 },
@@ -270,16 +270,16 @@ namespace Bot
                         new DialogAnswer {
                             IsHidden = true,
                             Message = "В жопе столько",
-                            NextDialogName = Dialog.Demianov2
+                            MoveToDialog = Dialog.Demianov2
                         },
                         new DialogAnswer {
                             IsHidden = true,
                             Message = "На складе столько",
-                            NextDialogName = Dialog.Demianov2
+                            MoveToDialog = Dialog.Demianov2
                         },
                         new DialogAnswer {
                             Message = "Сбросить вызов",
-                            NextDialogName = Dialog.Map
+                            MoveToDialog = Dialog.Map
                         },
                     }
                 },
@@ -290,7 +290,7 @@ namespace Bot
                         new DialogAnswer {
                             Message = "Поблагодарить",
                             ChangeInventory = i => i.Give(Item.Phone),
-                            NextDialogName = Dialog.Map
+                            MoveToDialog = Dialog.Map
                         },
                     }
                 },
@@ -302,14 +302,14 @@ namespace Bot
                     Message = "Репа, приодетый и гладкий как шёлк, даёт вам пятюню и поздравляет.",
                     Answers = new[] {
                         new DialogAnswer {
-                            IsAvailable = i => !i.Has(Item.PhoneNumber),
+                            Available = i => !i.Has(Item.PhoneNumber),
                             Message = "Узнать за мутки",
-                            NextDialogName = Dialog.Repa2
+                            MoveToDialog = Dialog.Repa2
                         },
                         new DialogAnswer {
                             Message = "Уйти",
-                            NextDialogName = Dialog.Map,
-                            Move = (pos, map) => map.PosLeft(MapIcon.Repa)
+                            MoveToDialog = Dialog.Map,
+                            MoveToPos = (pos, map) => map.PosLeft(MapIcon.Repa)
                         },
                     },
                     MapIcon = MapIcon.Repa,
@@ -322,9 +322,9 @@ namespace Bot
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Поблагодарить и уйти",
-                            NextDialogName = Dialog.Map,
+                            MoveToDialog = Dialog.Map,
                             ChangeInventory = i => i.Give(Item.PhoneNumber),
-                            Move = (pos, map) => map.PosLeft(MapIcon.Repa)
+                            MoveToPos = (pos, map) => map.PosLeft(MapIcon.Repa)
                         },
                     }
                 },
@@ -336,19 +336,19 @@ namespace Bot
                     Message = "Капитан Владимир Седошенко поздравляет вас от всего сердца.",
                     Answers = new[] {
                         new DialogAnswer {
-                            IsAvailable = i => !i.Has(Item.Stick),
+                            Available = i => !i.Has(Item.Stick),
                             Message = "Поговорить",
-                            NextDialogName = Dialog.Sedosh2
+                            MoveToDialog = Dialog.Sedosh2
                         },
                         new DialogAnswer {
-                            IsAvailable = i => i.Has(Item.Project) && !i.Has(Item.Stick),
+                            Available = i => i.Has(Item.Project) && !i.Has(Item.Stick),
                             Message = "Отдать проект, от Якова",
-                            NextDialogName = Dialog.Sedosh3
+                            MoveToDialog = Dialog.Sedosh3
                         },
                         new DialogAnswer {
                             Message = "Уйти",
-                            NextDialogName = Dialog.Map,
-                            Move = (pos, map) => map.PosRight(MapIcon.Sedosh)
+                            MoveToDialog = Dialog.Map,
+                            MoveToPos = (pos, map) => map.PosRight(MapIcon.Sedosh)
                         },
                     },
                     MapIcon = MapIcon.Sedosh,
@@ -361,22 +361,22 @@ namespace Bot
                         "*проектировании* таунхауса из палок и связующего материала.",
                     Answers = new[] {
                         new DialogAnswer {
-                            IsAvailable = i => !i.Has(Item.ProjectRequest),
+                            Available = i => !i.Has(Item.ProjectRequest),
                             Message = "Пообещать помочь",
-                            NextDialogName = Dialog.Map,
+                            MoveToDialog = Dialog.Map,
                             ChangeInventory = i => i.Give(Item.ProjectRequest),
-                            Move = (pos, map) => map.PosRight(MapIcon.Sedosh)
+                            MoveToPos = (pos, map) => map.PosRight(MapIcon.Sedosh)
                         },
                         new DialogAnswer {
-                            IsAvailable = i => i.Has(Item.Project),
+                            Available = i => i.Has(Item.Project),
                             Message = "Отдать проект от Якова",
-                            NextDialogName = Dialog.Sedosh3
+                            MoveToDialog = Dialog.Sedosh3
                         },
                         new DialogAnswer {
-                            IsAvailable = i => i.Has(Item.ProjectRequest),
+                            Available = i => i.Has(Item.ProjectRequest),
                             Message = "Уйти",
-                            NextDialogName = Dialog.Map,
-                            Move = (pos, map) => map.PosRight(MapIcon.Sedosh)
+                            MoveToDialog = Dialog.Map,
+                            MoveToPos = (pos, map) => map.PosRight(MapIcon.Sedosh)
                         },
                     }
                 },
@@ -390,9 +390,9 @@ namespace Bot
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Поблагодарить и, уйти",
-                            NextDialogName = Dialog.Map,
+                            MoveToDialog = Dialog.Map,
                             ChangeInventory = i => i.Give(Item.Stick),
-                            Move = (pos, map) => map.PosRight(MapIcon.Sedosh)
+                            MoveToPos = (pos, map) => map.PosRight(MapIcon.Sedosh)
                         },
                     }
                 },
@@ -405,19 +405,19 @@ namespace Bot
                               "Мы тут облутались оптимизмом и не отсечемся ещё трлько минут через 20-30.",
                     Answers = new[] {
                         new DialogAnswer {
-                            IsAvailable = i => i.Has(Item.ProjectRequest) && !i.Has(Item.Project),
+                            Available = i => i.Has(Item.ProjectRequest) && !i.Has(Item.Project),
                             Message = "Попросить обсчитать проетк",
-                            NextDialogName = Dialog.Jacob2
+                            MoveToDialog = Dialog.Jacob2
                         },
                         new DialogAnswer {
-                            IsAvailable = i => i.Has(Item.Phone) && !i.Has(Item.Project),
+                            Available = i => i.Has(Item.Phone) && !i.Has(Item.Project),
                             Message = "Дать тефлвон",
-                            NextDialogName = Dialog.Jacob3
+                            MoveToDialog = Dialog.Jacob3
                         },
                         new DialogAnswer {
                             Message = "Откланяться",
-                            NextDialogName = Dialog.Map,
-                            Move = (pos, map) => map.PosRight(MapIcon.Jacob)
+                            MoveToDialog = Dialog.Map,
+                            MoveToPos = (pos, map) => map.PosRight(MapIcon.Jacob)
                         },
                     },
                     MapIcon = MapIcon.Jacob,
@@ -430,9 +430,9 @@ namespace Bot
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Пообещать помочь",
-                            NextDialogName = Dialog.Map,
+                            MoveToDialog = Dialog.Map,
                             ChangeInventory = i => i.Give(Item.PhoneRequest),
-                            Move = (pos, map) => map.PosRight(MapIcon.Jacob)
+                            MoveToPos = (pos, map) => map.PosRight(MapIcon.Jacob)
                         }
                     }
                 },
@@ -444,19 +444,19 @@ namespace Bot
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Три на 15",
-                            NextDialogName = Dialog.Jacob4
+                            MoveToDialog = Dialog.Jacob4
                         },
                         new DialogAnswer {
                             Message = "Квадратную на 3 и Квадратную на 4",
-                            NextDialogName = Dialog.Jacob5
+                            MoveToDialog = Dialog.Jacob5
                         },
                         new DialogAnswer {
                             Message = "сруб на 30 и пару шпонок",
-                            NextDialogName = Dialog.Jacob4
+                            MoveToDialog = Dialog.Jacob4
                         },
                         new DialogAnswer {
                             Message = "1 треугольную и 8 эксцентриков",
-                            NextDialogName = Dialog.Jacob4
+                            MoveToDialog = Dialog.Jacob4
                         },
                     }
                 },
@@ -466,7 +466,7 @@ namespace Bot
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Посчитат ьещё раз",
-                            NextDialogName = Dialog.Jacob3
+                            MoveToDialog = Dialog.Jacob3
                         }
                     }
                 },
@@ -476,7 +476,7 @@ namespace Bot
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Откланяться",
-                            NextDialogName = Dialog.Map,
+                            MoveToDialog = Dialog.Map,
                             ChangeInventory = i => i.Give(Item.Project)
                         }
                     }
@@ -490,8 +490,8 @@ namespace Bot
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Уйти",
-                            NextDialogName = Dialog.Map,
-                            Move = (pos, map) => map.PosLeft(MapIcon.Sokrat)
+                            MoveToDialog = Dialog.Map,
+                            MoveToPos = (pos, map) => map.PosLeft(MapIcon.Sokrat)
                         },
                     },
                     MapIcon = MapIcon.Sokrat,
@@ -506,8 +506,8 @@ namespace Bot
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Уйти",
-                            NextDialogName = Dialog.Map,
-                            Move = (pos, map) => map.PosDown(MapIcon.ZagsWorker)
+                            MoveToDialog = Dialog.Map,
+                            MoveToPos = (pos, map) => map.PosDown(MapIcon.ZagsWorker)
                         },
                     },
                     MapIcon = MapIcon.ZagsWorker,
