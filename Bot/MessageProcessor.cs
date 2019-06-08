@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Bot;
 using Telegram.Bot;
@@ -13,26 +14,35 @@ public class MessageProcessor
 {
     private readonly ITelegramBotClient botClient;
     private readonly QuestStateManager stateManager;
+    private readonly SemaphoreSlim synchronizer = new SemaphoreSlim(1, 1);
 
     public async Task Process(string chatId, string messageText, string user)
     {
-        if (stateManager.GetState(chatId) == null || messageText == "/reset") {
-            stateManager.SetState(chatId, new QuestState {
-                Service = ToshikQuest.Initialize()
-            });
+        await synchronizer.WaitAsync();
+        try {
+            if (stateManager.GetState(chatId) == null || messageText == "/reset") {
+                stateManager.SetState(chatId, new QuestState {
+                    Service = ToshikQuest.Initialize()
+                });
+            }
+
+            var questState = stateManager.GetState(chatId);
+            var questService = questState.Service;
+
+            if (messageText != null) {
+                Console.WriteLine($"Received a text message in chat {chatId} from {user}: \n {messageText}");
+            }
+
+            var currentMove = questService.ProcessAnswer((messageText?.IsSmile() == true)
+                ? messageText.FromSmile().ToString()
+                : messageText);
+            var answerButtons = RenderButtons(currentMove);
+            var mediaMessage = await SendMediaMessage(chatId, currentMove, questState, answerButtons);
+            await SendTextMessage(chatId, currentMove, questState, mediaMessage == null ? answerButtons : null);
         }
-
-        var questState = stateManager.GetState(chatId);
-        var questService = questState.Service;
-
-        if (messageText != null) {
-            Console.WriteLine($"Received a text message in chat {chatId} from {user}: \n {messageText}");
+        finally {
+            synchronizer.Release();
         }
-
-        var currentMove = questService.ProcessAnswer((messageText?.IsSmile() == true) ? messageText.FromSmile().ToString() : messageText);
-        var answerButtons = RenderButtons(currentMove);
-        var mediaMessage = await SendMediaMessage(chatId, currentMove, questState, answerButtons);
-        await SendTextMessage(chatId, currentMove, questState, mediaMessage == null ? answerButtons : null);
     }
 
     private async Task<Message> SendTextMessage(string chatId, VisibleState currentMove, QuestState questState,
