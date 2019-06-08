@@ -20,10 +20,18 @@ public class MessageProcessor
     {
         await synchronizer.WaitAsync();
         try {
-            if (stateManager.GetState(chatId) == null || messageText == "/reset") {
+             // initialize new state if new player, or on "reset" command
+            if (stateManager.GetState(chatId) == null || messageText.StartsWith("/reset")) {
                 stateManager.SetState(chatId, new QuestState {
                     Service = ToshikQuest.Initialize()
                 });
+            }
+            // reset all hashcodes to send all messages again if "play" commend is received
+            else if (messageText.StartsWith("/play")) {
+                var oldState = stateManager.GetState(chatId);
+                oldState.PreviousMediaMessageHash = -1;
+                oldState.PreviousMessageHash = -1;
+                stateManager.SetState(chatId, oldState);
             }
 
             var questState = stateManager.GetState(chatId);
