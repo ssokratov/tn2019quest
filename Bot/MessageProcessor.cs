@@ -28,10 +28,10 @@ public class MessageProcessor
 
         await synchronizer.WaitAsync();
         try {
-             // initialize new state if new player, or on "reset" command
+            // initialize new state if new player, or on "reset" command
             if (stateManager.GetState(chatId) == null || messageText.StartsWith("/reset")) {
-                stateManager.SetState(chatId, new QuestState {
-                    Service = ToshikQuest.Initialize()
+                stateManager.SetState(chatId, new BotState {
+                    QuestState = new QuestService(ToshikQuest.Map, new Inventory(), ToshikQuest.GetDialogs()).State
                 });
             }
             // reset all hashcodes to send all messages again if "play" commend is received
@@ -41,8 +41,8 @@ public class MessageProcessor
                 stateManager.SetState(chatId, oldState);
             }
 
-            var questState = stateManager.GetState(chatId);
-            var questService = questState.Service;
+            var botState = stateManager.GetState(chatId);
+            var questService = new QuestService(ToshikQuest.GetDialogs(), botState.QuestState);
 
             if (messageText != null) {
                 Console.WriteLine($"Received a text message in chat {chatId} from {user}: \n {messageText}");
@@ -53,8 +53,16 @@ public class MessageProcessor
                 : messageText);
             var answerButtons = RenderButtons(currentMove);
             var message = currentMove.Photo != null
-                ? await SendMediaMessage(chatId, currentMove, questState, answerButtons, answerToMessageId)
-                : await SendTextMessage(chatId, currentMove, questState, answerButtons, answerToMessageId);
+                ? await SendMediaMessage(chatId, currentMove, botState, answerButtons, answerToMessageId)
+                : await SendTextMessage(chatId, currentMove, botState, answerButtons, answerToMessageId);
+
+            if (message != null) {
+                botState.QuestState = questService.State;
+                stateManager.SetState(chatId, botState);
+            }
+        }
+        catch (Exception exception) {
+            Console.WriteLine(exception);
         }
         finally {
             synchronizer.Release();
@@ -63,14 +71,14 @@ public class MessageProcessor
 
     private async Task<Message> SendTextMessage(string chatId,
         VisibleState currentMove,
-        QuestState questState,
+        BotState botState,
         InlineKeyboardMarkup answerButtons,
         int? answerToMessageId = null)
     {
         var response = currentMove.Message;
         Message message = null;
-        if (response != null && response.GetHashCode() != questState.PreviousMessageHash) {
-            if (answerToMessageId.HasValue && questState.PreviousMessageIsText) {
+        if (response != null && response.GetHashCode() != botState.PreviousMessageHash) {
+            if (answerToMessageId.HasValue && botState.PreviousMessageIsText) {
                 try {
                     message = await botClient.EditMessageTextAsync(
                         chatId: chatId,
@@ -86,8 +94,8 @@ public class MessageProcessor
             }
 
             if (message == null) {
-                var messageToDelete = questState.PreviousMessageIsText
-                    ? questState.PreviousMessageId
+                var messageToDelete = botState.PreviousMessageIsText
+                    ? botState.PreviousMessageId
                     : answerToMessageId;
                 if (messageToDelete.HasValue) {
                     try {
@@ -113,9 +121,9 @@ public class MessageProcessor
                 }
             }
 
-            questState.PreviousMessageIsText = true;
-            questState.PreviousMessageId = message?.MessageId;
-            questState.PreviousMessageHash = response.GetHashCode();
+            botState.PreviousMessageIsText = true;
+            botState.PreviousMessageId = message?.MessageId;
+            botState.PreviousMessageHash = response.GetHashCode();
         }
 
         return message;
@@ -123,14 +131,14 @@ public class MessageProcessor
 
     private async Task<Message> SendMediaMessage(string chatId,
         VisibleState currentMove, 
-        QuestState questState,
+        BotState botState,
         InlineKeyboardMarkup answerButtons,
         int? answerToMessageId = null)
     {
         var response = currentMove.Message;
         var photo = currentMove.Photo;
         Message message = null;
-        if (photo != null && photo.GetHashCode() != questState.PreviousMessageHash) {
+        if (photo != null && photo.GetHashCode() != botState.PreviousMessageHash) {
             var filePath = photo.Split(new[] { "***" }, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault();
             var fileId = photo.Split(new[] { "***" }, StringSplitOptions.RemoveEmptyEntries).LastOrDefault();
 
@@ -178,9 +186,9 @@ public class MessageProcessor
                 }
             }
 
-            questState.PreviousMessageIsText = false;
-            questState.PreviousMessageId = message?.MessageId;
-            questState.PreviousMessageHash = photo.GetHashCode();
+            botState.PreviousMessageIsText = false;
+            botState.PreviousMessageId = message?.MessageId;
+            botState.PreviousMessageHash = photo.GetHashCode();
         }
 
         return message;

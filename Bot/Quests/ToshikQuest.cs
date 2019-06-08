@@ -4,7 +4,7 @@ namespace Bot
 {
     public static class ToshikQuest
     {
-        static string initialMap =
+        public static string Map =
             @"
 #########
 #########
@@ -20,7 +20,8 @@ namespace Bot
 ##~~#####
 ##--#####
 ";
-        public static QuestService Initialize()
+
+        public static DialogQuestion[] GetDialogs()
         {
             var mapDialog = new DialogQuestion {
                 Name = Dialog.Map,
@@ -536,7 +537,7 @@ namespace Bot
                 },
             };
 
-            var dialogs = new[] {
+            return new[] {
                     mapDialog,
                     moveToDialog
                 }.Concat(monocleDialogs)
@@ -548,10 +549,8 @@ namespace Bot
                 .Concat(sokratDialogs)
                 .Concat(jacobDialogs)
                 .Concat(sedoshDiagogs)
-                .Concat(zagsWorkerDialogs);
-
-            var inventory = new Inventory();
-            return new QuestService(initialMap, inventory, dialogs.ToArray());
+                .Concat(zagsWorkerDialogs)
+                .ToArray();
         }
     }
 }

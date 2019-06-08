@@ -4,15 +4,23 @@ using System.Text;
 
 namespace Bot
 {
+    public class QuestState {
+        public int Pos { get; set; }
+        public string Map { get; set; }
+        public Inventory Inventory { get; set; }
+        public string OpenDialogName { get; set; }
+    }
+
     public class QuestService
     {
-        private int Pos { get; set; }
-        private DialogQuestion OpenDialog { get; set; }
+        public QuestState State;
 
-        private string Map { get; set; }
-        private Inventory Inventory { get; }
-        private Dictionary<string, DialogQuestion> Dialogs { get; }
-        private Dictionary<char, DialogQuestion> DialogsByMapIcons { get; }
+        private string Map => State.Map;
+        private int Pos => State.Pos;
+        private Inventory Inventory => State.Inventory;
+        public DialogQuestion OpenDialog { get; set; }
+        public Dictionary<string, DialogQuestion> Dialogs { get; set; }
+        public Dictionary<char, DialogQuestion> DialogsByMapIcons { get; set; }
 
         public VisibleState ProcessAnswer(string answer)
         {
@@ -22,6 +30,7 @@ namespace Bot
                 dialogAnswer.ChangeInventory?.Invoke(Inventory);
                 if (dialogAnswer.MoveToDialog != null) {
                     OpenDialog = Dialogs[dialogAnswer.MoveToDialog];
+                    State.OpenDialogName = OpenDialog.Name;
                 }
 
                 if (dialogAnswer.ClearMapCell) {
@@ -52,10 +61,11 @@ namespace Bot
             var newPosObject = Map[newPos];
             if (DialogsByMapIcons.ContainsKey(newPosObject)) {
                 OpenDialog = DialogsByMapIcons[newPosObject];
+                State.OpenDialogName = OpenDialog.Name;
             }
 
             if (!OpenDialog.PreventMove) {
-                Pos = newPos;
+                State.Pos = newPos;
             }
         }
 
@@ -64,7 +74,7 @@ namespace Bot
             var newMap = new StringBuilder(Map) {
                 [Pos] = MapIcon.Empty
             };
-            Map = newMap.ToString();
+            State.Map = newMap.ToString();
         }
 
         private string GetVisibleMap() => !OpenDialog.DisplayMap
@@ -103,20 +113,26 @@ namespace Bot
             return visibleMap.ToString().ToSmileAll();
         }
 
-        private void SetStartingPosition()
-        {
-            Pos = Map.IndexOf('O');
-            ClearCell();
-        }
-
         public QuestService(string map, Inventory inventory, DialogQuestion[] dialogs)
         {
-            Map = map;
             Dialogs = dialogs.ToDictionary(d => d.Name);
             DialogsByMapIcons = dialogs.Where(d => d.MapIcon.HasValue).ToDictionary(d => d.MapIcon.Value);
             OpenDialog = dialogs.First();
-            Inventory = inventory;
-            SetStartingPosition();
+            State = new QuestState {
+                Map = map,
+                Inventory = inventory,
+                Pos = map.IndexOf(MapIcon.Self),
+                OpenDialogName = OpenDialog.Name
+            };
+            ClearCell();
+        }
+
+        public QuestService(DialogQuestion[] dialogs, QuestState state)
+        {
+            Dialogs = dialogs.ToDictionary(d => d.Name);
+            DialogsByMapIcons = dialogs.Where(d => d.MapIcon.HasValue).ToDictionary(d => d.MapIcon.Value);
+            OpenDialog = Dialogs[state.OpenDialogName];
+            this.State = state;
         }
     }
 }
