@@ -14,6 +14,11 @@
         public const char Wall = '#';
         public const char Fear = '~';
         public const char Empty = '-';
+        public const char Flame = 'F';
+
+        public const char SmallDoor = 'п';
+        public const char FireExtinguisher = 'f';
+        public const char Boots = 'b';
 
         public const char Repa = 'R';
         public const char Sedosh = 'K';
@@ -29,8 +34,14 @@
     public static class Item
     {
         public const string Glasses = nameof(Glasses);
+        public const string FlameAlarm = nameof(FlameAlarm);
+        public const string FireExtinguisher = nameof(FireExtinguisher);
+        public const string Boots = nameof(Boots);
         public const string Veil = nameof(Veil);
+
+        public const string StickRequest = nameof(StickRequest);
         public const string Stick = nameof(Stick);
+        public const string Hat = nameof(Hat);
 
         public const string PhoneNumber = nameof(PhoneNumber);
         public const string PhoneRequest = nameof(PhoneRequest);
@@ -66,10 +77,24 @@
         public const string Demianov2 = nameof(Demianov2);
         public const string Demianov3 = nameof(Demianov3);
         public const string Sokrat1 = nameof(Sokrat1);
+        public const string Sokrat2 = nameof(Sokrat2);
+        public const string Sokrat3 = nameof(Sokrat3);
+        public const string Sokrat4 = nameof(Sokrat4);
+        public const string Sokrat5 = nameof(Sokrat5);
         public const string ZagsWorker1 = nameof(ZagsWorker1);
+        public const string ZagsWorker2 = nameof(ZagsWorker2);
+        public const string ZagsWorker3 = nameof(ZagsWorker3);
  
-        public const string Glasses_1 = nameof(Glasses_1);
-        public const string Glasses_2 = nameof(Glasses_2);
+        public const string Glasses1 = nameof(Glasses1);
+        public const string Glasses2 = nameof(Glasses2);
+
+        public const string Boots1 = nameof(Boots1);
+        public const string Boots2 = nameof(Boots2);
+
+        public const string Flame1 = nameof(Flame1);
+        public const string Flame2 = nameof(Flame2);
+        public const string SmallDoor = nameof(SmallDoor);
+        public const string FireExtinguisher = nameof(FireExtinguisher);
 
         public const string FoundWall = nameof(FoundWall);
         public const string FoundFear = nameof(FoundFear);

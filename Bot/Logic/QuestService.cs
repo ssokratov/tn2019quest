@@ -33,8 +33,8 @@ namespace Bot
                     State.OpenDialogName = OpenDialog.Name;
                 }
 
-                if (dialogAnswer.ClearMapCell) {
-                    ClearCell();
+                if (dialogAnswer.ChangeMap != null) {
+                    State.Map = dialogAnswer.ChangeMap(Pos, Map);
                 }
 
                 if (dialogAnswer.MoveToPos != null) {

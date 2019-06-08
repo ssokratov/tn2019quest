@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 
 namespace Bot
 {
@@ -39,6 +40,20 @@ namespace Bot
         public static bool SameAs(this string str1, string str2)
         {
             return str1?.Trim().ToLower() == str2?.Trim().ToLower();
+        }
+
+        public static string ClearPos(this string map, int pos)
+        {
+            return map.Replace(pos, MapIcon.Empty);
+        }
+
+        public static string Replace(this string map, int pos, char toChar)
+        {
+            var newMap = new StringBuilder(map)
+            {
+                [pos] = toChar
+            };
+            return newMap.ToString();
         }
     }
 }

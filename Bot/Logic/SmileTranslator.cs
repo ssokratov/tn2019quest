@@ -23,14 +23,22 @@ namespace Bot
             [MapIcon.Jacob] = "\ud83c\udf85",
             [MapIcon.Sokrat] = "\ud83d\udc68\u200d\ud83d\udcbb",
             [MapIcon.ZagsWorker] = "\ud83d\udc69\u200d\u2696\ufe0f",
+
+            [MapIcon.Flame] = "\ud83d\udd25",
+            [MapIcon.FireExtinguisher] = "\ud83e\uddef",
+            [MapIcon.Boots] = "\ud83d\udc62",
+            [MapIcon.SmallDoor] = "\ud83d\udeaa",
+
             [Directions.Left] = "\u2b05\ufe0f",
             [Directions.Up] = "\u2b06\ufe0f",
             [Directions.Right] = "\u27a1\ufe0f",
             [Directions.Down] = "\u2b07\ufe0f",
-            
         };
 
-        private static readonly Dictionary<string, Char> FromSmileDict = ToSmileDict.ToDictionary(m => m.Value, m => m.Key);
+        private static readonly Dictionary<string, Char> FromSmileDict = ToSmileDict
+            .Where(d => d.Key == Directions.Down
+                        || d.Key == Directions.Up || d.Key == Directions.Left || d.Key == Directions.Right)
+            .ToDictionary(m => m.Value, m => m.Key);
 
         public static string ToSmileAll(this string str)
         {
