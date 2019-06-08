@@ -68,8 +68,8 @@
         public const string Sokrat1 = nameof(Sokrat1);
         public const string ZagsWorker1 = nameof(ZagsWorker1);
  
-        public const string Glasses = nameof(Glasses);
-        public const string FoundGlasses = nameof(FoundGlasses);
+        public const string Glasses_1 = nameof(Glasses_1);
+        public const string Glasses_2 = nameof(Glasses_2);
 
         public const string FoundWall = nameof(FoundWall);
         public const string FoundFear = nameof(FoundFear);

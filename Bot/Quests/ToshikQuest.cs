@@ -103,12 +103,12 @@ namespace Bot
 
             var monocleDialogs = new[] {
                 new DialogQuestion {
-                    Name = Dialog.Glasses,
+                    Name = Dialog.Glasses_1,
                     Message = "Под ногами лежит *монокль* в золотой оправе. Чуть не наступил.",
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Поднять",
-                            MoveToDialog = Dialog.FoundGlasses,
+                            MoveToDialog = Dialog.Glasses_2,
                             ChangeInventory = i => i.Give(Item.Glasses),
                             ClearMapCell = true
                         },
@@ -117,10 +117,11 @@ namespace Bot
                             MoveToDialog = Dialog.Map
                         },
                     },
-                    MapIcon = MapIcon.Glasses
+                    MapIcon = MapIcon.Glasses,
+                    DisplayMap = true
                 },
                 new DialogQuestion {
-                    Name = Dialog.FoundGlasses,
+                    Name = Dialog.Glasses_2,
                     Message = "Дорогая вещица. И удобная! Теперь я вижу немного дальше!",
                     Answers = mapDialog.Answers,
                     DisplayMap = true
@@ -518,7 +519,7 @@ namespace Bot
             var randomDialogs = new[] {
                 new DialogQuestion {
                     Name = Dialog.FoundWall,
-                    Message = "Впереди стена.",
+                    Message = "Уперся в стену.",
                     Answers = mapDialog.Answers,
                     DisplayMap = true,
                     PreventMove = true,
