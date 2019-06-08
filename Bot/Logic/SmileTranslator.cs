@@ -8,12 +8,15 @@ namespace Bot
     {
         private static readonly Dictionary<Char, string> ToSmileDict = new Dictionary<char, string> {
             [MapIcon.Self] = "\ud83d\udeb6\u200d\u2642\ufe0f",
-            [MapIcon.Empty] = "\u2b1c\ufe0f",
+            //[MapIcon.Empty] = "\u2b1c\ufe0f",
+            [MapIcon.Empty] = "\u25ab\ufe0f",
             [MapIcon.Wall] = "\u2b1b\ufe0f",
             [MapIcon.Glasses] = "\ud83d\udd0e",
             [MapIcon.StartDoors] = "\ud83d\udeaa",
-            [MapIcon.Fear] = "\ud83c\udf2b",
-            [MapIcon.Veil] = "\ud83d\udc52",
+            //[MapIcon.Fear] = "\ud83c\udf2b",
+            [MapIcon.Fear] = "\u2716\ufe0f",
+            //[MapIcon.Veil] = "\ud83d\udc52",
+            [MapIcon.Veil] = "\ud83d\udc60",
             [MapIcon.Repa] = "\ud83e\udd35",
             [MapIcon.Sedosh] = "\ud83d\udc6e\u200d\u2642\ufe0f",
             //[MapIcon.JACOB] = "\ud83d\udc68\u200d\ud83d\udcbc",
