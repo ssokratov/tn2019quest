@@ -113,7 +113,7 @@ namespace Bot
             var inventoryDialog = new DialogQuestion {
                 Name = Dialog.Inventory,
                 DynamicMessage = i => {
-                    return "*Инвентарь*:\n\n"
+                    return "*Инвентарь*:\n"
                            + (i.Has(Item.Phone) ? "\ud83d\udcf1 телефон\n" : "")
                            + (i.Has(Item.Project) ? "\ud83d\udcc3 проект\n" : "")
                            + (i.Has(Item.Stick) ? "\u26a1\ufe0f жезл\n" : "")
@@ -136,7 +136,7 @@ namespace Bot
                 DynamicMessage = i => {
                     var done = "\u2714\ufe0f";
                     var pending = "\u2716\ufe0f";
-                    return "*Журнал*:\n\n"
+                    return "*Журнал*:\n"
                            + $"{(i.Has(Item.Veil) ? done : pending)} Войти в зал\n"
                            + (i.Has(Item.PhoneRequest) ? $"{(i.Has(Item.Phone) ? done : pending)} Замутить телефон\n" : "")
                            + (i.Has(Item.ProjectRequest) ? $"{(i.Has(Item.Project) ? done : pending)} Обсчитать проект\n" : "")
