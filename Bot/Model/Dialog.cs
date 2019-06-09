@@ -7,7 +7,7 @@ namespace Bot
         public string Name { get; set; }
         public string Message { get; set; }
         public string Photo { get; set; }
-        public DialogAnswer[] Answers { get; set; }
+        public DialogAnswer[] Answers { get; set; } = { };
         public bool DisplayMap { get; set; }
         public char? MapIcon { get; set; }
         public bool PreventMove { get; set; }
