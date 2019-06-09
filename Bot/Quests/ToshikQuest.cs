@@ -55,18 +55,18 @@ namespace Bot
                     },
                     new DialogAnswer {
                         Available = i => i.Has(Item.Veil),
-                        Message = "Подойти к...",
+                        Message = $"{MapIcon.Self.ToSmile()} идти к...",
                         MoveToDialog = Dialog.MapMoveTo
                     },
                     new DialogAnswer {
-                        Available = i => i.Has(Item.PhoneRequest) && !i.Has(Item.Phone),
-                        Message = "Позвонить Жене Демьянову",
-                        MoveToDialog = Dialog.Demianov1,
+                        Available = i => i.Has(Item.PhoneNumber),
+                        Message = "\ud83d\udcde набрать на цифры",
+                        MoveToDialog = Dialog.FoundFear,
                     },
                     new DialogAnswer {
-                        Available = i => i.Has(Item.PhoneNumber),
-                        Message = "Позвонить на цифры",
-                        MoveToDialog = Dialog.FoundFear,
+                        Available = i => i.Has(Item.PhoneRequest) && !i.Has(Item.Phone),
+                        Message = "\ud83d\udcde позвонить Демьянову",
+                        MoveToDialog = Dialog.Demianov1,
                     }
                 },
                 DisplayMap = true
