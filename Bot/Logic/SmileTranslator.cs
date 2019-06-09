@@ -11,7 +11,7 @@ namespace Bot
             //[MapIcon.Empty] = "\u2b1c\ufe0f",
             [MapIcon.Empty] = "\u25ab\ufe0f",
             [MapIcon.Wall] = "\u2b1b\ufe0f",
-            [MapIcon.Glasses] = "\ud83d\udd0e",
+            [MapIcon.Glasses] = "\ud83e\uddff",
             [MapIcon.StartDoors] = "\ud83d\udeaa",
             //[MapIcon.Fear] = "\ud83c\udf2b",
             [MapIcon.Fear] = "\u2716\ufe0f",
