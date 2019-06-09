@@ -49,7 +49,7 @@ namespace Bot
         private VisibleState GetVisibleState()
         {
             return new VisibleState {
-                Message = GetVisibleMap() + (OpenDialog.Message ?? ""),
+                Message = GetVisibleMap() + (OpenDialog.Message ?? OpenDialog.DynamicMessage?.Invoke(Inventory) ?? ""),
                 Answers = OpenDialog.Answers.Where(a => a.Available(Inventory)).Where(a => !a.IsHidden)
                     .Select(a => a.Message).ToArray(),
                 Photo = OpenDialog.Photo,

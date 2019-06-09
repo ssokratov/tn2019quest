@@ -31,15 +31,18 @@ namespace Bot
             [MapIcon.Boots] = "\ud83d\udc62",
             [MapIcon.SmallDoor] = "\ud83d\udeaa",
 
-            [Directions.Left] = "\u2b05\ufe0f",
-            [Directions.Up] = "\u2b06\ufe0f",
-            [Directions.Right] = "\u27a1\ufe0f",
-            [Directions.Down] = "\u2b07\ufe0f",
+            [MapButtons.Left] = "\u2b05\ufe0f",
+            [MapButtons.Up] = "\u2b06\ufe0f",
+            [MapButtons.Right] = "\u27a1\ufe0f",
+            [MapButtons.Down] = "\u2b07\ufe0f",
+            [MapButtons.Journal] = "\ud83d\udcd6",
+            [MapButtons.Inventory] = "\ud83d\udc5d",
         };
 
         private static readonly Dictionary<string, Char> FromSmileDict = ToSmileDict
-            .Where(d => d.Key == Directions.Down
-                        || d.Key == Directions.Up || d.Key == Directions.Left || d.Key == Directions.Right)
+            .Where(d => d.Key == MapButtons.Down
+                        || d.Key == MapButtons.Up || d.Key == MapButtons.Left || d.Key == MapButtons.Right
+                        || d.Key == MapButtons.Inventory || d.Key == MapButtons.Journal)
             .ToDictionary(m => m.Value, m => m.Key);
 
         public static string ToSmileAll(this string str)

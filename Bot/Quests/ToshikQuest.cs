@@ -26,22 +26,30 @@ namespace Bot
                 Name = Dialog.Map,
                 Answers = new[] {
                     new DialogAnswer {
-                        Message = Directions.Left.ToString(),
-                        MoveToDialog = Dialog.Map,
-                        MoveToPos = (pos, map) => pos - 1
+                        Message = MapButtons.Inventory.ToString(),
+                        MoveToDialog = Dialog.Inventory,
                     },
                     new DialogAnswer {
-                        Message = Directions.Up.ToString(),
+                        Message = MapButtons.Up.ToString(),
                         MoveToDialog = Dialog.Map,
                         MoveToPos = (pos, map) => map.PosUp(pos)
                     },
                     new DialogAnswer {
-                        Message = Directions.Down.ToString(),
+                        Message = MapButtons.Journal.ToString(),
+                        MoveToDialog = Dialog.Journal,
+                    },
+                    new DialogAnswer {
+                        Message = MapButtons.Left.ToString(),
+                        MoveToDialog = Dialog.Map,
+                        MoveToPos = (pos, map) => pos - 1
+                    },
+                    new DialogAnswer {
+                        Message = MapButtons.Down.ToString(),
                         MoveToDialog = Dialog.Map,
                         MoveToPos = (pos, map) => map.PosDown(pos)
                     },
                     new DialogAnswer {
-                        Message = Directions.Right.ToString(),
+                        Message = MapButtons.Right.ToString(),
                         MoveToDialog = Dialog.Map,
                         MoveToPos = (pos, map) => pos + 1
                     },
@@ -75,7 +83,7 @@ namespace Bot
                     },
                     new DialogAnswer {
                         Message = "К Сократу",
-                        Available = i => !i.Has(Item.FlameAlarm) || i.Has(Item.StickRequest),
+                        Available = i => !i.Has(Item.FireAlarm) || i.Has(Item.StickRequest),
                         MoveToDialog = Dialog.Sokrat1,
                         MoveToPos = (pos, map) => map.PosLeft(MapIcon.Sokrat)
                     },
@@ -100,6 +108,50 @@ namespace Bot
                     },
                 },
                 DisplayMap = true
+            };
+
+            var inventoryDialog = new DialogQuestion {
+                Name = Dialog.Inventory,
+                DynamicMessage = i => {
+                    return "*Инвентарь*:\n\n"
+                           + (i.Has(Item.Phone) ? "\ud83d\udcf1 телефон\n" : "")
+                           + (i.Has(Item.Project) ? "\ud83d\udcc3 проект\n" : "")
+                           + (i.Has(Item.Stick) ? "\u26a1\ufe0f жезл\n" : "")
+                           + (i.Has(Item.FireExtinguisher) ? $"{MapIcon.FireExtinguisher.ToSmile()} огнетушитель\n" : "")
+                           + (i.Has(Item.Glasses) ? $"{MapIcon.Glasses.ToSmile()} монокль\n" : "")
+                           + (i.Has(Item.Boots) ? $"{MapIcon.Boots.ToSmile()} сапоги\n" : "")
+                           + (i.Has(Item.Hat) ? $"\ud83c\udfa9 шляпа\n" : "")
+                        ;
+                },
+                Answers = new[] {
+                    new DialogAnswer {
+                        Message = "<<<",
+                        MoveToDialog = Dialog.Map
+                    },
+                }
+            };
+
+            var journalDialog = new DialogQuestion {
+                Name = Dialog.Journal,
+                DynamicMessage = i => {
+                    var done = "\u2714\ufe0f";
+                    var pending = "\u2716\ufe0f";
+                    return "*Журнал*:\n\n"
+                           + $"{(i.Has(Item.Veil) ? done : pending)} Войти в зал\n"
+                           + (i.Has(Item.PhoneRequest) ? $"{(i.Has(Item.Phone) ? done : pending)} Замутить телефон\n" : "")
+                           + (i.Has(Item.ProjectRequest) ? $"{(i.Has(Item.Project) ? done : pending)} Обсчитать проект\n" : "")
+                           + (i.Has(Item.ProjectRequest) ? $"{(i.Has(Item.Stick) ? done : pending)} Отдать проект\n" : "")
+                           + (i.Has(Item.FireAlarm) ? $"{(i.Has(Item.FireExtinguisher) ? done : pending)} Найти огнетушитель\n" : "")
+                           + (i.Has(Item.StickRequest) ? $"{(i.Has(Item.Hat) ? done : pending)} Починить роутер\n" : "")
+                           + $"{(i.Has(Item.Hat) && i.Has(Item.Boots) && i.Has(Item.Glasses) ? done : pending)} Подготовиться к свадьбе\n"
+                        ;
+                },
+                Answers = new[] {
+                    new DialogAnswer {
+                        Message = "<<<",
+                        MoveToDialog = Dialog.Map
+                    },
+                }
             };
 
             var monocleDialogs = new[] {
@@ -352,8 +404,12 @@ namespace Bot
                         new DialogAnswer {
                             Message = "Поблагодарить и уйти",
                             MoveToDialog = Dialog.Map,
-                            ChangeInventory = i => i.Give(Item.PhoneNumber),
-                            MoveToPos = (pos, map) => map.PosLeft(MapIcon.Repa)
+                            ChangeInventory = i => i.Give(Item.PhoneNumber).Give(Item.FireAlarm),
+                            MoveToPos = (pos, map) => map.PosLeft(MapIcon.Repa),
+                            ChangeMap = (pos, map) => map
+                                .Replace(map.PosLeft(MapIcon.Sokrat), MapIcon.Flame)
+                                .Replace(map.PosDown(MapIcon.Sokrat), MapIcon.Flame)
+                                .Replace(map.PosLeft(map.PosDown(MapIcon.Sokrat)), MapIcon.Flame)
                         },
                     }
                 },
@@ -420,12 +476,8 @@ namespace Bot
                         new DialogAnswer {
                             Message = "Поблагодарить и уйти",
                             MoveToDialog = Dialog.Map,
-                            ChangeInventory = i => i.Give(Item.Stick).Give(Item.FlameAlarm),
-                            MoveToPos = (pos, map) => map.PosRight(MapIcon.Sedosh),
-                            ChangeMap = (pos, map) => map
-                                .Replace(map.PosLeft(MapIcon.Sokrat), MapIcon.Flame)
-                                .Replace(map.PosDown(MapIcon.Sokrat), MapIcon.Flame)
-                                .Replace(map.PosLeft(map.PosDown(MapIcon.Sokrat)), MapIcon.Flame)
+                            ChangeInventory = i => i.Give(Item.Stick),
+                            MoveToPos = (pos, map) => map.PosRight(MapIcon.Sedosh)
                         },
                     }
                 },
@@ -648,7 +700,7 @@ namespace Bot
                     Message = "На двери табличка: СЛУЖЕБНОЕ ПОМЕЩЕНИЕ.",
                     Answers = new[] {
                         new DialogAnswer {
-                            Available = i => i.Has(Item.FlameAlarm),
+                            Available = i => i.Has(Item.FireAlarm),
                             Message = "Выбить дверь ногой!",
                             MoveToDialog = Dialog.Map,
                             ChangeMap = (pos, map) => map.ClearPos(pos)
@@ -751,7 +803,9 @@ namespace Bot
 
             return new[] {
                     mapDialog,
-                    moveToDialog
+                    moveToDialog,
+                    inventoryDialog,
+                    journalDialog
                 }.Concat(monocleDialogs)
                 .Concat(startDoorDialogs)
                 .Concat(veilDialogs)

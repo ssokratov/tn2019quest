@@ -1,11 +1,13 @@
 ﻿namespace Bot
 {
-    public static class Directions
+    public static class MapButtons
     {
         public const char Left = 'l';
         public const char Up = 't';
         public const char Right = 'r';
         public const char Down = 'd';
+        public const char Inventory = 'i';
+        public const char Journal = 'j';
     }
 
     public static class MapIcon
@@ -34,7 +36,7 @@
     public static class Item
     {
         public const string Glasses = nameof(Glasses);
-        public const string FlameAlarm = nameof(FlameAlarm);
+        public const string FireAlarm = nameof(FireAlarm);
         public const string FireExtinguisher = nameof(FireExtinguisher);
         public const string Boots = nameof(Boots);
         public const string Veil = nameof(Veil);
@@ -101,6 +103,8 @@
 
         public const string Map = nameof(Map);
         public const string MapMoveTo = nameof(MapMoveTo);
+        public const string Inventory = nameof(Inventory);
+        public const string Journal = nameof(Journal);
     }
 
 }

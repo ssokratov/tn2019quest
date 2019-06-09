@@ -198,18 +198,16 @@ public class MessageProcessor
     {
         InlineKeyboardMarkup answerButtons = null;
         if (currentMove.Answers?.Length > 0) {
-            var buttonCategories = new List<List<InlineKeyboardButton>> { new List<InlineKeyboardButton>() };
+            List<InlineKeyboardButton> currentButtonGroup = null;
+            var buttonCategories = new List<List<InlineKeyboardButton>>();
             foreach (var answer in currentMove.Answers) {
                 var len = answer.Length;
-                if (len == 1 && answer[0] == Directions.Up) {
-                    buttonCategories[0].Add(InlineKeyboardButton.WithCallbackData(answer[0].ToSmile()));
-                }
-                else if (len == 1) {
-                    if (buttonCategories.Count < 2) {
-                        buttonCategories.Add(new List<InlineKeyboardButton>());
+                if (len == 1) {
+                    if (currentButtonGroup == null || currentButtonGroup.Count >= 3) {
+                        currentButtonGroup = new List<InlineKeyboardButton>();
+                        buttonCategories.Add(currentButtonGroup);
                     }
-
-                    buttonCategories[1].Add(InlineKeyboardButton.WithCallbackData(answer[0].ToSmile()));
+                    currentButtonGroup.Add(InlineKeyboardButton.WithCallbackData(answer[0].ToSmile()));
                 }
                 else {
                     buttonCategories.Add(new List<InlineKeyboardButton> {
