@@ -14,8 +14,7 @@ namespace Bot
 ##K----#f-b##
 ##-v---п---##
 ###П#########
-##O-#########
-##--#########
+##-O#########
 ##8-#########
 ##~~#########
 ##--#########
@@ -151,7 +150,7 @@ namespace Bot
                 },
                 new DialogQuestion {
                     Name = Dialog.Boots2,
-                    Message = "Ну... Не очень удобно, но зато весело скрипят при ходьбе!",
+                    Message = "Ну... Не очень удобно, но зато скрипят при ходьбе!",
                     Answers = mapDialog.Answers,
                     DisplayMap = true
                 },
@@ -481,7 +480,7 @@ namespace Bot
                             MoveToDialog = Dialog.Jacob4
                         },
                         new DialogAnswer {
-                            Message = "квадратныю на 3 и на 4",
+                            Message = "квадратную на 3 и на 4",
                             MoveToDialog = Dialog.Jacob5
                         },
                         new DialogAnswer {
@@ -572,7 +571,7 @@ namespace Bot
                         },
                         new DialogAnswer {
                             Available = i => i.Has(Item.Stick),
-                            Message = "Использовать заряженный жезл",
+                            Message = "Использовать жезл",
                             MoveToDialog = Dialog.Sokrat5
                         },
                     },
@@ -706,7 +705,7 @@ namespace Bot
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "WHAT?! FFFUUUUUU",
-                            MoveToDialog = Dialog.Map,
+                            MoveToDialog = Dialog.ZagsWorker3,
 
                             ChangeInventory = i => i.Items.Remove(Item.FireExtinguisher),
                             ChangeMap = (pos, map) => map
@@ -722,6 +721,11 @@ namespace Bot
                                 .Replace(map.PosLeft(MapIcon.Sokrat), MapIcon.Flame)
                         },
                     },
+                },
+                new DialogQuestion {
+                    Name = Dialog.ZagsWorker3,
+                    Message = "\ud83d\udc70\ud83c\udffc???????",
+                    DisplayMap = true,
                 },
             };
 
