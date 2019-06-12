@@ -37,7 +37,7 @@ namespace Bot
             async void BotOnMessage(object sender, MessageEventArgs e)
             {
                 var messageText = e.Message.Text;
-                var user = e.Message.Chat.Username;
+                var user = e.Message.From.Username;
                 var chatId = e.Message.Chat.Id.ToString();
                 await processor.Process(chatId, messageText, user);
             }
