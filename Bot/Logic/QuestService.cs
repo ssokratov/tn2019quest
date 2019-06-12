@@ -4,7 +4,14 @@ using System.Text;
 
 namespace Bot
 {
-    public class QuestState {
+    public class PlayerValidationResult
+    {
+        public bool CanPlay { get; set; }
+        public string Reason { get; set; }
+    }
+
+    public class QuestState
+    {
         public int Pos { get; set; }
         public string Map { get; set; }
         public Inventory Inventory { get; set; }
@@ -21,6 +28,19 @@ namespace Bot
         public DialogQuestion OpenDialog { get; set; }
         public Dictionary<string, DialogQuestion> Dialogs { get; set; }
         public Dictionary<char, DialogQuestion> DialogsByMapIcons { get; set; }
+
+        public PlayerValidationResult CanPlay(string player)
+        {
+            if (OpenDialog.ForPlayer != null
+                && (player == null || !OpenDialog.ForPlayer.Contains(player))) {
+                return new PlayerValidationResult {
+                    CanPlay = false,
+                    Reason = "Сейчас ход " + OpenDialog.ForPlayer.Split(';').FirstOrDefault()
+                };
+            }
+
+            return new PlayerValidationResult { CanPlay = true };
+        }
 
         public VisibleState ProcessAnswer(string answer)
         {

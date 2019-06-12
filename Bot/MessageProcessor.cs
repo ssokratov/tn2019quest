@@ -17,7 +17,7 @@ public class MessageProcessor
     private readonly QuestStateManager stateManager;
     private readonly ConcurrentDictionary<string, SemaphoreSlim> synchronizerDict = new ConcurrentDictionary<string, SemaphoreSlim>();
 
-    public async Task Process(string chatId,
+    public async Task<string> Process(string chatId,
         string messageText,
         string user,
         int? answerToMessageId = null)
@@ -48,6 +48,11 @@ public class MessageProcessor
                 Console.WriteLine($"Received a text message in chat {chatId} from {user}: \n {messageText}");
             }
 
+            var userValidation = questService.CanPlay(user);
+            if (!userValidation.CanPlay) {
+                return userValidation.Reason;
+            }
+
             var currentMove = questService.ProcessAnswer((messageText?.IsSmile() == true)
                 ? messageText.FromSmile().ToString()
                 : messageText);
@@ -67,6 +72,7 @@ public class MessageProcessor
         finally {
             synchronizer.Release();
         }
+        return "";
     }
 
     private async Task<Message> SendTextMessage(string chatId,

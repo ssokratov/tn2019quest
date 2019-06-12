@@ -6,6 +6,7 @@ namespace Bot
     {
         public string Name { get; set; }
         public string Message { get; set; }
+        public string ForPlayer { get; set; }
         public Func<Inventory, string> DynamicMessage { get; set; }
         public string Photo { get; set; }
         public DialogAnswer[] Answers { get; set; } = { };

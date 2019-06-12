@@ -801,7 +801,7 @@ namespace Bot
                 },
             };
 
-            return new[] {
+            var toshikDialogs = new[] {
                     mapDialog,
                     moveToDialog,
                     inventoryDialog,
@@ -818,6 +818,10 @@ namespace Bot
                 .Concat(bootsDialogs)
                 .Concat(zagsWorkerDialogs)
                 .ToArray();
+            foreach (var dialogQuestion in toshikDialogs) {
+                dialogQuestion.ForPlayer = "@Insomnov;@MistifliQ;@starteleport;@svsokrat";
+            }
+            return toshikDialogs;
         }
     }
 }
