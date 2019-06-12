@@ -216,7 +216,7 @@ public class MessageProcessor
                     }
                     groupBy3.Add(InlineKeyboardButton.WithCallbackData(answer[0].ToSmile()));
                 }
-                else if (len < 14) {
+                else if (len < 12) {
                     if (groupBy2 == null || groupBy2.Count >= 2) {
                         groupBy2 = new List<InlineKeyboardButton>();
                         buttonCategories.Add(groupBy2);

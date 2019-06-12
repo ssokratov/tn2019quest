@@ -22,10 +22,11 @@ namespace Bot
             async void BotOnCallbackQuery(object sender, CallbackQueryEventArgs callbackQueryEventArgs)
             {
                 var query = callbackQueryEventArgs.CallbackQuery;
+                var answerMoMessage = query.Message;
                 var messageText = query.Data;
-                var user = query.From.Username;
-                var chatId = query?.Message.Chat.Id.ToString();
-                var message = await processor.Process(chatId, messageText, user, query.Message.MessageId);
+                var user = query.From.Username ?? query.From.Id.ToString();
+                var chatId = answerMoMessage.Chat.Id.ToString();
+                var message = await processor.Process(chatId, messageText, user, answerMoMessage.MessageId);
                 try {
                     await botClient.AnswerCallbackQueryAsync(query.Id, message);
                 }
@@ -37,7 +38,7 @@ namespace Bot
             async void BotOnMessage(object sender, MessageEventArgs e)
             {
                 var messageText = e.Message.Text;
-                var user = e.Message.From.Username;
+                var user = e.Message.From.Username ?? e.Message.From.Id.ToString();
                 var chatId = e.Message.Chat.Id.ToString();
                 await processor.Process(chatId, messageText, user);
             }

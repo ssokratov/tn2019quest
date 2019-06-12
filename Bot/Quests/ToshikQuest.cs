@@ -24,7 +24,7 @@ namespace Bot
         {
             var mapDialog = new DialogQuestion {
                 Name = Dialog.Map,
-                Message = "_Перемещайтесь по карте стрелочками, или выбырите действие_",
+                Message = "_Перемещайтесь по карте, или выберите действие_",
                 Answers = new[] {
                     new DialogAnswer {
                         Message = MapButtons.Inventory.ToString(),
@@ -871,7 +871,7 @@ namespace Bot
                 .Concat(zagsWorkerDialogs)
                 .ToArray();
             foreach (var dialogQuestion in toshikDialogs) {
-                dialogQuestion.ForPlayer = "@Insomnov;@MistifliQ;@starteleport;@svsokrat";
+                dialogQuestion.ForPlayer = "@Insomnov;@MistifliQ;@starteleport;@svsokrat;296536101";
             }
             return toshikDialogs;
         }
