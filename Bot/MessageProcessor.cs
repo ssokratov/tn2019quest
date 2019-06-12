@@ -145,8 +145,8 @@ public class MessageProcessor
         var photo = currentMove.Photo;
         Message message = null;
         if (photo != null && photo.GetHashCode() != botState.PreviousMessageHash) {
-            var filePath = photo.Split(new[] { "***" }, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault();
-            var fileId = photo.Split(new[] { "***" }, StringSplitOptions.RemoveEmptyEntries).LastOrDefault();
+            var filePath = photo.Split(';').FirstOrDefault();
+            var fileId = photo.Split(';').LastOrDefault();
 
             if (answerToMessageId.HasValue) {
                 try {
@@ -160,7 +160,7 @@ public class MessageProcessor
                 }
             }
 
-            if (fileId != null) {
+            if (!string.IsNullOrEmpty(fileId) && fileId != filePath) {
                 try {
                     message = await botClient.SendPhotoAsync(
                         chatId: chatId,
@@ -204,16 +204,24 @@ public class MessageProcessor
     {
         InlineKeyboardMarkup answerButtons = null;
         if (currentMove.Answers?.Length > 0) {
-            List<InlineKeyboardButton> currentButtonGroup = null;
+            List<InlineKeyboardButton> groupBy3 = null;
+            List<InlineKeyboardButton> groupBy2 = null;
             var buttonCategories = new List<List<InlineKeyboardButton>>();
             foreach (var answer in currentMove.Answers) {
                 var len = answer.Length;
                 if (len == 1) {
-                    if (currentButtonGroup == null || currentButtonGroup.Count >= 3) {
-                        currentButtonGroup = new List<InlineKeyboardButton>();
-                        buttonCategories.Add(currentButtonGroup);
+                    if (groupBy3 == null || groupBy3.Count >= 3) {
+                        groupBy3 = new List<InlineKeyboardButton>();
+                        buttonCategories.Add(groupBy3);
                     }
-                    currentButtonGroup.Add(InlineKeyboardButton.WithCallbackData(answer[0].ToSmile()));
+                    groupBy3.Add(InlineKeyboardButton.WithCallbackData(answer[0].ToSmile()));
+                }
+                else if (len < 14) {
+                    if (groupBy2 == null || groupBy2.Count >= 2) {
+                        groupBy2 = new List<InlineKeyboardButton>();
+                        buttonCategories.Add(groupBy2);
+                    }
+                    groupBy2.Add(InlineKeyboardButton.WithCallbackData(answer));
                 }
                 else {
                     buttonCategories.Add(new List<InlineKeyboardButton> {

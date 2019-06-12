@@ -78,6 +78,7 @@
         public const string Demianov1 = nameof(Demianov1);
         public const string Demianov2 = nameof(Demianov2);
         public const string Demianov3 = nameof(Demianov3);
+        public const string Demianov4 = nameof(Demianov4);
         public const string Sokrat1 = nameof(Sokrat1);
         public const string Sokrat2 = nameof(Sokrat2);
         public const string Sokrat3 = nameof(Sokrat3);

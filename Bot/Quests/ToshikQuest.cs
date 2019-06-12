@@ -24,6 +24,7 @@ namespace Bot
         {
             var mapDialog = new DialogQuestion {
                 Name = Dialog.Map,
+                Message = "_Перемещайтесь по карте стрелочками, или выбырите действие_",
                 Answers = new[] {
                     new DialogAnswer {
                         Message = MapButtons.Inventory.ToString(),
@@ -74,8 +75,23 @@ namespace Bot
 
             var moveToDialog = new DialogQuestion {
                 Name = Dialog.MapMoveTo,
-                Message = "Куда идем?",
+                Message = "_Хорошо, куда пойдём?_",
                 Answers = new[] {
+                    new DialogAnswer {
+                        Message = "К работнице ЗАГСа",
+                        MoveToDialog = Dialog.ZagsWorker1,
+                        MoveToPos = (pos, map) => map.PosDown(MapIcon.ZagsWorker)
+                    },
+                    new DialogAnswer {
+                        Message = "К Якову",
+                        MoveToDialog = Dialog.Jacob1,
+                        MoveToPos = (pos, map) => map.PosRight(MapIcon.Jacob)
+                    },
+                    new DialogAnswer {
+                        Message = "К Репе",
+                        MoveToDialog = Dialog.Repa1,
+                        MoveToPos = (pos, map) => map.PosLeft(MapIcon.Repa)
+                    },
                     new DialogAnswer {
                         Message = "К Капитану",
                         MoveToDialog = Dialog.Sedosh1,
@@ -88,19 +104,8 @@ namespace Bot
                         MoveToPos = (pos, map) => map.PosLeft(MapIcon.Sokrat)
                     },
                     new DialogAnswer {
-                        Message = "К Репе",
-                        MoveToDialog = Dialog.Repa1,
-                        MoveToPos = (pos, map) => map.PosLeft(MapIcon.Repa)
-                    },
-                    new DialogAnswer {
-                        Message = "К Якову",
-                        MoveToDialog = Dialog.Jacob1,
-                        MoveToPos = (pos, map) => map.PosRight(MapIcon.Jacob)
-                    },
-                    new DialogAnswer {
-                        Message = "К работнице ЗАГСа",
-                        MoveToDialog = Dialog.ZagsWorker1,
-                        MoveToPos = (pos, map) => map.PosDown(MapIcon.ZagsWorker)
+                        Message = "В самое начало",
+                        MoveToPos = (pos, map) => Map.IndexOf(MapIcon.Self)
                     },
                     new DialogAnswer {
                         Message = "<<<",
@@ -323,7 +328,7 @@ namespace Bot
                 },
                 new DialogQuestion {
                     Name = Dialog.Veil3,
-                    Photo = "Resources/Kabluk.jpg***AgADAgADkaoxG1sH0Uu7QaMcUhByutN4Xw8ABDuyScUAAeRl2Zu7BQABAg",
+                    Photo = "Resources/Kabluk.jpg;AgADAgADkaoxG1sH0Uu7QaMcUhByutN4Xw8ABDuyScUAAeRl2Zu7BQABAg",
                     Message = "Вы поднимаете фотографию.",
                     Answers = new[] {
                         new DialogAnswer {
@@ -362,6 +367,10 @@ namespace Bot
                             Message = "Сбросить вызов",
                             MoveToDialog = Dialog.Map
                         },
+                        new DialogAnswer {
+                            Message = "Нужна подсказка",
+                            MoveToDialog = Dialog.Demianov3
+                        },
                     }
                 },
                 new DialogQuestion {
@@ -371,6 +380,49 @@ namespace Bot
                         new DialogAnswer {
                             Message = "Поблагодарить",
                             ChangeInventory = i => i.Give(Item.Phone),
+                            MoveToDialog = Dialog.Map
+                        },
+                    }
+                },
+                new DialogQuestion {
+                    Name = Dialog.Demianov3,
+                    Message = "Повторю вопрос. Недосдача сколько?",
+                    Photo = "Resources/Skolko.jpg;AgADAgADO60xG1B3CUivpD44cbs7aK5rXw8ABNee4rv3h__EzfoFAAEC",
+                    Answers = new[] {
+                        new DialogAnswer {
+                            IsHidden = true,
+                            Message = "В жопе столько",
+                            MoveToDialog = Dialog.Demianov2
+                        },
+                        new DialogAnswer {
+                            IsHidden = true,
+                            Message = "На складе столько",
+                            MoveToDialog = Dialog.Demianov2
+                        },
+                        new DialogAnswer {
+                            Message = "Сбросить вызов",
+                            MoveToDialog = Dialog.Map
+                        },
+                        new DialogAnswer {
+                            Message = "Ещё подсказку",
+                            MoveToDialog = Dialog.Demianov4
+                        },
+                    }
+                },
+                new DialogQuestion {
+                    Name = Dialog.Demianov4,
+                    Message = "Недосдача сколько?",
+                    Answers = new[] {
+                        new DialogAnswer {
+                            Message = "На складе столько",
+                            MoveToDialog = Dialog.Demianov2
+                        },
+                        new DialogAnswer {
+                            Message = "В жопе столько",
+                            MoveToDialog = Dialog.Demianov2
+                        },
+                        new DialogAnswer {
+                            Message = "Сбросить вызов",
                             MoveToDialog = Dialog.Map
                         },
                     }
