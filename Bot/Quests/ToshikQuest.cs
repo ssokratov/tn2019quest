@@ -21,7 +21,7 @@ namespace Bot
 ";
 
         public static Inventory GetStartingInventory () => new Inventory();
-        public static Journal GetStartingJournal () => new Journal().Open(Quest.EnterHall).Open(Quest.AskForWedding);
+        public static Journal GetStartingJournal () => new Journal().Open(Quest.EnterHall);
 
         public static DialogQuestion[] GetDialogs()
         {
@@ -309,13 +309,13 @@ namespace Bot
                             Message = "Поднять",
                             MoveToDialog = Dialog.Veil2,
                             ChangeMap = (pos, map) => map.ClearPos(pos),
-                            ChangeJournal = j => j.Finish(Quest.EnterHall)
+                            ChangeJournal = j => j.Finish(Quest.EnterHall).Open(Quest.AskForWedding)
                         },
                         new DialogAnswer {
                             Message = "Перешагнуть",
                             MoveToDialog = Dialog.EnteredHall,
                             ChangeMap = (pos, map) => map.ClearPos(pos),
-                            ChangeJournal = j => j.Finish(Quest.EnterHall)
+                            ChangeJournal = j => j.Finish(Quest.EnterHall).Open(Quest.AskForWedding)
                         }
                     },
                     MapIcon = MapIcon.Veil,
@@ -345,7 +345,7 @@ namespace Bot
                 },
                 new DialogQuestion {
                     Name = Dialog.EnteredHall,
-                    Message = "В зале собрались гости, все очень рады вас видеть. Пожалуй, стоит пообщаться с гостями перед тем, как начинать церемонию.",
+                    Message = "В зале собрались гости, все очень рады вас видеть. Пожалуй, стоит поговорить с работницей ЗАГСа насчет начала церемонии.",
                     Answers = mapDialog.Answers,
                     DisplayMap = true
                 },
@@ -801,11 +801,12 @@ namespace Bot
             var zagsWorkerDialogs = new[] {
                 new DialogQuestion {
                     Name = Dialog.ZagsWorker1,
-                    Message = "Работница загса сидит за столом и поправляет прическу.",
+                    Message = "Работница ЗАГСа сидит за столом и поправляет прическу.",
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Поговорить",
-                            ChangeJournal = j => j.Finish(Quest.AskForWedding),
+                            Available = (i, j) => !j.IsFinished(Quest.DressForWedding),
+                            ChangeJournal = j => j.Finish(Quest.AskForWedding).Open(Quest.DressForWedding),
                             MoveToDialog = Dialog.ZagsWorker2
                         },
                         new DialogAnswer {
@@ -823,14 +824,13 @@ namespace Bot
                 },
                 new DialogQuestion {
                     Name = Dialog.ZagsWorker2,
-                    Message = "Работница загса сидит за столом и поправляет прическу. " +
-                              "Она окидывает вас оценивающим взглядом и произносит:" +
+                    Message = "Она окидывает вас оценивающим взглядом и произносит:" +
                               "\nВы не можете начинать церемонию в таком виде! В правилах нашего загса " +
                               "ясно сказано, что брачующиеся должны быть одеты в строго определённой форме! " +
                               "Для жениха это: *шляпа*, *монокль* и *высокие сапоги*. Идите ищите.",
                     Answers = new[] {
                         new DialogAnswer {
-                            Message = "Приодеться",
+                            Message = "Приодеться!",
                             Available = (i, j) => j.IsOpen(Quest.DressForWedding) && i.Has(Item.Boots) && i.Has(Item.Hat) && i.Has(Item.Glasses),
                             MoveToDialog = Dialog.ZagsWorker3
                         },
@@ -839,8 +839,7 @@ namespace Bot
                             MoveToDialog = Dialog.Map,
                             MoveToPos = (pos, map) => map.PosDown(MapIcon.ZagsWorker)
                         },
-                    },
-                    MapIcon = MapIcon.ZagsWorker
+                    }
                 },
                 new DialogQuestion {
                     Name = Dialog.ZagsWorker3,

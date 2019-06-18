@@ -38,7 +38,8 @@ public class MessageProcessor
                     QuestState = new QuestService(ToshikQuest.Map,
                         ToshikQuest.GetStartingInventory(),
                         ToshikQuest.GetStartingJournal(),
-                        ToshikQuest.GetDialogs()).State
+                        ToshikQuest.GetDialogs())
+                        .State
                 });
             }
             // reset all hashcodes to send all messages again if "play" commend is received
