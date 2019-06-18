@@ -26,7 +26,11 @@ public class MessageProcessor
             ? synchronizerDict[chatId]
             : (synchronizerDict[chatId] = new SemaphoreSlim(1, 1));
 
-        await synchronizer.WaitAsync();
+        if (!await synchronizer.WaitAsync(1000)) {
+            Console.WriteLine("Error: can't take lock.");
+            return "";
+        }
+
         try {
             // initialize new state if new player, or on "reset" command
             if (stateManager.GetState(chatId) == null || messageText.StartsWith("/reset")) {
@@ -70,7 +74,12 @@ public class MessageProcessor
             Console.WriteLine(exception);
         }
         finally {
-            synchronizer.Release();
+            if (synchronizer.CurrentCount == 0) {
+                synchronizer.Release();
+            }
+            else {
+                Console.WriteLine("Error: Synchronizer count is unexpected. Expected: 0, actual: " + synchronizer.CurrentCount);
+            }
         }
         return "";
     }

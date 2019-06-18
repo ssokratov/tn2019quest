@@ -12,7 +12,7 @@ namespace Bot
 
         static void Main()
         {
-            var proxy = new WebProxy("134.209.217.230:8118");
+            var proxy = new WebProxy("178.128.229.221:8080");
             var botClient = new TelegramBotClient("660115843:AAGnddFLBWeam3Ko1TEu_j3-IRhUwuYBYM4", proxy);
             processor = new MessageProcessor(botClient);
 
@@ -28,7 +28,9 @@ namespace Bot
                 var chatId = answerMoMessage.Chat.Id.ToString();
                 var message = await processor.Process(chatId, messageText, user, answerMoMessage.MessageId);
                 try {
-                    await botClient.AnswerCallbackQueryAsync(query.Id, message);
+                    if (!string.IsNullOrEmpty(message)) {
+                        await botClient.AnswerCallbackQueryAsync(query.Id, message);
+                    }
                 }
                 catch (Exception exception) {
                     Console.WriteLine(exception);
