@@ -150,6 +150,7 @@ namespace Bot
                     return "*Журнал*:\n"
                            + RenderQuest(Quest.EnterHall, "Войти в зал")
                            + RenderQuest(Quest.AskForWedding, "Поговорить с работником ЗАГСа")
+                           + RenderQuest(Quest.Demianov, "Позвонить Демьянову")
                            + RenderQuest(Quest.Jacob, "Замутить Якову телефон")
                            + RenderQuest(Quest.Sedosh, "Обсчитать проект капитанской хижины")
                            + RenderQuest(Quest.FireAlarm, "Потушить пожар")
@@ -553,8 +554,9 @@ namespace Bot
                               "Мы тут облутались оптимизмом и не отсечемся ещё трлько минут через 20-30.",
                     Answers = new[] {
                         new DialogAnswer {
-                            Available = (i, j) => j.IsOpen(Quest.Jacob),
+                            Available = (i, j) => j.IsOpen(Quest.Sedosh),
                             Message = "Попросить обсчитать проетк",
+                            ChangeJournal = j => j.Open(Quest.Jacob),
                             MoveToDialog = Dialog.Jacob2
                         },
                         new DialogAnswer {
