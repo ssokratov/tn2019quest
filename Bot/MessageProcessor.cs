@@ -35,7 +35,10 @@ public class MessageProcessor
             // initialize new state if new player, or on "reset" command
             if (stateManager.GetState(chatId) == null || messageText.StartsWith("/reset")) {
                 stateManager.SetState(chatId, new BotState {
-                    QuestState = new QuestService(ToshikQuest.Map, new Inventory(), ToshikQuest.GetDialogs()).State
+                    QuestState = new QuestService(ToshikQuest.Map,
+                        ToshikQuest.GetStartingInventory(),
+                        ToshikQuest.GetStartingJournal(),
+                        ToshikQuest.GetDialogs()).State
                 });
             }
             // reset all hashcodes to send all messages again if "play" commend is received

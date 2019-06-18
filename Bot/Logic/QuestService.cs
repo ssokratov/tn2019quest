@@ -15,6 +15,7 @@ namespace Bot
         public int Pos { get; set; }
         public string Map { get; set; }
         public Inventory Inventory { get; set; }
+        public Journal Journal { get; set; }
         public string OpenDialogName { get; set; }
     }
 
@@ -25,6 +26,7 @@ namespace Bot
         private string Map => State.Map;
         private int Pos => State.Pos;
         private Inventory Inventory => State.Inventory;
+        private Journal Journal => State.Journal;
         public DialogQuestion OpenDialog { get; set; }
         public Dictionary<string, DialogQuestion> Dialogs { get; set; }
         public Dictionary<char, DialogQuestion> DialogsByMapIcons { get; set; }
@@ -44,10 +46,12 @@ namespace Bot
 
         public VisibleState ProcessAnswer(string answer)
         {
-            var dialogAnswer = OpenDialog.Answers.Where(a => a.Available(Inventory))
+            var dialogAnswer = OpenDialog.Answers
+                .Where(a => a.Available(Inventory, Journal))
                 .FirstOrDefault(a => a.Message.SameAs(answer));
             if (dialogAnswer != null) {
                 dialogAnswer.ChangeInventory?.Invoke(Inventory);
+                dialogAnswer.ChangeJournal?.Invoke(Journal);
                 if (dialogAnswer.MoveToDialog != null) {
                     OpenDialog = Dialogs[dialogAnswer.MoveToDialog];
                     State.OpenDialogName = OpenDialog.Name;
@@ -69,9 +73,12 @@ namespace Bot
         private VisibleState GetVisibleState()
         {
             return new VisibleState {
-                Message = GetVisibleMap() + (OpenDialog.Message ?? OpenDialog.DynamicMessage?.Invoke(Inventory) ?? ""),
-                Answers = OpenDialog.Answers.Where(a => a.Available(Inventory)).Where(a => !a.IsHidden)
-                    .Select(a => a.Message).ToArray(),
+                Message = GetVisibleMap() + (OpenDialog.Message ?? OpenDialog.DynamicMessage?.Invoke(Inventory, Journal) ?? ""),
+                Answers = OpenDialog.Answers
+                    .Where(a => a.Available(Inventory, Journal))
+                    .Where(a => !a.IsHidden)
+                    .Select(a => a.Message)
+                    .ToArray(),
                 Photo = OpenDialog.Photo,
             };
         }
@@ -133,7 +140,7 @@ namespace Bot
             return visibleMap.ToString().ToSmileAll();
         }
 
-        public QuestService(string map, Inventory inventory, DialogQuestion[] dialogs)
+        public QuestService(string map, Inventory inventory, Journal journal, DialogQuestion[] dialogs)
         {
             Dialogs = dialogs.ToDictionary(d => d.Name);
             DialogsByMapIcons = dialogs.Where(d => d.MapIcon.HasValue).ToDictionary(d => d.MapIcon.Value);
@@ -141,6 +148,7 @@ namespace Bot
             State = new QuestState {
                 Map = map,
                 Inventory = inventory,
+                Journal = journal,
                 Pos = map.IndexOf(MapIcon.Self),
                 OpenDialogName = OpenDialog.Name
             };

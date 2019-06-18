@@ -20,6 +20,9 @@ namespace Bot
 ##--#########
 ";
 
+        public static Inventory GetStartingInventory () => new Inventory();
+        public static Journal GetStartingJournal () => new Journal().Open(Quest.EnterHall).Open(Quest.AskForWedding);
+
         public static DialogQuestion[] GetDialogs()
         {
             var mapDialog = new DialogQuestion {
@@ -55,17 +58,17 @@ namespace Bot
                         MoveToPos = (pos, map) => pos + 1
                     },
                     new DialogAnswer {
-                        Available = i => i.Has(Item.Veil),
+                        Available = (i, j) => j.IsFinished(Quest.EnterHall),
                         Message = $"{MapIcon.Self.ToSmile()} идти к...",
                         MoveToDialog = Dialog.MapMoveTo
                     },
                     new DialogAnswer {
-                        Available = i => i.Has(Item.PhoneNumber),
+                        Available = (i, j) => i.Has(Item.PhoneNumber),
                         Message = "\ud83d\udcde набрать на цифры",
                         MoveToDialog = Dialog.FoundFear,
                     },
                     new DialogAnswer {
-                        Available = i => i.Has(Item.PhoneRequest) && !i.Has(Item.Phone),
+                        Available = (i, j) => j.IsOpen(Quest.Demianov),
                         Message = "\ud83d\udcde позвонить Демьянову",
                         MoveToDialog = Dialog.Demianov1,
                     }
@@ -99,7 +102,7 @@ namespace Bot
                     },
                     new DialogAnswer {
                         Message = "К Сократу",
-                        Available = i => !i.Has(Item.FireAlarm) || i.Has(Item.StickRequest),
+                        Available = (i, j) => !j.IsOpen(Quest.FireAlarm),
                         MoveToDialog = Dialog.Sokrat1,
                         MoveToPos = (pos, map) => map.PosLeft(MapIcon.Sokrat)
                     },
@@ -117,7 +120,7 @@ namespace Bot
 
             var inventoryDialog = new DialogQuestion {
                 Name = Dialog.Inventory,
-                DynamicMessage = i => {
+                DynamicMessage = (i, j) => {
                     return "*Инвентарь*:\n"
                            + (i.Has(Item.Phone) ? "\ud83d\udcf1 телефон\n" : "")
                            + (i.Has(Item.Project) ? "\ud83d\udcc3 проект\n" : "")
@@ -138,17 +141,20 @@ namespace Bot
 
             var journalDialog = new DialogQuestion {
                 Name = Dialog.Journal,
-                DynamicMessage = i => {
+                DynamicMessage = (i, j) => {
                     var done = "\u2714\ufe0f";
                     var pending = "\u2716\ufe0f";
+                    string RenderQuest(string quest, string message) {
+                        return (j.IsKnown(quest) ? $"{(j.IsFinished(quest) ? done : pending)} {message}\n" : "");
+                    }
                     return "*Журнал*:\n"
-                           + $"{(i.Has(Item.Veil) ? done : pending)} Войти в зал\n"
-                           + (i.Has(Item.PhoneRequest) ? $"{(i.Has(Item.Phone) ? done : pending)} Замутить телефон\n" : "")
-                           + (i.Has(Item.ProjectRequest) ? $"{(i.Has(Item.Project) ? done : pending)} Обсчитать проект\n" : "")
-                           + (i.Has(Item.ProjectRequest) ? $"{(i.Has(Item.Stick) ? done : pending)} Отдать проект\n" : "")
-                           + (i.Has(Item.FireAlarm) ? $"{(i.Has(Item.FireExtinguisher) ? done : pending)} Найти огнетушитель\n" : "")
-                           + (i.Has(Item.StickRequest) ? $"{(i.Has(Item.Hat) ? done : pending)} Починить роутер\n" : "")
-                           + $"{(i.Has(Item.Hat) && i.Has(Item.Boots) && i.Has(Item.Glasses) ? done : pending)} Подготовиться к свадьбе\n"
+                           + RenderQuest(Quest.EnterHall, "Войти в зал")
+                           + RenderQuest(Quest.AskForWedding, "Поговорить с работником ЗАГСа")
+                           + RenderQuest(Quest.Jacob, "Замутить Якову телефон")
+                           + RenderQuest(Quest.Sedosh, "Обсчитать проект капитанской хижины")
+                           + RenderQuest(Quest.FireAlarm, "Потушить пожар")
+                           + RenderQuest(Quest.Sokrat, "Починить Сократу роутер")
+                           + RenderQuest(Quest.DressForWedding, "Приодеться к свадьбе")
                         ;
                 },
                 Answers = new[] {
@@ -303,13 +309,13 @@ namespace Bot
                             Message = "Поднять",
                             MoveToDialog = Dialog.Veil2,
                             ChangeMap = (pos, map) => map.ClearPos(pos),
-                            ChangeInventory = i => i.Give(Item.Veil)
+                            ChangeJournal = j => j.Finish(Quest.EnterHall)
                         },
                         new DialogAnswer {
                             Message = "Перешагнуть",
                             MoveToDialog = Dialog.EnteredHall,
                             ChangeMap = (pos, map) => map.ClearPos(pos),
-                            ChangeInventory = i => i.Give(Item.Veil)
+                            ChangeJournal = j => j.Finish(Quest.EnterHall)
                         }
                     },
                     MapIcon = MapIcon.Veil,
@@ -380,6 +386,7 @@ namespace Bot
                         new DialogAnswer {
                             Message = "Поблагодарить",
                             ChangeInventory = i => i.Give(Item.Phone),
+                            ChangeJournal = j => j.Finish(Quest.Demianov),
                             MoveToDialog = Dialog.Map
                         },
                     }
@@ -435,7 +442,7 @@ namespace Bot
                     Message = "Репа, приодетый и гладкий как шёлк, даёт вам пятюню и поздравляет.",
                     Answers = new[] {
                         new DialogAnswer {
-                            Available = i => !i.Has(Item.PhoneNumber),
+                            Available = (i, j) => !i.Has(Item.PhoneNumber),
                             Message = "Узнать за мутки",
                             MoveToDialog = Dialog.Repa2
                         },
@@ -456,7 +463,8 @@ namespace Bot
                         new DialogAnswer {
                             Message = "Поблагодарить и уйти",
                             MoveToDialog = Dialog.Map,
-                            ChangeInventory = i => i.Give(Item.PhoneNumber).Give(Item.FireAlarm),
+                            ChangeInventory = i => i.Give(Item.PhoneNumber),
+                            ChangeJournal = j => j.Open(Quest.FireAlarm),
                             MoveToPos = (pos, map) => map.PosLeft(MapIcon.Repa),
                             ChangeMap = (pos, map) => map
                                 .Replace(map.PosLeft(MapIcon.Sokrat), MapIcon.Flame)
@@ -473,13 +481,14 @@ namespace Bot
                     Message = "Капитан Владимир Седошенко поздравляет вас от всего сердца.",
                     Answers = new[] {
                         new DialogAnswer {
-                            Available = i => !i.Has(Item.Stick),
+                            Available = (i, j) => !i.Has(Item.Stick),
                             Message = "Поговорить",
                             MoveToDialog = Dialog.Sedosh2
                         },
                         new DialogAnswer {
-                            Available = i => i.Has(Item.Project) && !i.Has(Item.Stick),
+                            Available = (i, j) => i.Has(Item.Project),
                             Message = "Отдать проект от Якова",
+                            ChangeInventory = i => i.Take(Item.Project),
                             MoveToDialog = Dialog.Sedosh3
                         },
                         new DialogAnswer {
@@ -498,19 +507,20 @@ namespace Bot
                         "*проектировании* таунхауса из палок и связующего материала.",
                     Answers = new[] {
                         new DialogAnswer {
-                            Available = i => !i.Has(Item.ProjectRequest),
+                            Available = (i, j) => !j.IsOpen(Quest.Sedosh),
                             Message = "Пообещать помочь",
                             MoveToDialog = Dialog.Map,
-                            ChangeInventory = i => i.Give(Item.ProjectRequest),
+                            ChangeJournal = j => j.Open(Quest.Sedosh),
                             MoveToPos = (pos, map) => map.PosRight(MapIcon.Sedosh)
                         },
                         new DialogAnswer {
-                            Available = i => i.Has(Item.Project),
+                            Available = (i, j) => i.Has(Item.Project),
                             Message = "Отдать проект от Якова",
+                            ChangeInventory = i => i.Take(Item.Project),
                             MoveToDialog = Dialog.Sedosh3
                         },
                         new DialogAnswer {
-                            Available = i => i.Has(Item.ProjectRequest),
+                            Available = (i, j) => j.IsOpen(Quest.Sedosh),
                             Message = "Уйти",
                             MoveToDialog = Dialog.Map,
                             MoveToPos = (pos, map) => map.PosRight(MapIcon.Sedosh)
@@ -529,6 +539,7 @@ namespace Bot
                             Message = "Поблагодарить и уйти",
                             MoveToDialog = Dialog.Map,
                             ChangeInventory = i => i.Give(Item.Stick),
+                            ChangeJournal = j => j.Finish(Quest.Sedosh),
                             MoveToPos = (pos, map) => map.PosRight(MapIcon.Sedosh)
                         },
                     }
@@ -542,13 +553,14 @@ namespace Bot
                               "Мы тут облутались оптимизмом и не отсечемся ещё трлько минут через 20-30.",
                     Answers = new[] {
                         new DialogAnswer {
-                            Available = i => i.Has(Item.ProjectRequest) && !i.Has(Item.Project),
+                            Available = (i, j) => j.IsOpen(Quest.Jacob),
                             Message = "Попросить обсчитать проетк",
                             MoveToDialog = Dialog.Jacob2
                         },
                         new DialogAnswer {
-                            Available = i => i.Has(Item.Phone) && !i.Has(Item.Project),
+                            Available = (i, j) => i.Has(Item.Phone),
                             Message = "Дать тефлвон",
+                            ChangeInventory = i => i.Take(Item.Phone),
                             MoveToDialog = Dialog.Jacob3
                         },
                         new DialogAnswer {
@@ -568,7 +580,7 @@ namespace Bot
                         new DialogAnswer {
                             Message = "Пообещать помочь",
                             MoveToDialog = Dialog.Map,
-                            ChangeInventory = i => i.Give(Item.PhoneRequest),
+                            ChangeJournal = j => j.Open(Quest.Demianov),
                             MoveToPos = (pos, map) => map.PosRight(MapIcon.Jacob)
                         }
                     }
@@ -615,6 +627,7 @@ namespace Bot
                             Message = "Откланяться",
                             MoveToDialog = Dialog.Map,
                             ChangeInventory = i => i.Give(Item.Project),
+                            ChangeJournal = j => j.Finish(Quest.Jacob),
                             MoveToPos = (pos, map) => map.PosRight(MapIcon.Jacob)
                         }
                     }
@@ -627,12 +640,12 @@ namespace Bot
                     Message = "Сократ (задротит)",
                     Answers = new[] {
                         new DialogAnswer {
-                            Available = i => i.Has(Item.FireExtinguisher) && !i.Has(Item.StickRequest),
+                            Available = (i, j) => j.IsFinished(Quest.FireAlarm) && !j.IsKnown(Quest.Sokrat),
                             Message = "Сократ, что это было?!",
                             MoveToDialog = Dialog.Sokrat2
                         },
                         new DialogAnswer {
-                            Available = i => i.Has(Item.StickRequest) && !i.Has(Item.Hat),
+                            Available = (i, j) => j.IsOpen(Quest.Sokrat),
                             Message = "Помочь с роутером",
                             MoveToDialog = Dialog.Sokrat3
                         },
@@ -650,7 +663,7 @@ namespace Bot
                     Message = "_Сократ:_ Сорян, чёт пригорел немного. Опять вайфай роутер не работает, я из-за этого катку в лолец слил!",
                     Answers = new[] {
                         new DialogAnswer {
-                            ChangeInventory = i => i.Give(Item.StickRequest),
+                            ChangeJournal = j => j.Open(Quest.Sokrat),
                             Message = "Предложить помощь",
                             MoveToDialog = Dialog.Sokrat3
                         },
@@ -674,8 +687,9 @@ namespace Bot
                             MoveToDialog = Dialog.Sokrat4
                         },
                         new DialogAnswer {
-                            Available = i => i.Has(Item.Stick),
+                            Available = (i, j) => i.Has(Item.Stick),
                             Message = "Использовать жезл",
+                            ChangeInventory = i => i.Take(Item.Stick),
                             MoveToDialog = Dialog.Sokrat5
                         },
                     },
@@ -693,7 +707,7 @@ namespace Bot
                             MoveToDialog = Dialog.Sokrat4
                         },
                         new DialogAnswer {
-                            Available = i => i.Has(Item.Stick),
+                            Available = (i, j) => i.Has(Item.Stick),
                             Message = "Использовать жезл",
                             MoveToDialog = Dialog.Sokrat5
                         },
@@ -714,6 +728,7 @@ namespace Bot
                         new DialogAnswer {
                             Message = "Поблагодарить",
                             ChangeInventory = i => i.Give(Item.Hat),
+                            ChangeJournal = j => j.Finish(Quest.Sokrat),
                             MoveToDialog = Dialog.Map,
                             MoveToPos = (pos, map) => map.PosLeft(MapIcon.Sokrat)
                         },
@@ -724,9 +739,11 @@ namespace Bot
                     Message = "Деревянный паркет полыхает перед вашими ногами. Вы слышите пожарную сирену.",
                     Answers = new[] {
                         new DialogAnswer {
-                            Available = i => i.Has(Item.FireExtinguisher),
+                            Available = (i, j) => i.Has(Item.FireExtinguisher),
                             Message = "Использовать огнетушитель",
                             MoveToDialog = Dialog.Flame2,
+                            ChangeJournal = j => j.Finish(Quest.FireAlarm),
+                            ChangeInventory = i => i.Take(Item.FireExtinguisher),
                             ChangeMap = (pos, map) => map
                                 .Replace(map.PosLeft(MapIcon.Sokrat), MapIcon.Empty)
                                 .Replace(map.PosDown(MapIcon.Sokrat), MapIcon.Empty)
@@ -752,7 +769,7 @@ namespace Bot
                     Message = "На двери табличка: СЛУЖЕБНОЕ ПОМЕЩЕНИЕ.",
                     Answers = new[] {
                         new DialogAnswer {
-                            Available = i => i.Has(Item.FireAlarm),
+                            Available = (i, j) => j.IsOpen(Quest.FireAlarm),
                             Message = "Выбить дверь ногой!",
                             MoveToDialog = Dialog.Map,
                             ChangeMap = (pos, map) => map.ClearPos(pos)
@@ -784,16 +801,17 @@ namespace Bot
             var zagsWorkerDialogs = new[] {
                 new DialogQuestion {
                     Name = Dialog.ZagsWorker1,
-                    Message = "Работница загса сидит за столом и поправляет прическу. " +
-                              "Она окидывает вас оценивающим взглядом и произносит:" +
-                              "\nВы не можете начинать церемонию в таком виде! В правилах нашего загса " +
-                              "ясно сказано, что брачующиеся должны быть одеты в строго определённой форме! " +
-                              "Для жениха это: *шляпа*, *монокль* и *высокие сапоги*. Идите ищите.",
+                    Message = "Работница загса сидит за столом и поправляет прическу.",
                     Answers = new[] {
                         new DialogAnswer {
-                            Message = "Приодеться",
-                            Available = i => i.Has(Item.Boots) && i.Has(Item.Hat) && i.Has(Item.Glasses),
+                            Message = "Поговорить",
+                            ChangeJournal = j => j.Finish(Quest.AskForWedding),
                             MoveToDialog = Dialog.ZagsWorker2
+                        },
+                        new DialogAnswer {
+                            Message = "Приодеться!",
+                            Available = (i, j) => j.IsOpen(Quest.DressForWedding) && i.Has(Item.Boots) && i.Has(Item.Hat) && i.Has(Item.Glasses),
+                            MoveToDialog = Dialog.ZagsWorker3
                         },
                         new DialogAnswer {
                             Message = "Уйти",
@@ -805,13 +823,33 @@ namespace Bot
                 },
                 new DialogQuestion {
                     Name = Dialog.ZagsWorker2,
+                    Message = "Работница загса сидит за столом и поправляет прическу. " +
+                              "Она окидывает вас оценивающим взглядом и произносит:" +
+                              "\nВы не можете начинать церемонию в таком виде! В правилах нашего загса " +
+                              "ясно сказано, что брачующиеся должны быть одеты в строго определённой форме! " +
+                              "Для жениха это: *шляпа*, *монокль* и *высокие сапоги*. Идите ищите.",
+                    Answers = new[] {
+                        new DialogAnswer {
+                            Message = "Приодеться",
+                            Available = (i, j) => j.IsOpen(Quest.DressForWedding) && i.Has(Item.Boots) && i.Has(Item.Hat) && i.Has(Item.Glasses),
+                            MoveToDialog = Dialog.ZagsWorker3
+                        },
+                        new DialogAnswer {
+                            Message = "Уйти",
+                            MoveToDialog = Dialog.Map,
+                            MoveToPos = (pos, map) => map.PosDown(MapIcon.ZagsWorker)
+                        },
+                    },
+                    MapIcon = MapIcon.ZagsWorker
+                },
+                new DialogQuestion {
+                    Name = Dialog.ZagsWorker3,
                     Message = "Вот, теперь можно и начинать! А где невеста?",
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "WHAT?! FFFUUUUUU",
-                            MoveToDialog = Dialog.ZagsWorker3,
-
-                            ChangeInventory = i => i.Items.Remove(Item.FireExtinguisher),
+                            MoveToDialog = Dialog.ZagsWorker4,
+                            ChangeJournal = j => j.Finish(Quest.DressForWedding),
                             ChangeMap = (pos, map) => map
                                 .Replace(map.PosLeft(MapIcon.ZagsWorker), MapIcon.Flame)
                                 .Replace(map.PosDown(MapIcon.ZagsWorker), MapIcon.Flame)
@@ -827,7 +865,7 @@ namespace Bot
                     },
                 },
                 new DialogQuestion {
-                    Name = Dialog.ZagsWorker3,
+                    Name = Dialog.ZagsWorker4,
                     Message = "\ud83d\udc70\ud83c\udffc???????",
                     DisplayMap = true,
                 },

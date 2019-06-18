@@ -36,20 +36,27 @@
     public static class Item
     {
         public const string Glasses = nameof(Glasses);
-        public const string FireAlarm = nameof(FireAlarm);
         public const string FireExtinguisher = nameof(FireExtinguisher);
         public const string Boots = nameof(Boots);
-        public const string Veil = nameof(Veil);
-
-        public const string StickRequest = nameof(StickRequest);
+        
         public const string Stick = nameof(Stick);
         public const string Hat = nameof(Hat);
 
         public const string PhoneNumber = nameof(PhoneNumber);
-        public const string PhoneRequest = nameof(PhoneRequest);
         public const string Phone = nameof(Phone);
-        public const string ProjectRequest = nameof(ProjectRequest);
         public const string Project = nameof(Project);
+    }
+
+    public static class Quest
+    {
+        public const string EnterHall = nameof(EnterHall);
+        public const string AskForWedding = nameof(AskForWedding);
+        public const string DressForWedding = nameof(DressForWedding);
+        public const string FireAlarm = nameof(FireAlarm);
+        public const string Sokrat = nameof(Sokrat);
+        public const string Demianov = nameof(Demianov);
+        public const string Jacob = nameof(Jacob);
+        public const string Sedosh = nameof(Sedosh);
     }
 
     public static class Dialog
@@ -87,6 +94,7 @@
         public const string ZagsWorker1 = nameof(ZagsWorker1);
         public const string ZagsWorker2 = nameof(ZagsWorker2);
         public const string ZagsWorker3 = nameof(ZagsWorker3);
+        public const string ZagsWorker4 = nameof(ZagsWorker4);
  
         public const string Glasses1 = nameof(Glasses1);
         public const string Glasses2 = nameof(Glasses2);
