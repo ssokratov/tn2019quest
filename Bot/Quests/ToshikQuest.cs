@@ -617,7 +617,8 @@ namespace Bot
                             Message = "FUU#№;%!!",
                             MoveToDialog = Dialog.Map,
                             MoveToPos = (pos, map) => Map.IndexOf(MapIcon.Self),
-                            ChangeJournal = j => j.Finish(Quest.KolyanDachaOpenDoor).Finish(Quest.Kolyan)
+                            ChangeJournal = j => j.Finish(Quest.KolyanDachaOpenDoor).Finish(Quest.Kolyan),
+                            ChangeInventory = i => i.Take(Item.KolyanDachaKey)
                         }
                     }
                 },
