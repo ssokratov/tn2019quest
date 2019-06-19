@@ -9,15 +9,23 @@ namespace Bot
 #############
 #############
 ##--Z--######
-##J---R######
+##J---k######
 ##----S######
-##K----#f-b##
-##-v---п---##
+##K----#f-###
+##-v---п--###
 ###П#########
 ##-O#########
 ##8-#########
 ##~~#########
 ##--#########
+##--#########
+#############
+#############
+###---#######
+###--UD######
+###---#######
+#############
+#############
 ";
 
         public static Inventory GetStartingInventory () => new Inventory();
@@ -58,7 +66,7 @@ namespace Bot
                         MoveToPos = (pos, map) => pos + 1
                     },
                     new DialogAnswer {
-                        Available = (i, j) => j.IsFinished(Quest.EnterHall),
+                        Available = (i, j) => j.IsFinished(Quest.EnterHall) && !j.IsOpen(Quest.Kolyan),
                         Message = $"{MapIcon.Self.ToSmile()} идти к...",
                         MoveToDialog = Dialog.MapMoveTo
                     },
@@ -91,9 +99,9 @@ namespace Bot
                         MoveToPos = (pos, map) => map.PosRight(MapIcon.Jacob)
                     },
                     new DialogAnswer {
-                        Message = "К Репе",
-                        MoveToDialog = Dialog.Repa1,
-                        MoveToPos = (pos, map) => map.PosLeft(MapIcon.Repa)
+                        Message = "К Коляну",
+                        MoveToDialog = Dialog.Kolyan1,
+                        MoveToPos = (pos, map) => map.PosLeft(MapIcon.Kolyan)
                     },
                     new DialogAnswer {
                         Message = "К Капитану",
@@ -125,6 +133,7 @@ namespace Bot
                            + (i.Has(Item.Phone) ? "\ud83d\udcf1 телефон\n" : "")
                            + (i.Has(Item.Project) ? "\ud83d\udcc3 проект\n" : "")
                            + (i.Has(Item.Stick) ? "\u26a1\ufe0f жезл\n" : "")
+                           + (i.Has(Item.KolyanDachaKey) ? $"{MapIcon.KolyanDachaKey.ToSmile()} ключ\n" : "")
                            + (i.Has(Item.FireExtinguisher) ? $"{MapIcon.FireExtinguisher.ToSmile()} огнетушитель\n" : "")
                            + (i.Has(Item.Glasses) ? $"{MapIcon.Glasses.ToSmile()} монокль\n" : "")
                            + (i.Has(Item.Boots) ? $"{MapIcon.Boots.ToSmile()} сапоги\n" : "")
@@ -153,6 +162,8 @@ namespace Bot
                            + RenderQuest(Quest.Demianov, "Позвонить Демьянову")
                            + RenderQuest(Quest.Jacob, "Замутить Якову телефон")
                            + RenderQuest(Quest.Sedosh, "Обсчитать проект капитанской хижины")
+                           + RenderQuest(Quest.Kolyan, "Код КРАКОВ!")
+                           + RenderQuest(Quest.KolyanDachaOpenDoor, "Открыть дверь дачного домика")
                            + RenderQuest(Quest.FireAlarm, "Потушить пожар")
                            + RenderQuest(Quest.Sokrat, "Починить Сократу роутер")
                            + RenderQuest(Quest.DressForWedding, "Приодеться к свадьбе")
@@ -188,33 +199,6 @@ namespace Bot
                 new DialogQuestion {
                     Name = Dialog.Glasses2,
                     Message = "Дорогая вещица. И удобная! Теперь я вижу немного дальше!",
-                    Answers = mapDialog.Answers,
-                    DisplayMap = true
-                },
-            };
-
-            var bootsDialogs = new[] {
-                new DialogQuestion {
-                    Name = Dialog.Boots1,
-                    Message = "Перед вами старенькие резиновые сапоги.",
-                    Answers = new[] {
-                        new DialogAnswer {
-                            Message = "Надеть",
-                            MoveToDialog = Dialog.Boots2,
-                            ChangeInventory = i => i.Give(Item.Boots),
-                            ChangeMap = (pos, map) => map.ClearPos(pos)
-                        },
-                        new DialogAnswer {
-                            Message = "Оставить",
-                            MoveToDialog = Dialog.Map
-                        },
-                    },
-                    MapIcon = MapIcon.Boots,
-                    DisplayMap = true
-                },
-                new DialogQuestion {
-                    Name = Dialog.Boots2,
-                    Message = "Ну... Не очень удобно, но зато скрипят при ходьбе!",
                     Answers = mapDialog.Answers,
                     DisplayMap = true
                 },
@@ -437,41 +421,204 @@ namespace Bot
                 },
             };
 
-            var repaDiagogs = new[] {
+            var kolyanDialogs = new[] {
                 new DialogQuestion {
-                    Name = Dialog.Repa1,
-                    Message = "Репа, приодетый и гладкий как шёлк, даёт вам пятюню и поздравляет.",
+                    Name = Dialog.Kolyan1,
+                    Message = "Колян горячо приветвтвует вас, попивая лавандовый смузи. Однако, вид у него встревоженный. Похоже, что-то не так.",
                     Answers = new[] {
                         new DialogAnswer {
-                            Available = (i, j) => !i.Has(Item.PhoneNumber),
-                            Message = "Узнать за мутки",
-                            MoveToDialog = Dialog.Repa2
-                        },
-                        new DialogAnswer {
-                            Message = "Уйти",
-                            MoveToDialog = Dialog.Map,
-                            MoveToPos = (pos, map) => map.PosLeft(MapIcon.Repa)
-                        },
-                    },
-                    MapIcon = MapIcon.Repa,
-                    DisplayMap = true,
-                },
-                new DialogQuestion {
-                    Name = Dialog.Repa2,
-                    Message = "_Репа:_ Бротиш, есть возможность подзаработать. Держи визитку человечка. " +
-                              "Набери ему на *цифры*, он всё объяснит.",
-                    Answers = new[] {
-                        new DialogAnswer {
-                            Message = "Поблагодарить и уйти",
-                            MoveToDialog = Dialog.Map,
-                            ChangeInventory = i => i.Give(Item.PhoneNumber),
+                            Message = "Поговорить",
+                            Available = (i, j) => !j.IsFinished(Quest.Kolyan),
+                            MoveToDialog = Dialog.Kolyan2,
                             ChangeJournal = j => j.Open(Quest.FireAlarm),
-                            MoveToPos = (pos, map) => map.PosLeft(MapIcon.Repa),
                             ChangeMap = (pos, map) => map
                                 .Replace(map.PosLeft(MapIcon.Sokrat), MapIcon.Flame)
                                 .Replace(map.PosDown(MapIcon.Sokrat), MapIcon.Flame)
                                 .Replace(map.PosLeft(map.PosDown(MapIcon.Sokrat)), MapIcon.Flame)
                         },
+                        new DialogAnswer {
+                            Message = "WTF?!?!?!",
+                            Available = (i, j) => j.IsFinished(Quest.Kolyan) && !i.Has(Item.Boots),
+                            MoveToDialog = Dialog.Kolyan5,
+                            ChangeInventory = i => i.Give(Item.Boots),
+                        },
+                        new DialogAnswer {
+                            Message = "Уйти",
+                            MoveToDialog = Dialog.Map,
+                            MoveToPos = (pos, map) => map.PosLeft(MapIcon.Kolyan)
+                        },
+                    },
+                    MapIcon = MapIcon.Kolyan,
+                    DisplayMap = true,
+                },
+                new DialogQuestion {
+                    Name = Dialog.Kolyan2,
+                    Message = "_Колян:_ Слушай, у меня тут авария произошла. Только что Ромыч позвонил и сказал, что у нас на даче" +
+                              " *код Краков*. Нужно срочно метнуться туда, помочь. Я понимаю, у тебя тут мероприятие, но давай " +
+                              "съездим по фасту? За 20 минут туда-сюда должны управиться.",
+                    Answers = new[] {
+                        new DialogAnswer {
+                            Message = "Поехали",
+                            ChangeJournal = j => j.Open(Quest.Kolyan),
+                            MoveToDialog = Dialog.Kolyan3,
+                        },
+                        new DialogAnswer {
+                            Message = "Отказаться",
+                            MoveToDialog = Dialog.Map,
+                            MoveToPos = (pos, map) => map.PosLeft(MapIcon.Kolyan)
+                        },
+                    }
+                },
+                new DialogQuestion {
+                    Name = Dialog.Kolyan3,
+                    Message = "Вы подозреваете, что ввязались в сомнительную блуду, но другу помочь надо. " +
+                              "Тем более, до свадьбы минут 40 ещё есть. Вы садитесь к Коляну в машину и отправляетесь в путь.",
+                    Answers = new[] {
+                        new DialogAnswer {
+                            Message = "Дальше",
+                            MoveToDialog = Dialog.Kolyan4,
+                        }
+                    }
+                },
+                new DialogQuestion {
+                    Name = Dialog.Kolyan4,
+                    Message = "По дороге вы заезжаете на УНЦ за ключами от дачи, затем по пути отвозите некоторые документы " +
+                              "маминой подруге на Юго-Западе и буквально через часок оказываетесь на даче.",
+                    Answers = new[] {
+                        new DialogAnswer {
+                            Message = "fffuuuu...",
+                            MoveToDialog = Dialog.Map,
+                            MoveToPos = (pos, map) => map.PosLeft(MapIcon.KolyanDacha)
+                        }
+                    }
+                },
+                new DialogQuestion {
+                    Name = Dialog.Kolyan5,
+                    Message = "_Колян_: О, ты уже вернулся! Норм. Сорян, мне пришлось срочно уехать на распродажу обуви в Ельцин центр." +
+                              " Такие мероприятия нельзя пропускать. Тем более, половину я купил в качестве подарка тебе на свадьбу. Держи!",
+                    Answers = new[] {
+                        new DialogAnswer {
+                            Message = "Принять подарок",
+                            MoveToDialog = Dialog.Kolyan6,
+                        }
+                    }
+                },
+                new DialogQuestion {
+                    Name = Dialog.Kolyan6,
+                    Message = "Получено 25 пар различной обуви. Среди них есть и нужные вам *высокие сапоги*",
+                    Answers = new[] {
+                        new DialogAnswer {
+                            Message = "Уйти",
+                            MoveToPos = (pos, map) => map.PosLeft(MapIcon.Kolyan),
+                            MoveToDialog = Dialog.Map,
+                        }
+                    }
+                },
+                new DialogQuestion {
+                    Name = Dialog.KolyanDacha1,
+                    Message = "Колян стоит перед закрытой дверью дачного домика.",
+                    Answers = new[] {
+                        new DialogAnswer {
+                            Available = (i, j) => !j.IsOpen(Quest.KolyanDachaOpenDoor) && !i.Has(Item.KolyanDachaKey),
+                            Message = "Fffuuuu?",
+                            MoveToDialog = Dialog.KolyanDacha2
+                        },
+                        new DialogAnswer {
+                            Available = (i, j) => i.Has(Item.KolyanDachaKey),
+                            Message = $"{MapIcon.KolyanDachaKey.ToSmile()} FFUU!",
+                            MoveToDialog = Dialog.KolyanDacha4,
+                        },
+                        new DialogAnswer {
+                            Message = "fu (уйти)",
+                            MoveToDialog = Dialog.Map,
+                            MoveToPos = (pos, map) => map.PosLeft(MapIcon.KolyanDacha)
+                        },
+                    },
+                    MapIcon = MapIcon.KolyanDacha,
+                    DisplayMap = true,
+                },
+                new DialogQuestion {
+                    Name = Dialog.KolyanDacha2,
+                    Message = "_Колян_: блин, не могу найти ключи. Либо я их вместе с документами случайно отдал, либо где-то" +
+                              " здесь выронил. Можешь поискать? Я пока маминой подруге на цифры наберу.",
+                    Answers = new[] {
+                        new DialogAnswer {
+                            Message = "FFFUUUU",
+                            MoveToDialog = Dialog.Map,
+                            MoveToPos = (pos, map) => map.PosLeft(MapIcon.KolyanDacha),
+                            ChangeMap = (pos, map) => map.Replace(map.PosLeft(map.PosLeft(map.PosUp(MapIcon.KolyanDacha))), MapIcon.KolyanDachaKey)
+                        }
+                    }
+                },
+                new DialogQuestion {
+                    Name = Dialog.KolyanDacha3,
+                    Message = "Вы находите в луже между грядок ржавый ключ. Когда вы поднимаете его, капля грязи" +
+                              " падает на ваши брюки.",
+                    Answers = new[] {
+                        new DialogAnswer {
+                            Message = "fffuuuuuuuu",
+                            MoveToDialog = Dialog.Map,
+                            ChangeInventory = i => i.Give(Item.KolyanDachaKey),
+                            ChangeMap = (pos, map) => map.Replace(map.PosLeft(map.PosLeft(map.PosUp(MapIcon.KolyanDacha))), MapIcon.Empty)
+                        },
+                    },
+                    MapIcon = MapIcon.KolyanDachaKey,
+                    DisplayMap = true,
+                },
+                new DialogQuestion {
+                    Name = Dialog.KolyanDacha4,
+                    Message = "Колян увлеченно разговаривает по телефону к кем-то из коллег по работе." +
+                              " Похоже, что разговор очень важный. Он отходит в сторону и жестами" +
+                              " просит вас попробовать открыть дверь найденным ключом.",
+                    Answers = new[] {
+                        new DialogAnswer {
+                            Message = "FFFUUUUU!!",
+                            MoveToDialog = Dialog.Map,
+                            MoveToPos = (pos, map) => map.PosLeft(map.PosLeft(MapIcon.KolyanDachaDoor)),
+                            ChangeMap = (pos, map) => map
+                                .Replace(map.PosLeft(map.PosUp(MapIcon.KolyanDachaDoor)), MapIcon.KolyanDacha)
+                                .Replace(map.PosLeft(MapIcon.KolyanDachaDoor), MapIcon.Empty),
+                            ChangeJournal = j => j.Open(Quest.KolyanDachaOpenDoor)
+                        }
+                    }
+                },
+                new DialogQuestion {
+                    Name = Dialog.KolyanDacha5,
+                    Message = "Пока вы пытаетесь открыть дверь, Колян отходит дальше. Видимо, ваше пыхтение мешает ему общаться.",
+                    Answers = new[] {
+                        new DialogAnswer {
+                            Message = "Дальше",
+                            MoveToDialog = Dialog.KolyanDacha6,
+                            ChangeMap = (pos, map) => map.Replace(MapIcon.KolyanDacha, MapIcon.Empty),
+                        }
+                    },
+                    MapIcon = MapIcon.KolyanDachaDoor,
+                    DisplayMap = true,
+                },
+                new DialogQuestion {
+                    Name = Dialog.KolyanDacha6,
+                    Message = "Дверь не поддаётся. Ключ либо слишком заржавел, либо вообще не подходит. " +
+                              "Вы слышите, как машина Коляна заводится и уезжает. Может быть он поехал встречать кого-то у ворот?",
+                    Answers = new[] {
+                        new DialogAnswer {
+                            Message = "FFFFUUUU!!1",
+                            MoveToDialog = Dialog.KolyanDacha7,
+                        }
+                    },
+                    DisplayMap = true,
+                },
+                new DialogQuestion {
+                    Name = Dialog.KolyanDacha7,
+                    Message = "Через 20 минут стараний вы понимаете, что дверь открыть не получится. Колян так и не вернулся, " +
+                              "а телефон у него постоянно занят. Похоже, что у вас нет другого выбора, кроме как ехать обратно " +
+                              "в ЗАГС на делике.",
+                    Answers = new[] {
+                        new DialogAnswer {
+                            Message = "FUU#№;%!!",
+                            MoveToDialog = Dialog.Map,
+                            MoveToPos = (pos, map) => Map.IndexOf(MapIcon.Self),
+                            ChangeJournal = j => j.Finish(Quest.KolyanDachaOpenDoor).Finish(Quest.Kolyan)
+                        }
                     }
                 },
             };
@@ -860,7 +1007,7 @@ namespace Bot
                                 .Replace(map.PosRight(MapIcon.ZagsWorker), MapIcon.Flame)
                                 .Replace(map.PosRight(MapIcon.Jacob), MapIcon.Flame)
                                 .Replace(map.PosRight(MapIcon.Sedosh), MapIcon.Flame)
-                                .Replace(map.PosLeft(MapIcon.Repa), MapIcon.Flame)
+                                .Replace(map.PosLeft(MapIcon.Kolyan), MapIcon.Flame)
                                 .Replace(map.PosLeft(MapIcon.Sokrat), MapIcon.Flame)
                         },
                     },
@@ -902,11 +1049,10 @@ namespace Bot
                 .Concat(veilDialogs)
                 .Concat(randomDialogs)
                 .Concat(demianovDiagogs)
-                .Concat(repaDiagogs)
+                .Concat(kolyanDialogs)
                 .Concat(sokratDialogs)
                 .Concat(jacobDialogs)
                 .Concat(sedoshDiagogs)
-                .Concat(bootsDialogs)
                 .Concat(zagsWorkerDialogs)
                 .ToArray();
             foreach (var dialogQuestion in toshikDialogs) {

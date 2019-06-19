@@ -23,11 +23,15 @@
         public const char Boots = 'b';
 
         public const char Repa = 'R';
+        public const char Kolyan = 'k';
+        public const char KolyanDacha = 'U';
+        public const char KolyanDachaKey = '?';
         public const char Sedosh = 'K';
         public const char Sokrat = 'S';
         public const char Jacob = 'J';
         public const char ZagsWorker = 'Z';
 
+        public const char KolyanDachaDoor = 'D';
         public const char StartDoors = 'П';
         public const char Veil = 'v';
         public const char Glasses = '8';
@@ -45,6 +49,8 @@
         public const string PhoneNumber = nameof(PhoneNumber);
         public const string Phone = nameof(Phone);
         public const string Project = nameof(Project);
+
+        public const string KolyanDachaKey = nameof(KolyanDachaKey);
     }
 
     public static class Quest
@@ -57,6 +63,8 @@
         public const string Demianov = nameof(Demianov);
         public const string Jacob = nameof(Jacob);
         public const string Sedosh = nameof(Sedosh);
+        public const string Kolyan = nameof(Kolyan);
+        public const string KolyanDachaOpenDoor = nameof(KolyanDachaOpenDoor);
     }
 
     public static class Dialog
@@ -79,6 +87,20 @@
         public const string Jacob5 = nameof(Jacob5);
         public const string Repa1 = nameof(Repa1);
         public const string Repa2 = nameof(Repa2);
+        public const string Kolyan1 = nameof(Kolyan1);
+        public const string Kolyan2 = nameof(Kolyan2);
+        public const string Kolyan3 = nameof(Kolyan3);
+        public const string Kolyan4 = nameof(Kolyan4);
+        public const string Kolyan5 = nameof(Kolyan5);
+        public const string Kolyan6 = nameof(Kolyan6);
+        public const string KolyanDacha1 = nameof(KolyanDacha1);
+        public const string KolyanDacha2 = nameof(KolyanDacha2);
+        public const string KolyanDacha3 = nameof(KolyanDacha3);
+        public const string KolyanDacha4 = nameof(KolyanDacha4);
+        public const string KolyanDacha5 = nameof(KolyanDacha5);
+        public const string KolyanDacha6 = nameof(KolyanDacha6);
+        public const string KolyanDacha7 = nameof(KolyanDacha7);
+        public const string KolyanDacha8 = nameof(KolyanDacha8);
         public const string Sedosh1 = nameof(Sedosh1);
         public const string Sedosh2 = nameof(Sedosh2);
         public const string Sedosh3 = nameof(Sedosh3);

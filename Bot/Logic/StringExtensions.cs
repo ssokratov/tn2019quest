@@ -49,8 +49,7 @@ namespace Bot
 
         public static string Replace(this string map, int pos, char toChar)
         {
-            var newMap = new StringBuilder(map)
-            {
+            var newMap = new StringBuilder(map) {
                 [pos] = toChar
             };
             return newMap.ToString();

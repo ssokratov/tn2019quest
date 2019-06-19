@@ -25,11 +25,15 @@ namespace Bot
             [MapIcon.Jacob] = "\ud83c\udf85",
             [MapIcon.Sokrat] = "\ud83d\udc68\u200d\ud83d\udcbb",
             [MapIcon.ZagsWorker] = "\ud83d\udc69\u200d\u2696\ufe0f",
+            [MapIcon.Kolyan] = "\ud83d\ude47\u200d\u2642\ufe0f",
+            [MapIcon.KolyanDacha] = "\ud83d\ude47\u200d\u2642\ufe0f",
 
             [MapIcon.Flame] = "\ud83d\udd25",
             [MapIcon.FireExtinguisher] = "\ud83e\uddef",
             [MapIcon.Boots] = "\ud83d\udc62",
             [MapIcon.SmallDoor] = "\ud83d\udeaa",
+            [MapIcon.KolyanDachaDoor] = "\ud83d\udeaa",
+            [MapIcon.KolyanDachaKey] = "\ud83d\udd11",
 
             [MapButtons.Left] = "\u2b05\ufe0f",
             [MapButtons.Up] = "\u2b06\ufe0f",
