@@ -7,10 +7,13 @@ namespace Bot
     public static class SmileTranslator
     {
         private static readonly Dictionary<Char, string> ToSmileDict = new Dictionary<char, string> {
-            [MapIcon.Self] = "\ud83d\udeb6\u200d\u2642\ufe0f",
+            [MapIcon.Toshik] = "\ud83d\udeb6\u200d\u2642\ufe0f",
+            [MapIcon.Nastya] = "\ud83d\udc83\ud83c\udffc",
+            //[MapIcon.Nastya] = "\ud83d\udc70\ud83c\udffc",
             //[MapIcon.Empty] = "\u2b1c\ufe0f",
             [MapIcon.Empty] = "\u25ab\ufe0f",
-            [MapIcon.Wall] = "\u2b1b\ufe0f",
+            [MapIcon.WallToshik] = "\u2b1b\ufe0f",
+            [MapIcon.WallNastya] = "\u2b1b\ufe0f",
             //[MapIcon.Glasses] = "\ud83e\uddff",
             //[MapIcon.Glasses] = "\ud83d\udd05",
             [MapIcon.Glasses] = "\ud83e\uddd0",
@@ -40,7 +43,8 @@ namespace Bot
             [MapButtons.Right] = "\u27a1\ufe0f",
             [MapButtons.Down] = "\u2b07\ufe0f",
             [MapButtons.Journal] = "\ud83d\udcd6",
-            [MapButtons.Inventory] = "\ud83d\udc5d",
+            [MapButtons.Inventory] = "\ud83d\udcbc",
+            //[MapButtons.Inventory] = "\ud83d\udc5d",
         };
 
         private static readonly Dictionary<string, Char> FromSmileDict = ToSmileDict

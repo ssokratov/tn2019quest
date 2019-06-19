@@ -12,8 +12,10 @@
 
     public static class MapIcon
     {
-        public const char Self = 'O';
-        public const char Wall = '#';
+        public const char Toshik = 'O';
+        public const char Nastya = 'N';
+        public const char WallToshik = '#';
+        public const char WallNastya = '%';
         public const char Fear = '~';
         public const char Empty = '-';
         public const char Flame = 'F';
@@ -116,7 +118,7 @@
         public const string ZagsWorker1 = nameof(ZagsWorker1);
         public const string ZagsWorker2 = nameof(ZagsWorker2);
         public const string ZagsWorker3 = nameof(ZagsWorker3);
-        public const string ZagsWorker4 = nameof(ZagsWorker4);
+        public const string ZagsEnd = nameof(ZagsEnd);
  
         public const string Glasses1 = nameof(Glasses1);
         public const string Glasses2 = nameof(Glasses2);
@@ -129,13 +131,17 @@
         public const string SmallDoor = nameof(SmallDoor);
         public const string FireExtinguisher = nameof(FireExtinguisher);
 
-        public const string FoundWall = nameof(FoundWall);
+        public const string MapToshik = nameof(MapToshik);
+        public const string MapMoveTo = nameof(MapMoveTo);
+        public const string InventoryToshik = nameof(InventoryToshik);
+        public const string JournalToshik = nameof(JournalToshik);
+        public const string FoundWallToshik = nameof(FoundWallToshik);
         public const string FoundFear = nameof(FoundFear);
 
-        public const string Map = nameof(Map);
-        public const string MapMoveTo = nameof(MapMoveTo);
-        public const string Inventory = nameof(Inventory);
-        public const string Journal = nameof(Journal);
+        public const string MapNastya = nameof(MapNastya);
+        public const string InventoryNastya = nameof(InventoryNastya);
+        public const string JournalNastya = nameof(JournalNastya);
+        public const string FoundWallNastya = nameof(FoundWallNastya);
     }
 
 }

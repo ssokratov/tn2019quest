@@ -12,6 +12,7 @@ namespace Bot
         public DialogAnswer[] Answers { get; set; } = { };
         public bool DisplayMap { get; set; }
         public char? MapIcon { get; set; }
+        public char PlayerIcon { get; set; }
         public bool PreventMove { get; set; }
     }
 

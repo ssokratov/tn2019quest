@@ -57,9 +57,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Logic\SmileTranslator.cs" />
     <Compile Include="QuestStateManager.cs" />
-    <Compile Include="Quests\ToshikQuest.cs" />
+    <Compile Include="Quests\NastyaStory.cs" />
+    <Compile Include="Quests\NewCellQuest.cs" />
     <Compile Include="Logic\QuestService.cs" />
     <Compile Include="Logic\StringExtensions.cs" />
+    <Compile Include="Quests\ToshikStory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

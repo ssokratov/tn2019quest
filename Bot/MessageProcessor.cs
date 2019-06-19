@@ -35,11 +35,23 @@ public class MessageProcessor
             // initialize new state if new player, or on "reset" command
             if (stateManager.GetState(chatId) == null || messageText.StartsWith("/reset")) {
                 stateManager.SetState(chatId, new BotState {
-                    QuestState = new QuestService(ToshikQuest.Map,
-                        ToshikQuest.GetStartingInventory(),
-                        ToshikQuest.GetStartingJournal(),
-                        ToshikQuest.GetDialogs())
+                    QuestState = new QuestService(NewCellQuest.Map,
+                        NewCellQuest.GetStartingInventory(),
+                        NewCellQuest.GetStartingJournal(),
+                        NewCellQuest.GetDialogs())
                         .State
+                });
+            }
+            else if (stateManager.GetState(chatId) == null || messageText.StartsWith("/nastya")) {
+                var questState = new QuestService(NewCellQuest.Map,
+                        NewCellQuest.GetStartingInventory(),
+                        NewCellQuest.GetStartingJournal(),
+                        NewCellQuest.GetDialogs())
+                    .State;
+                questState.OpenDialogName = Dialog.ZagsEnd;
+                questState.Inventory = questState.Inventory.Give(Item.Glasses);
+                stateManager.SetState(chatId, new BotState {
+                    QuestState = questState
                 });
             }
             // reset all hashcodes to send all messages again if "play" commend is received
@@ -50,7 +62,7 @@ public class MessageProcessor
             }
 
             var botState = stateManager.GetState(chatId);
-            var questService = new QuestService(ToshikQuest.GetDialogs(), botState.QuestState);
+            var questService = new QuestService(NewCellQuest.GetDialogs(), botState.QuestState);
 
             if (messageText != null) {
                 Console.WriteLine($"Received a text message in chat {chatId} from {user}: \n {messageText}");

@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 
-namespace Bot
+namespace Bot.Quests
 {
-    public static class ToshikQuest
+    public static class ToshikStory
     {
         public static string Map =
             @"
@@ -26,48 +26,47 @@ namespace Bot
 ###---#######
 #############
 #############
+#############
 ";
-
-        public static Inventory GetStartingInventory () => new Inventory();
-        public static Journal GetStartingJournal () => new Journal().Open(Quest.EnterHall);
 
         public static DialogQuestion[] GetDialogs()
         {
-            var mapDialog = new DialogQuestion {
-                Name = Dialog.Map,
+            var mapDialog = new DialogQuestion
+            {
+                Name = Dialog.MapToshik,
                 Message = "_Перемещайтесь по карте, или выберите действие_",
                 Answers = new[] {
                     new DialogAnswer {
                         Message = MapButtons.Inventory.ToString(),
-                        MoveToDialog = Dialog.Inventory,
+                        MoveToDialog = Dialog.InventoryToshik,
                     },
                     new DialogAnswer {
                         Message = MapButtons.Up.ToString(),
-                        MoveToDialog = Dialog.Map,
+                        MoveToDialog = Dialog.MapToshik,
                         MoveToPos = (pos, map) => map.PosUp(pos)
                     },
                     new DialogAnswer {
                         Message = MapButtons.Journal.ToString(),
-                        MoveToDialog = Dialog.Journal,
+                        MoveToDialog = Dialog.JournalToshik,
                     },
                     new DialogAnswer {
                         Message = MapButtons.Left.ToString(),
-                        MoveToDialog = Dialog.Map,
+                        MoveToDialog = Dialog.MapToshik,
                         MoveToPos = (pos, map) => pos - 1
                     },
                     new DialogAnswer {
                         Message = MapButtons.Down.ToString(),
-                        MoveToDialog = Dialog.Map,
+                        MoveToDialog = Dialog.MapToshik,
                         MoveToPos = (pos, map) => map.PosDown(pos)
                     },
                     new DialogAnswer {
                         Message = MapButtons.Right.ToString(),
-                        MoveToDialog = Dialog.Map,
+                        MoveToDialog = Dialog.MapToshik,
                         MoveToPos = (pos, map) => pos + 1
                     },
                     new DialogAnswer {
                         Available = (i, j) => j.IsFinished(Quest.EnterHall) && !j.IsOpen(Quest.Kolyan),
-                        Message = $"{MapIcon.Self.ToSmile()} идти к...",
+                        Message = $"{MapIcon.Toshik.ToSmile()} идти к...",
                         MoveToDialog = Dialog.MapMoveTo
                     },
                     new DialogAnswer {
@@ -84,7 +83,8 @@ namespace Bot
                 DisplayMap = true
             };
 
-            var moveToDialog = new DialogQuestion {
+            var moveToDialog = new DialogQuestion
+            {
                 Name = Dialog.MapMoveTo,
                 Message = "_Хорошо, куда пойдём?_",
                 Answers = new[] {
@@ -116,46 +116,53 @@ namespace Bot
                     },
                     new DialogAnswer {
                         Message = "В самое начало",
-                        MoveToPos = (pos, map) => Map.IndexOf(MapIcon.Self)
+                        MoveToPos = (pos, map) => NewCellQuest.Map.IndexOf(MapIcon.Toshik)
                     },
                     new DialogAnswer {
                         Message = "<<<",
-                        MoveToDialog = Dialog.Map
+                        MoveToDialog = Dialog.MapToshik
                     },
                 },
                 DisplayMap = true
             };
 
-            var inventoryDialog = new DialogQuestion {
-                Name = Dialog.Inventory,
+            var inventoryDialog = new DialogQuestion
+            {
+                Name = Dialog.InventoryToshik,
                 DynamicMessage = (i, j) => {
                     return "*Инвентарь*:\n"
                            + (i.Has(Item.Phone) ? "\ud83d\udcf1 телефон\n" : "")
                            + (i.Has(Item.Project) ? "\ud83d\udcc3 проект\n" : "")
                            + (i.Has(Item.Stick) ? "\u26a1\ufe0f жезл\n" : "")
                            + (i.Has(Item.KolyanDachaKey) ? $"{MapIcon.KolyanDachaKey.ToSmile()} ключ\n" : "")
-                           + (i.Has(Item.FireExtinguisher) ? $"{MapIcon.FireExtinguisher.ToSmile()} огнетушитель\n" : "")
+                           + (i.Has(Item.FireExtinguisher)
+                               ? $"{MapIcon.FireExtinguisher.ToSmile()} огнетушитель\n"
+                               : "")
                            + (i.Has(Item.Glasses) ? $"{MapIcon.Glasses.ToSmile()} монокль\n" : "")
                            + (i.Has(Item.Boots) ? $"{MapIcon.Boots.ToSmile()} сапоги\n" : "")
-                           + (i.Has(Item.Hat) ? $"\ud83c\udfa9 шляпа\n" : "")
+                           + (i.Has(Item.Hat) ? "\ud83c\udfa9 шляпа\n" : "")
                         ;
                 },
                 Answers = new[] {
                     new DialogAnswer {
                         Message = "<<<",
-                        MoveToDialog = Dialog.Map
+                        MoveToDialog = Dialog.MapToshik
                     },
                 }
             };
 
-            var journalDialog = new DialogQuestion {
-                Name = Dialog.Journal,
+            var journalDialog = new DialogQuestion
+            {
+                Name = Dialog.JournalToshik,
                 DynamicMessage = (i, j) => {
                     var done = "\u2714\ufe0f";
                     var pending = "\u2716\ufe0f";
-                    string RenderQuest(string quest, string message) {
+
+                    string RenderQuest(string quest, string message)
+                    {
                         return (j.IsKnown(quest) ? $"{(j.IsFinished(quest) ? done : pending)} {message}\n" : "");
                     }
+
                     return "*Журнал*:\n"
                            + RenderQuest(Quest.EnterHall, "Войти в зал")
                            + RenderQuest(Quest.AskForWedding, "Поговорить с работником ЗАГСа")
@@ -172,7 +179,7 @@ namespace Bot
                 Answers = new[] {
                     new DialogAnswer {
                         Message = "<<<",
-                        MoveToDialog = Dialog.Map
+                        MoveToDialog = Dialog.MapToshik
                     },
                 }
             };
@@ -190,7 +197,7 @@ namespace Bot
                         },
                         new DialogAnswer {
                             Message = "Оставить",
-                            MoveToDialog = Dialog.Map
+                            MoveToDialog = Dialog.MapToshik
                         },
                     },
                     MapIcon = MapIcon.Glasses,
@@ -211,7 +218,7 @@ namespace Bot
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Потянуть за ручку",
-                            MoveToDialog = Dialog.Map,
+                            MoveToDialog = Dialog.MapToshik,
                             ChangeMap = (pos, map) => map.ClearPos(pos)
                         },
                         new DialogAnswer {
@@ -220,7 +227,7 @@ namespace Bot
                         },
                         new DialogAnswer {
                             Message = "Уйти",
-                            MoveToDialog = Dialog.Map,
+                            MoveToDialog = Dialog.MapToshik,
                             MoveToPos = (pos, map) => map.PosDown(pos)
                         },
                     },
@@ -232,7 +239,7 @@ namespace Bot
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Решительно потянуть за ручку",
-                            MoveToDialog = Dialog.Map,
+                            MoveToDialog = Dialog.MapToshik,
                             ChangeMap = (pos, map) => map.ClearPos(pos)
                         },
                         new DialogAnswer {
@@ -241,7 +248,7 @@ namespace Bot
                         },
                         new DialogAnswer {
                             Message = "Уйти",
-                            MoveToDialog = Dialog.Map,
+                            MoveToDialog = Dialog.MapToshik,
                             MoveToPos = (pos, map) => map.PosDown(pos)
                         },
                     },
@@ -253,7 +260,7 @@ namespace Bot
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Потянуть за ручку двери",
-                            MoveToDialog = Dialog.Map,
+                            MoveToDialog = Dialog.MapToshik,
                             ChangeMap = (pos, map) => map.ClearPos(pos)
                         },
                         new DialogAnswer {
@@ -262,7 +269,7 @@ namespace Bot
                         },
                         new DialogAnswer {
                             Message = "Уйти",
-                            MoveToDialog = Dialog.Map,
+                            MoveToDialog = Dialog.MapToshik,
                             MoveToPos = (pos, map) => map.PosDown(pos)
                         },
                     },
@@ -273,12 +280,12 @@ namespace Bot
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Потянуть за ручку двери",
-                            MoveToDialog = Dialog.Map,
+                            MoveToDialog = Dialog.MapToshik,
                             ChangeMap = (pos, map) => map.ClearPos(pos)
                         },
                         new DialogAnswer {
                             Message = "Уйти",
-                            MoveToDialog = Dialog.Map,
+                            MoveToDialog = Dialog.MapToshik,
                             MoveToPos = (pos, map) => map.PosDown(pos)
                         },
                     },
@@ -330,7 +337,8 @@ namespace Bot
                 },
                 new DialogQuestion {
                     Name = Dialog.EnteredHall,
-                    Message = "В зале собрались гости, все очень рады вас видеть. Пожалуй, стоит поговорить с работницей ЗАГСа насчет начала церемонии.",
+                    Message =
+                        "В зале собрались гости, все очень рады вас видеть. Пожалуй, стоит поговорить с работницей ЗАГСа насчет начала церемонии.",
                     Answers = mapDialog.Answers,
                     DisplayMap = true
                 },
@@ -356,7 +364,7 @@ namespace Bot
                         },
                         new DialogAnswer {
                             Message = "Сбросить вызов",
-                            MoveToDialog = Dialog.Map
+                            MoveToDialog = Dialog.MapToshik
                         },
                         new DialogAnswer {
                             Message = "Нужна подсказка",
@@ -372,7 +380,7 @@ namespace Bot
                             Message = "Поблагодарить",
                             ChangeInventory = i => i.Give(Item.Phone),
                             ChangeJournal = j => j.Finish(Quest.Demianov),
-                            MoveToDialog = Dialog.Map
+                            MoveToDialog = Dialog.MapToshik
                         },
                     }
                 },
@@ -393,7 +401,7 @@ namespace Bot
                         },
                         new DialogAnswer {
                             Message = "Сбросить вызов",
-                            MoveToDialog = Dialog.Map
+                            MoveToDialog = Dialog.MapToshik
                         },
                         new DialogAnswer {
                             Message = "Ещё подсказку",
@@ -415,7 +423,7 @@ namespace Bot
                         },
                         new DialogAnswer {
                             Message = "Сбросить вызов",
-                            MoveToDialog = Dialog.Map
+                            MoveToDialog = Dialog.MapToshik
                         },
                     }
                 },
@@ -424,7 +432,8 @@ namespace Bot
             var kolyanDialogs = new[] {
                 new DialogQuestion {
                     Name = Dialog.Kolyan1,
-                    Message = "Колян горячо приветвтвует вас, попивая лавандовый смузи. Однако, вид у него встревоженный. Похоже, что-то не так.",
+                    Message =
+                        "Колян горячо приветвтвует вас, попивая лавандовый смузи. Однако, вид у него встревоженный. Похоже, что-то не так.",
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Поговорить",
@@ -444,7 +453,7 @@ namespace Bot
                         },
                         new DialogAnswer {
                             Message = "Уйти",
-                            MoveToDialog = Dialog.Map,
+                            MoveToDialog = Dialog.MapToshik,
                             MoveToPos = (pos, map) => map.PosLeft(MapIcon.Kolyan)
                         },
                     },
@@ -453,9 +462,10 @@ namespace Bot
                 },
                 new DialogQuestion {
                     Name = Dialog.Kolyan2,
-                    Message = "_Колян:_ Слушай, у меня тут авария произошла. Только что Ромыч позвонил и сказал, что у нас на даче" +
-                              " *код Краков*. Нужно срочно метнуться туда, помочь. Я понимаю, у тебя тут мероприятие, но давай " +
-                              "съездим по фасту? За 20 минут туда-сюда должны управиться.",
+                    Message =
+                        "_Колян:_ Слушай, у меня тут авария произошла. Только что Ромыч позвонил и сказал, что у нас на даче" +
+                        " *код Краков*. Нужно срочно метнуться туда, помочь. Я понимаю, у тебя тут мероприятие, но давай " +
+                        "съездим по фасту? За 20 минут туда-сюда должны управиться.",
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Поехали",
@@ -464,7 +474,7 @@ namespace Bot
                         },
                         new DialogAnswer {
                             Message = "Отказаться",
-                            MoveToDialog = Dialog.Map,
+                            MoveToDialog = Dialog.MapToshik,
                             MoveToPos = (pos, map) => map.PosLeft(MapIcon.Kolyan)
                         },
                     }
@@ -482,20 +492,22 @@ namespace Bot
                 },
                 new DialogQuestion {
                     Name = Dialog.Kolyan4,
-                    Message = "По дороге вы заезжаете на УНЦ за ключами от дачи, затем по пути отвозите некоторые документы " +
-                              "маминой подруге на Юго-Западе и буквально через часок оказываетесь на даче.",
+                    Message =
+                        "По дороге вы заезжаете на УНЦ за ключами от дачи, затем по пути отвозите некоторые документы " +
+                        "маминой подруге на Юго-Западе и буквально через часок оказываетесь на даче.",
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "fffuuuu...",
-                            MoveToDialog = Dialog.Map,
+                            MoveToDialog = Dialog.MapToshik,
                             MoveToPos = (pos, map) => map.PosLeft(MapIcon.KolyanDacha)
                         }
                     }
                 },
                 new DialogQuestion {
                     Name = Dialog.Kolyan5,
-                    Message = "_Колян_: О, ты уже вернулся! Норм. Сорян, мне пришлось срочно уехать на распродажу обуви в Ельцин центр." +
-                              " Такие мероприятия нельзя пропускать. Тем более, половину я купил в качестве подарка тебе на свадьбу. Держи!",
+                    Message =
+                        "_Колян_: О, ты уже вернулся! Норм. Сорян, мне пришлось срочно уехать на распродажу обуви в Ельцин центр." +
+                        " Такие мероприятия нельзя пропускать. Тем более, половину я купил в качестве подарка тебе на свадьбу. Держи!",
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Принять подарок",
@@ -510,7 +522,7 @@ namespace Bot
                         new DialogAnswer {
                             Message = "Уйти",
                             MoveToPos = (pos, map) => map.PosLeft(MapIcon.Kolyan),
-                            MoveToDialog = Dialog.Map,
+                            MoveToDialog = Dialog.MapToshik,
                         }
                     }
                 },
@@ -530,7 +542,7 @@ namespace Bot
                         },
                         new DialogAnswer {
                             Message = "fu (уйти)",
-                            MoveToDialog = Dialog.Map,
+                            MoveToDialog = Dialog.MapToshik,
                             MoveToPos = (pos, map) => map.PosLeft(MapIcon.KolyanDacha)
                         },
                     },
@@ -539,14 +551,17 @@ namespace Bot
                 },
                 new DialogQuestion {
                     Name = Dialog.KolyanDacha2,
-                    Message = "_Колян_: блин, не могу найти ключи. Либо я их вместе с документами случайно отдал, либо где-то" +
-                              " здесь выронил. Можешь поискать? Я пока маминой подруге на цифры наберу.",
+                    Message =
+                        "_Колян_: блин, не могу найти ключи. Либо я их вместе с документами случайно отдал, либо где-то" +
+                        " здесь выронил. Можешь поискать? Я пока маминой подруге на цифры наберу.",
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "FFFUUUU",
-                            MoveToDialog = Dialog.Map,
+                            MoveToDialog = Dialog.MapToshik,
                             MoveToPos = (pos, map) => map.PosLeft(MapIcon.KolyanDacha),
-                            ChangeMap = (pos, map) => map.Replace(map.PosLeft(map.PosLeft(map.PosUp(MapIcon.KolyanDacha))), MapIcon.KolyanDachaKey)
+                            ChangeMap = (pos, map) =>
+                                map.Replace(map.PosLeft(map.PosLeft(map.PosUp(MapIcon.KolyanDacha))),
+                                    MapIcon.KolyanDachaKey)
                         }
                     }
                 },
@@ -557,9 +572,10 @@ namespace Bot
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "fffuuuuuuuu",
-                            MoveToDialog = Dialog.Map,
+                            MoveToDialog = Dialog.MapToshik,
                             ChangeInventory = i => i.Give(Item.KolyanDachaKey),
-                            ChangeMap = (pos, map) => map.Replace(map.PosLeft(map.PosLeft(map.PosUp(MapIcon.KolyanDacha))), MapIcon.Empty)
+                            ChangeMap = (pos, map) =>
+                                map.Replace(map.PosLeft(map.PosLeft(map.PosUp(MapIcon.KolyanDacha))), MapIcon.Empty)
                         },
                     },
                     MapIcon = MapIcon.KolyanDachaKey,
@@ -573,7 +589,7 @@ namespace Bot
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "FFFUUUUU!!",
-                            MoveToDialog = Dialog.Map,
+                            MoveToDialog = Dialog.MapToshik,
                             MoveToPos = (pos, map) => map.PosLeft(map.PosLeft(MapIcon.KolyanDachaDoor)),
                             ChangeMap = (pos, map) => map
                                 .Replace(map.PosLeft(map.PosUp(MapIcon.KolyanDachaDoor)), MapIcon.KolyanDacha)
@@ -584,7 +600,8 @@ namespace Bot
                 },
                 new DialogQuestion {
                     Name = Dialog.KolyanDacha5,
-                    Message = "Пока вы пытаетесь открыть дверь, Колян отходит дальше. Видимо, ваше пыхтение мешает ему общаться.",
+                    Message =
+                        "Пока вы пытаетесь открыть дверь, Колян отходит дальше. Видимо, ваше пыхтение мешает ему общаться.",
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Дальше",
@@ -609,14 +626,15 @@ namespace Bot
                 },
                 new DialogQuestion {
                     Name = Dialog.KolyanDacha7,
-                    Message = "Через 20 минут стараний вы понимаете, что дверь открыть не получится. Колян так и не вернулся, " +
-                              "а телефон у него постоянно занят. Похоже, что у вас нет другого выбора, кроме как ехать обратно " +
-                              "в ЗАГС на делике.",
+                    Message =
+                        "Через 20 минут стараний вы понимаете, что дверь открыть не получится. Колян так и не вернулся, " +
+                        "а телефон у него постоянно занят. Похоже, что у вас нет другого выбора, кроме как ехать обратно " +
+                        "в ЗАГС на делике.",
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "FUU#№;%!!",
-                            MoveToDialog = Dialog.Map,
-                            MoveToPos = (pos, map) => Map.IndexOf(MapIcon.Self),
+                            MoveToDialog = Dialog.MapToshik,
+                            MoveToPos = (pos, map) => NewCellQuest.Map.IndexOf(MapIcon.Toshik),
                             ChangeJournal = j => j.Finish(Quest.KolyanDachaOpenDoor).Finish(Quest.Kolyan),
                             ChangeInventory = i => i.Take(Item.KolyanDachaKey)
                         }
@@ -642,7 +660,7 @@ namespace Bot
                         },
                         new DialogAnswer {
                             Message = "Уйти",
-                            MoveToDialog = Dialog.Map,
+                            MoveToDialog = Dialog.MapToshik,
                             MoveToPos = (pos, map) => map.PosRight(MapIcon.Sedosh)
                         },
                     },
@@ -658,7 +676,7 @@ namespace Bot
                         new DialogAnswer {
                             Available = (i, j) => !j.IsOpen(Quest.Sedosh),
                             Message = "Пообещать помочь",
-                            MoveToDialog = Dialog.Map,
+                            MoveToDialog = Dialog.MapToshik,
                             ChangeJournal = j => j.Open(Quest.Sedosh),
                             MoveToPos = (pos, map) => map.PosRight(MapIcon.Sedosh)
                         },
@@ -671,7 +689,7 @@ namespace Bot
                         new DialogAnswer {
                             Available = (i, j) => j.IsOpen(Quest.Sedosh),
                             Message = "Уйти",
-                            MoveToDialog = Dialog.Map,
+                            MoveToDialog = Dialog.MapToshik,
                             MoveToPos = (pos, map) => map.PosRight(MapIcon.Sedosh)
                         },
                     }
@@ -686,7 +704,7 @@ namespace Bot
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Поблагодарить и уйти",
-                            MoveToDialog = Dialog.Map,
+                            MoveToDialog = Dialog.MapToshik,
                             ChangeInventory = i => i.Give(Item.Stick),
                             ChangeJournal = j => j.Finish(Quest.Sedosh),
                             MoveToPos = (pos, map) => map.PosRight(MapIcon.Sedosh)
@@ -715,7 +733,7 @@ namespace Bot
                         },
                         new DialogAnswer {
                             Message = "Откланяться",
-                            MoveToDialog = Dialog.Map,
+                            MoveToDialog = Dialog.MapToshik,
                             MoveToPos = (pos, map) => map.PosRight(MapIcon.Jacob)
                         },
                     },
@@ -729,7 +747,7 @@ namespace Bot
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Пообещать помочь",
-                            MoveToDialog = Dialog.Map,
+                            MoveToDialog = Dialog.MapToshik,
                             ChangeJournal = j => j.Open(Quest.Demianov),
                             MoveToPos = (pos, map) => map.PosRight(MapIcon.Jacob)
                         }
@@ -775,7 +793,7 @@ namespace Bot
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Откланяться",
-                            MoveToDialog = Dialog.Map,
+                            MoveToDialog = Dialog.MapToshik,
                             ChangeInventory = i => i.Give(Item.Project),
                             ChangeJournal = j => j.Finish(Quest.Jacob),
                             MoveToPos = (pos, map) => map.PosRight(MapIcon.Jacob)
@@ -801,7 +819,7 @@ namespace Bot
                         },
                         new DialogAnswer {
                             Message = "Уйти",
-                            MoveToDialog = Dialog.Map,
+                            MoveToDialog = Dialog.MapToshik,
                             MoveToPos = (pos, map) => map.PosLeft(MapIcon.Sokrat)
                         },
                     },
@@ -810,7 +828,8 @@ namespace Bot
                 },
                 new DialogQuestion {
                     Name = Dialog.Sokrat2,
-                    Message = "_Сократ:_ Сорян, чёт пригорел немного. Опять вайфай роутер не работает, я из-за этого катку в лолец слил!",
+                    Message =
+                        "_Сократ:_ Сорян, чёт пригорел немного. Опять вайфай роутер не работает, я из-за этого катку в лолец слил!",
                     Answers = new[] {
                         new DialogAnswer {
                             ChangeJournal = j => j.Open(Quest.Sokrat),
@@ -819,14 +838,15 @@ namespace Bot
                         },
                         new DialogAnswer {
                             Message = "Не связываться с психом",
-                            MoveToDialog = Dialog.Map,
+                            MoveToDialog = Dialog.MapToshik,
                             MoveToPos = (pos, map) => map.PosLeft(MapIcon.Sokrat)
                         },
                     },
                 },
                 new DialogQuestion {
                     Name = Dialog.Sokrat3,
-                    Message = "_Сократ:_ Поможешь починить роутер? Я уже всё перепробовал. И молотком его бил, и об стену. Не помогает.",
+                    Message =
+                        "_Сократ:_ Поможешь починить роутер? Я уже всё перепробовал. И молотком его бил, и об стену. Не помогает.",
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Поправить антенны",
@@ -863,7 +883,7 @@ namespace Bot
                         },
                         new DialogAnswer {
                             Message = "Уйти",
-                            MoveToDialog = Dialog.Map,
+                            MoveToDialog = Dialog.MapToshik,
                             MoveToPos = (pos, map) => map.PosLeft(MapIcon.Sokrat)
                         },
                     },
@@ -879,7 +899,7 @@ namespace Bot
                             Message = "Поблагодарить",
                             ChangeInventory = i => i.Give(Item.Hat),
                             ChangeJournal = j => j.Finish(Quest.Sokrat),
-                            MoveToDialog = Dialog.Map,
+                            MoveToDialog = Dialog.MapToshik,
                             MoveToPos = (pos, map) => map.PosLeft(MapIcon.Sokrat)
                         },
                     },
@@ -901,7 +921,7 @@ namespace Bot
                         },
                         new DialogAnswer {
                             Message = "Нужно что-то придумать...",
-                            MoveToDialog = Dialog.Map
+                            MoveToDialog = Dialog.MapToshik
                         },
                     },
                     DisplayMap = true,
@@ -921,12 +941,12 @@ namespace Bot
                         new DialogAnswer {
                             Available = (i, j) => j.IsOpen(Quest.FireAlarm),
                             Message = "Выбить дверь ногой!",
-                            MoveToDialog = Dialog.Map,
+                            MoveToDialog = Dialog.MapToshik,
                             ChangeMap = (pos, map) => map.ClearPos(pos)
                         },
                         new DialogAnswer {
                             Message = "Уйти",
-                            MoveToDialog = Dialog.Map,
+                            MoveToDialog = Dialog.MapToshik,
                             MoveToPos = (pos, map) => map.PosLeft(MapIcon.SmallDoor)
                         },
                     },
@@ -938,7 +958,7 @@ namespace Bot
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Схватить",
-                            MoveToDialog = Dialog.Map,
+                            MoveToDialog = Dialog.MapToshik,
                             ChangeMap = (pos, map) => map.ClearPos(pos),
                             ChangeInventory = i => i.Give(Item.FireExtinguisher)
                         },
@@ -961,12 +981,14 @@ namespace Bot
                         },
                         new DialogAnswer {
                             Message = "Приодеться!",
-                            Available = (i, j) => j.IsOpen(Quest.DressForWedding) && i.Has(Item.Boots) && i.Has(Item.Hat) && i.Has(Item.Glasses),
+                            Available = (i, j) =>
+                                j.IsOpen(Quest.DressForWedding) && i.Has(Item.Boots) && i.Has(Item.Hat) &&
+                                i.Has(Item.Glasses),
                             MoveToDialog = Dialog.ZagsWorker3
                         },
                         new DialogAnswer {
                             Message = "Уйти",
-                            MoveToDialog = Dialog.Map,
+                            MoveToDialog = Dialog.MapToshik,
                             MoveToPos = (pos, map) => map.PosDown(MapIcon.ZagsWorker)
                         },
                     },
@@ -981,12 +1003,14 @@ namespace Bot
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Приодеться!",
-                            Available = (i, j) => j.IsOpen(Quest.DressForWedding) && i.Has(Item.Boots) && i.Has(Item.Hat) && i.Has(Item.Glasses),
+                            Available = (i, j) =>
+                                j.IsOpen(Quest.DressForWedding) && i.Has(Item.Boots) && i.Has(Item.Hat) &&
+                                i.Has(Item.Glasses),
                             MoveToDialog = Dialog.ZagsWorker3
                         },
                         new DialogAnswer {
                             Message = "Уйти",
-                            MoveToDialog = Dialog.Map,
+                            MoveToDialog = Dialog.MapToshik,
                             MoveToPos = (pos, map) => map.PosDown(MapIcon.ZagsWorker)
                         },
                     }
@@ -996,38 +1020,34 @@ namespace Bot
                     Message = "Вот, теперь можно и начинать! А где невеста?",
                     Answers = new[] {
                         new DialogAnswer {
-                            Message = "WHAT?! FFFUUUUUU",
-                            MoveToDialog = Dialog.ZagsWorker4,
+                            Message = "Далее",
+                            MoveToDialog = Dialog.ZagsEnd,
                             ChangeJournal = j => j.Finish(Quest.DressForWedding),
-                            ChangeMap = (pos, map) => map
-                                .Replace(map.PosLeft(MapIcon.ZagsWorker), MapIcon.Flame)
-                                .Replace(map.PosDown(MapIcon.ZagsWorker), MapIcon.Flame)
-                                .Replace(map.PosDown(MapIcon.ZagsWorker) - 1, MapIcon.Flame)
-                                .Replace(map.PosDown(MapIcon.ZagsWorker) + 1, MapIcon.Flame)
-                                .Replace(map.PosDown(map.PosDown(MapIcon.ZagsWorker)), MapIcon.Flame)
-                                .Replace(map.PosRight(MapIcon.ZagsWorker), MapIcon.Flame)
-                                .Replace(map.PosRight(MapIcon.Jacob), MapIcon.Flame)
-                                .Replace(map.PosRight(MapIcon.Sedosh), MapIcon.Flame)
-                                .Replace(map.PosLeft(MapIcon.Kolyan), MapIcon.Flame)
-                                .Replace(map.PosLeft(MapIcon.Sokrat), MapIcon.Flame)
                         },
                     },
                 },
                 new DialogQuestion {
-                    Name = Dialog.ZagsWorker4,
-                    Message = "\ud83d\udc70\ud83c\udffc???????",
-                    DisplayMap = true,
+                    Name = Dialog.ZagsEnd,
+                    Message = "Тем временем на другом конце города...",
+                    Answers = new[] {
+                        new DialogAnswer {
+                            Message = "Далее",
+                            MoveToDialog = Dialog.MapNastya,
+                            MoveToPos = (pos, map) => NewCellQuest.Map.IndexOf(MapIcon.Nastya),
+                            ChangeMap = (pos, map) => map.ClearPos(NewCellQuest.Map.IndexOf(MapIcon.Nastya)),
+                        },
+                    },
                 },
             };
 
             var randomDialogs = new[] {
                 new DialogQuestion {
-                    Name = Dialog.FoundWall,
+                    Name = Dialog.FoundWallToshik,
                     Message = "Уперся в стену",
                     Answers = mapDialog.Answers,
                     DisplayMap = true,
                     PreventMove = true,
-                    MapIcon = MapIcon.Wall
+                    MapIcon = MapIcon.WallToshik
                 },
                 new DialogQuestion {
                     Name = Dialog.FoundFear,
@@ -1040,7 +1060,7 @@ namespace Bot
                 },
             };
 
-            var toshikDialogs = new[] {
+            return new[] {
                     mapDialog,
                     moveToDialog,
                     inventoryDialog,
@@ -1056,10 +1076,6 @@ namespace Bot
                 .Concat(sedoshDiagogs)
                 .Concat(zagsWorkerDialogs)
                 .ToArray();
-            foreach (var dialogQuestion in toshikDialogs) {
-                dialogQuestion.ForPlayer = "@Insomnov;@MistifliQ;@starteleport;@svsokrat;296536101";
-            }
-            return toshikDialogs;
         }
     }
 }
