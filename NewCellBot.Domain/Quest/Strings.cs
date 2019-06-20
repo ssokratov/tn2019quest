@@ -24,6 +24,9 @@
         public const char FireExtinguisher = 'f';
         public const char Boots = 'b';
 
+        public const char Taxofon = 'z';
+        public const char Esin = 'E';
+        public const char Okusheva = 'o';
         public const char Repa = 'R';
         public const char Kolyan = 'k';
         public const char KolyanDacha = 'U';
@@ -32,11 +35,18 @@
         public const char Sokrat = 'S';
         public const char Jacob = 'J';
         public const char ZagsWorker = 'Z';
+        public const char Genich = 'G';
+        public const char Bartender = 'B';
+        public const char Policeman = 'P';
+        public const char Crowd0 = 'c';
+        public const char Crowd1 = 'C';
+        public const char Crowd2 = 'T';
+        public const char Road = '=';
 
         public const char KolyanDachaDoor = 'D';
         public const char StartDoors = 'П';
         public const char Veil = 'v';
-        public const char Glasses = '8';
+        public const char Glasses = 'M';
     }
 
     public static class Item
@@ -53,6 +63,7 @@
         public const string Project = nameof(Project);
 
         public const string KolyanDachaKey = nameof(KolyanDachaKey);
+        public const string Beer = nameof(Beer);
     }
 
     public static class Quest
@@ -67,6 +78,11 @@
         public const string Sedosh = nameof(Sedosh);
         public const string Kolyan = nameof(Kolyan);
         public const string KolyanDachaOpenDoor = nameof(KolyanDachaOpenDoor);
+
+        public const string Police = nameof(Police);
+        public const string BuyBeer = nameof(BuyBeer);
+        public const string OrderTaxi = nameof(OrderTaxi);
+        public const string FindCredits = nameof(FindCredits);
     }
 
     public static class Dialog
@@ -87,6 +103,44 @@
         public const string Jacob3 = nameof(Jacob3);
         public const string Jacob4 = nameof(Jacob4);
         public const string Jacob5 = nameof(Jacob5);
+        public const string Police1 = nameof(Police1);
+        public const string Police2 = nameof(Police2);
+        public const string Police3 = nameof(Police3);
+        public const string Crowd0 = nameof(Crowd0);
+        public const string Crowd1 = nameof(Crowd1);
+        public const string Crowd2 = nameof(Crowd2);
+        public const string Bartender1 = nameof(Bartender1);
+        public const string Bartender2 = nameof(Bartender2);
+        public const string Bartender3 = nameof(Bartender3);
+        public const string Bartender4 = nameof(Bartender4);
+        public const string Bartender5 = nameof(Bartender5);
+        public const string Bartender6 = nameof(Bartender6);
+        public const string Bartender7 = nameof(Bartender7);
+        public const string Bartender8 = nameof(Bartender8);
+        public const string Bartender9 = nameof(Bartender9);
+        public const string Bartender10 = nameof(Bartender10);
+        public const string Bartender11 = nameof(Bartender11);
+        public const string Genich1 = nameof(Genich1);
+        public const string Genich2 = nameof(Genich2);
+        public const string Genich3 = nameof(Genich3);
+        public const string Genich4 = nameof(Genich4);
+        public const string Genich5 = nameof(Genich5);
+        public const string Genich6 = nameof(Genich6);
+        public const string Genich7 = nameof(Genich7);
+        public const string Genich8 = nameof(Genich8);
+        public const string GenichPolice1 = nameof(GenichPolice1);
+        public const string GenichPolice2 = nameof(GenichPolice2);
+        public const string GenichPolice3 = nameof(GenichPolice3);
+        public const string Taxofon1 = nameof(Taxofon1);
+        public const string Taxofon2 = nameof(Taxofon2);
+        public const string Taxofon3 = nameof(Taxofon3);
+        public const string Taxofon4 = nameof(Taxofon4);
+        public const string Taxofon5 = nameof(Taxofon5);
+        public const string Taxofon6 = nameof(Taxofon6);
+        public const string Taxofon7 = nameof(Taxofon7);
+        public const string Taxofon8 = nameof(Taxofon8);
+        public const string Taxofon9 = nameof(Taxofon9);
+        public const string Taxofon10 = nameof(Taxofon10);
         public const string Repa1 = nameof(Repa1);
         public const string Repa2 = nameof(Repa2);
         public const string Kolyan1 = nameof(Kolyan1);
@@ -131,13 +185,16 @@
         public const string SmallDoor = nameof(SmallDoor);
         public const string FireExtinguisher = nameof(FireExtinguisher);
 
+        public const string StartToshik = nameof(StartToshik);
         public const string MapToshik = nameof(MapToshik);
         public const string MapMoveTo = nameof(MapMoveTo);
         public const string InventoryToshik = nameof(InventoryToshik);
         public const string JournalToshik = nameof(JournalToshik);
         public const string FoundWallToshik = nameof(FoundWallToshik);
         public const string FoundFear = nameof(FoundFear);
+        public const string FoundRoad = nameof(FoundRoad);
 
+        public const string StartNastya = nameof(StartNastya);
         public const string MapNastya = nameof(MapNastya);
         public const string InventoryNastya = nameof(InventoryNastya);
         public const string JournalNastya = nameof(JournalNastya);

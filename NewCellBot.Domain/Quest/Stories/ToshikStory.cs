@@ -16,8 +16,8 @@ namespace NewCellBot.Domain.Quest.Stories
 ##K----#f-###
 ##-v---п--###
 ###П#########
-##-O#########
-##8-#########
+##O-#########
+##M-#########
 ##~~#########
 ##--#########
 ##--#########
@@ -33,6 +33,7 @@ namespace NewCellBot.Domain.Quest.Stories
 
         public static DialogQuestion[] GetDialogs()
         {
+            var initialMap = NewCellQuest.Map;
             var mapDialog = new DialogQuestion
             {
                 Name = Dialog.MapToshik,
@@ -85,6 +86,19 @@ namespace NewCellBot.Domain.Quest.Stories
                 DisplayMap = true
             };
 
+            var startDialog = new DialogQuestion
+            {
+                Name = Dialog.StartToshik,
+                Message = "Тошик обнаруживает себя в длинном светлом коридоре. Впереди - массивная деревянная дверь. " +
+                          "Сзади на полу лежит монокль.",
+                Answers = new[] {
+                    new DialogAnswer {
+                        Message = "Дальше",
+                        MoveToDialog = Dialog.MapToshik
+                    },
+                },
+            };
+
             var moveToDialog = new DialogQuestion
             {
                 Name = Dialog.MapMoveTo,
@@ -118,7 +132,7 @@ namespace NewCellBot.Domain.Quest.Stories
                     },
                     new DialogAnswer {
                         Message = "В самое начало",
-                        MoveToPos = (pos, map) => NewCellQuest.Map.IndexOf(MapIcon.Toshik)
+                        MoveToPos = (pos, map) => initialMap.IndexOf(MapIcon.Toshik)
                     },
                     new DialogAnswer {
                         Message = "<<<",
@@ -134,7 +148,7 @@ namespace NewCellBot.Domain.Quest.Stories
                 DynamicMessage = (i, j) => {
                     return "*Инвентарь*:\n"
                            + (i.Has(Item.Phone) ? "\ud83d\udcf1 телефон\n" : "")
-                           + (i.Has(Item.Project) ? "\ud83d\udcc3 проект\n" : "")
+                           + (i.Has(Item.Project) ? "\ud83d\udcc4 проект\n" : "")
                            + (i.Has(Item.Stick) ? "\u26a1\ufe0f жезл\n" : "")
                            + (i.Has(Item.KolyanDachaKey) ? $"{MapIcon.KolyanDachaKey.ToSmile()} ключ\n" : "")
                            + (i.Has(Item.FireExtinguisher)
@@ -328,11 +342,11 @@ namespace NewCellBot.Domain.Quest.Stories
                 },
                 new DialogQuestion {
                     Name = Dialog.Veil3,
-                    Photo = "Resources/Kabluk.jpg;AgADAgADCKsxG4HYYUiajGpv5in3dR2DCA4ABLN5XAFaqE5funYBAAEC",
+                    Photo = "Resources/Kabluk.jpg;AgADAgADkaoxG1sH0Uu7QaMcUhByutN4Xw8ABDuyScUAAeRl2Zu7BQABAg",
                     Message = "Вы поднимаете фотографию.",
                     Answers = new[] {
                         new DialogAnswer {
-                            Message = "ФФФФ-УУУУУУ",
+                            Message = "ФФФФУУУУУУ",
                             MoveToDialog = Dialog.EnteredHall,
                         },
                     },
@@ -389,7 +403,7 @@ namespace NewCellBot.Domain.Quest.Stories
                 new DialogQuestion {
                     Name = Dialog.Demianov3,
                     Message = "Повторю вопрос. Недосдача сколько?",
-                    Photo = "Resources/Skolko.jpg;AgADAgAD_qoxG5NsYEja-dIsVNzOxki9UQ8ABDsEp4VnCgK1RL8EAAEC",
+                    Photo = "Resources/Skolko.jpg;AgADAgADO60xG1B3CUivpD44cbs7aK5rXw8ABNee4rv3h__EzfoFAAEC",
                     Answers = new[] {
                         new DialogAnswer {
                             IsHidden = true,
@@ -434,8 +448,8 @@ namespace NewCellBot.Domain.Quest.Stories
             var kolyanDialogs = new[] {
                 new DialogQuestion {
                     Name = Dialog.Kolyan1,
-                    Message =
-                        "Колян горячо приветвтвует вас, попивая лавандовый смузи. Однако, вид у него встревоженный. Похоже, что-то не так.",
+                    Message = "Колян горячо приветвтвует вас, попивая лавандовый смузи. " +
+                              "Однако, вид у него встревоженный. Похоже, что-то не так.",
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Поговорить",
@@ -499,7 +513,7 @@ namespace NewCellBot.Domain.Quest.Stories
                         "маминой подруге на Юго-Западе и буквально через часок оказываетесь на даче.",
                     Answers = new[] {
                         new DialogAnswer {
-                            Message = "fffuuuu...",
+                            Message = "\ud83d\ude20 fffuuuu...",
                             MoveToDialog = Dialog.MapToshik,
                             MoveToPos = (pos, map) => map.PosLeft(MapIcon.KolyanDacha)
                         }
@@ -534,7 +548,7 @@ namespace NewCellBot.Domain.Quest.Stories
                     Answers = new[] {
                         new DialogAnswer {
                             Available = (i, j) => !j.IsOpen(Bot.Quest.KolyanDachaOpenDoor) && !i.Has(Item.KolyanDachaKey),
-                            Message = "Fffuuuu?",
+                            Message = "\ud83d\ude21 Fffuuuu?",
                             MoveToDialog = Dialog.KolyanDacha2
                         },
                         new DialogAnswer {
@@ -543,7 +557,7 @@ namespace NewCellBot.Domain.Quest.Stories
                             MoveToDialog = Dialog.KolyanDacha4,
                         },
                         new DialogAnswer {
-                            Message = "fu (уйти)",
+                            Message = "Уйти",
                             MoveToDialog = Dialog.MapToshik,
                             MoveToPos = (pos, map) => map.PosLeft(MapIcon.KolyanDacha)
                         },
@@ -558,7 +572,7 @@ namespace NewCellBot.Domain.Quest.Stories
                         " здесь выронил. Можешь поискать? Я пока маминой подруге на цифры наберу.",
                     Answers = new[] {
                         new DialogAnswer {
-                            Message = "FFFUUUU",
+                            Message = "\ud83e\udd2c FFFUUUU",
                             MoveToDialog = Dialog.MapToshik,
                             MoveToPos = (pos, map) => map.PosLeft(MapIcon.KolyanDacha),
                             ChangeMap = (pos, map) =>
@@ -573,7 +587,7 @@ namespace NewCellBot.Domain.Quest.Stories
                               " падает на ваши брюки.",
                     Answers = new[] {
                         new DialogAnswer {
-                            Message = "fffuuuuuuuu",
+                            Message = "\ud83e\udd76 FFFFUUUU",
                             MoveToDialog = Dialog.MapToshik,
                             ChangeInventory = i => i.Give(Item.KolyanDachaKey),
                             ChangeMap = (pos, map) =>
@@ -590,7 +604,7 @@ namespace NewCellBot.Domain.Quest.Stories
                               " просит вас попробовать открыть дверь найденным ключом.",
                     Answers = new[] {
                         new DialogAnswer {
-                            Message = "FFFUUUUU!!",
+                            Message = "\ud83d\udca3 FFUUUU!! \ud83d\udca3",
                             MoveToDialog = Dialog.MapToshik,
                             MoveToPos = (pos, map) => map.PosLeft(map.PosLeft(MapIcon.KolyanDachaDoor)),
                             ChangeMap = (pos, map) => map
@@ -606,7 +620,7 @@ namespace NewCellBot.Domain.Quest.Stories
                         "Пока вы пытаетесь открыть дверь, Колян отходит дальше. Видимо, ваше пыхтение мешает ему общаться.",
                     Answers = new[] {
                         new DialogAnswer {
-                            Message = "Дальше",
+                            Message = "\ud83e\udd75 ...",
                             MoveToDialog = Dialog.KolyanDacha6,
                             ChangeMap = (pos, map) => map.Replace(MapIcon.KolyanDacha, MapIcon.Empty),
                         }
@@ -620,7 +634,7 @@ namespace NewCellBot.Domain.Quest.Stories
                               "Вы слышите, как машина Коляна заводится и уезжает. Может быть он поехал встречать кого-то у ворот?",
                     Answers = new[] {
                         new DialogAnswer {
-                            Message = "FFFFUUUU!!1",
+                            Message = "\ud83c\udf0b FFFFUUUU!!1 \ud83c\udf0b",
                             MoveToDialog = Dialog.KolyanDacha7,
                         }
                     },
@@ -634,9 +648,9 @@ namespace NewCellBot.Domain.Quest.Stories
                         "в ЗАГС на делике.",
                     Answers = new[] {
                         new DialogAnswer {
-                            Message = "FUU#№;%!!",
+                            Message = "\ud83e\udd2f F#№;%\ud83e\udde8\ud83d\udca5!! \ud83e\udd2f",
                             MoveToDialog = Dialog.MapToshik,
-                            MoveToPos = (pos, map) => NewCellQuest.Map.IndexOf(MapIcon.Toshik),
+                            MoveToPos = (pos, map) => initialMap.IndexOf(MapIcon.Toshik),
                             ChangeJournal = j => j.Finish(Bot.Quest.KolyanDachaOpenDoor).Finish(Bot.Quest.Kolyan),
                             ChangeInventory = i => i.Take(Item.KolyanDachaKey)
                         }
@@ -916,10 +930,7 @@ namespace NewCellBot.Domain.Quest.Stories
                             MoveToDialog = Dialog.Flame2,
                             ChangeJournal = j => j.Finish(Bot.Quest.FireAlarm),
                             ChangeInventory = i => i.Take(Item.FireExtinguisher),
-                            ChangeMap = (pos, map) => map
-                                .Replace(map.PosLeft(MapIcon.Sokrat), MapIcon.Empty)
-                                .Replace(map.PosDown(MapIcon.Sokrat), MapIcon.Empty)
-                                .Replace(map.PosLeft(map.PosDown(MapIcon.Sokrat)), MapIcon.Empty)
+                            ChangeMap = (pos, map) => map.Replace(MapIcon.Flame, MapIcon.Empty)
                         },
                         new DialogAnswer {
                             Message = "Нужно что-то придумать...",
@@ -1034,9 +1045,9 @@ namespace NewCellBot.Domain.Quest.Stories
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Далее",
-                            MoveToDialog = Dialog.MapNastya,
-                            MoveToPos = (pos, map) => NewCellQuest.Map.IndexOf(MapIcon.Nastya),
-                            ChangeMap = (pos, map) => map.ClearPos(NewCellQuest.Map.IndexOf(MapIcon.Nastya)),
+                            MoveToDialog = Dialog.StartNastya,
+                            MoveToPos = (pos, map) => initialMap.IndexOf(MapIcon.Nastya),
+                            ChangeMap = (pos, map) => map.ClearPos(initialMap.IndexOf(MapIcon.Nastya)),
                         },
                     },
                 },
@@ -1063,6 +1074,7 @@ namespace NewCellBot.Domain.Quest.Stories
             };
 
             return new[] {
+                    startDialog,
                     mapDialog,
                     moveToDialog,
                     inventoryDialog,

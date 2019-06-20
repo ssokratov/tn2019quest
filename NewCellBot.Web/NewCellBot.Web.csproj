@@ -32,4 +32,16 @@
     <ProjectReference Include="..\NewCellBot.Application\NewCellBot.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Resources\Crowd_gop.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Crowd_vata.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Triagrutrika.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

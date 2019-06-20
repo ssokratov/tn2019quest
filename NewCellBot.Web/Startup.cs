@@ -28,7 +28,7 @@ namespace NewCellBot.Web
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddScoped<UpdateService>();
             services.AddScoped<BotWrapper>();
-            services.AddSingleton<DialogUpdater>();
+            services.AddScoped<DialogUpdater>();
             services.AddScoped(s => new StateStorage(Configuration["StorageConnectionString"]));
 
             services.Configure<BotConfiguration>(Configuration.GetSection("BotConfiguration"));
