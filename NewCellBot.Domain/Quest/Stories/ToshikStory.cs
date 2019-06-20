@@ -453,7 +453,12 @@ namespace NewCellBot.Domain.Quest.Stories
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Поговорить",
-                            Available = (i, j) => !j.IsFinished(Bot.Quest.Kolyan),
+                            Available = (i, j) => !j.IsFinished(Bot.Quest.Kolyan) && j.IsKnown(Bot.Quest.FireAlarm),
+                            MoveToDialog = Dialog.Kolyan2,
+                        },
+                        new DialogAnswer {
+                            Message = "Поговорить",
+                            Available = (i, j) => !j.IsFinished(Bot.Quest.Kolyan) && !j.IsKnown(Bot.Quest.FireAlarm),
                             MoveToDialog = Dialog.Kolyan2,
                             ChangeJournal = j => j.Open(Bot.Quest.FireAlarm),
                             ChangeMap = (pos, map) => map
