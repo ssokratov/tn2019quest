@@ -1,0 +1,1214 @@
+﻿2019-06-10 23:47:40,168 INFO  Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager User profile is available. Using 'C:\Users\nbaraboshkin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. 
+2019-06-10 23:47:40,367 WARN  test test 
+2019-06-10 23:47:40,368 WARN  test test 
+2019-06-10 23:47:41,191 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:47:41,192 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:47:41,264 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:47:41,265 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:47:41,335 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:47:41,336 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:47:41,362 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 22.3168ms 
+2019-06-10 23:47:41,363 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 22.3168ms 
+2019-06-10 23:47:41,366 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:47:41,367 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:47:41,465 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.InvalidOperationException: Unable to resolve service for type 'System.String' while attempting to activate 'NewCellBot.Infrastructure.StateStorage'.
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(Type serviceType, Type implementationType, CallSiteChain callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(Type serviceType, Type implementationType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateCallSite(Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(Type serviceType, Type implementationType, CallSiteChain callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(Type serviceType, Type implementationType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateCallSite(Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.CreateServiceAccessor(Type serviceType)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.GetService(Type serviceType, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:47:41,472 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.InvalidOperationException: Unable to resolve service for type 'System.String' while attempting to activate 'NewCellBot.Infrastructure.StateStorage'.
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(Type serviceType, Type implementationType, CallSiteChain callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(Type serviceType, Type implementationType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateCallSite(Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(Type serviceType, Type implementationType, CallSiteChain callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(Type serviceType, Type implementationType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateCallSite(Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.CreateServiceAccessor(Type serviceType)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.GetService(Type serviceType, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:47:41,592 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 401.6724ms 500 application/json 
+2019-06-10 23:47:41,593 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 401.6724ms 500 application/json 
+2019-06-10 23:47:41,610 INFO  Microsoft.AspNetCore.Server.Kestrel Connection id "0HLNDSJGNC1OT", Request id "0HLNDSJGNC1OT:00000001": the application completed without reading the entire request body. 
+2019-06-10 23:47:41,611 INFO  Microsoft.AspNetCore.Server.Kestrel Connection id "0HLNDSJGNC1OT", Request id "0HLNDSJGNC1OT:00000001": the application completed without reading the entire request body. 
+2019-06-10 23:47:43,965 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:47:43,966 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:47:43,967 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:47:43,968 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:47:43,969 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:47:43,969 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:47:43,971 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 0.6944ms 
+2019-06-10 23:47:43,971 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 0.6944ms 
+2019-06-10 23:47:43,972 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:47:43,973 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:47:43,975 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.InvalidOperationException: Unable to resolve service for type 'System.String' while attempting to activate 'NewCellBot.Infrastructure.StateStorage'.
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(Type serviceType, Type implementationType, CallSiteChain callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(Type serviceType, Type implementationType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateCallSite(Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(Type serviceType, Type implementationType, CallSiteChain callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(Type serviceType, Type implementationType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateCallSite(Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.CreateServiceAccessor(Type serviceType)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.GetService(Type serviceType, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:47:43,976 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.InvalidOperationException: Unable to resolve service for type 'System.String' while attempting to activate 'NewCellBot.Infrastructure.StateStorage'.
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(Type serviceType, Type implementationType, CallSiteChain callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(Type serviceType, Type implementationType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateCallSite(Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(Type serviceType, Type implementationType, CallSiteChain callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(Type serviceType, Type implementationType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateCallSite(Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.CreateServiceAccessor(Type serviceType)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.GetService(Type serviceType, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:47:43,979 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 14.1222ms 500 application/json 
+2019-06-10 23:47:43,980 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 14.1222ms 500 application/json 
+2019-06-10 23:47:43,981 INFO  Microsoft.AspNetCore.Server.Kestrel Connection id "0HLNDSJGNC1OT", Request id "0HLNDSJGNC1OT:00000002": the application completed without reading the entire request body. 
+2019-06-10 23:47:43,982 INFO  Microsoft.AspNetCore.Server.Kestrel Connection id "0HLNDSJGNC1OT", Request id "0HLNDSJGNC1OT:00000002": the application completed without reading the entire request body. 
+2019-06-10 23:47:48,262 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:47:48,263 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:47:48,264 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:47:48,264 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:47:48,266 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:47:48,268 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:47:48,270 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 0.6488ms 
+2019-06-10 23:47:48,271 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 0.6488ms 
+2019-06-10 23:47:48,272 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:47:48,273 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:47:48,281 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.InvalidOperationException: Unable to resolve service for type 'System.String' while attempting to activate 'NewCellBot.Infrastructure.StateStorage'.
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(Type serviceType, Type implementationType, CallSiteChain callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(Type serviceType, Type implementationType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateCallSite(Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(Type serviceType, Type implementationType, CallSiteChain callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(Type serviceType, Type implementationType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateCallSite(Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.CreateServiceAccessor(Type serviceType)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.GetService(Type serviceType, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:47:48,288 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.InvalidOperationException: Unable to resolve service for type 'System.String' while attempting to activate 'NewCellBot.Infrastructure.StateStorage'.
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(Type serviceType, Type implementationType, CallSiteChain callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(Type serviceType, Type implementationType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateCallSite(Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(Type serviceType, Type implementationType, CallSiteChain callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(Type serviceType, Type implementationType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateCallSite(Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.CreateServiceAccessor(Type serviceType)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.GetService(Type serviceType, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:47:48,295 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 33.5486ms 500 application/json 
+2019-06-10 23:47:48,296 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 33.5486ms 500 application/json 
+2019-06-10 23:47:48,297 INFO  Microsoft.AspNetCore.Server.Kestrel Connection id "0HLNDSJGNC1OT", Request id "0HLNDSJGNC1OT:00000003": the application completed without reading the entire request body. 
+2019-06-10 23:47:48,298 INFO  Microsoft.AspNetCore.Server.Kestrel Connection id "0HLNDSJGNC1OT", Request id "0HLNDSJGNC1OT:00000003": the application completed without reading the entire request body. 
+2019-06-10 23:47:56,615 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:47:56,616 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:47:56,617 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:47:56,617 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:47:56,618 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:47:56,619 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:47:56,620 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 0.6252ms 
+2019-06-10 23:47:56,630 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 0.6252ms 
+2019-06-10 23:47:56,636 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:47:56,636 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:47:56,639 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.InvalidOperationException: Unable to resolve service for type 'System.String' while attempting to activate 'NewCellBot.Infrastructure.StateStorage'.
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(Type serviceType, Type implementationType, CallSiteChain callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(Type serviceType, Type implementationType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateCallSite(Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(Type serviceType, Type implementationType, CallSiteChain callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(Type serviceType, Type implementationType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateCallSite(Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.CreateServiceAccessor(Type serviceType)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.GetService(Type serviceType, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:47:56,640 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.InvalidOperationException: Unable to resolve service for type 'System.String' while attempting to activate 'NewCellBot.Infrastructure.StateStorage'.
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(Type serviceType, Type implementationType, CallSiteChain callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(Type serviceType, Type implementationType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateCallSite(Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateArgumentCallSites(Type serviceType, Type implementationType, CallSiteChain callSiteChain, ParameterInfo[] parameters, Boolean throwIfCallSiteNotFound)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateConstructorCallSite(Type serviceType, Type implementationType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(ServiceDescriptor descriptor, Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.TryCreateExact(Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteFactory.CreateCallSite(Type serviceType, CallSiteChain callSiteChain)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.CreateServiceAccessor(Type serviceType)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngine.GetService(Type serviceType, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:47:56,649 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 34.3811ms 500 application/json 
+2019-06-10 23:47:56,650 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 34.3811ms 500 application/json 
+2019-06-10 23:47:56,652 INFO  Microsoft.AspNetCore.Server.Kestrel Connection id "0HLNDSJGNC1OT", Request id "0HLNDSJGNC1OT:00000004": the application completed without reading the entire request body. 
+2019-06-10 23:47:56,653 INFO  Microsoft.AspNetCore.Server.Kestrel Connection id "0HLNDSJGNC1OT", Request id "0HLNDSJGNC1OT:00000004": the application completed without reading the entire request body. 
+2019-06-10 23:49:32,120 INFO  Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager User profile is available. Using 'C:\Users\nbaraboshkin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. 
+2019-06-10 23:49:32,221 WARN  test test 
+2019-06-10 23:49:32,222 WARN  test test 
+2019-06-10 23:49:32,695 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:49:32,699 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:49:32,761 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:49:32,763 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:49:32,806 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:49:32,808 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:49:33,214 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:49:33,216 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:49:33,228 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 
+2019-06-10 23:49:33,229 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 
+2019-06-10 23:49:34,511 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 1699.9401ms 
+2019-06-10 23:49:34,511 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 1699.9401ms 
+2019-06-10 23:49:34,515 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:49:34,516 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:49:34,577 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at NewCellBot.Infrastructure.StateStorage.GetStateAsync(Int64 chatId) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Infrastructure\StateStorage.cs:line 35
+   at NewCellBot.Application.UpdateService.HandleAsync(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Application\UpdateService.cs:line 38
+   at NewCellBot.Web.Controllers.TelegramController.Get(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Web\Controllers\TelegramController.cs:line 23
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:49:34,587 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at NewCellBot.Infrastructure.StateStorage.GetStateAsync(Int64 chatId) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Infrastructure\StateStorage.cs:line 35
+   at NewCellBot.Application.UpdateService.HandleAsync(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Application\UpdateService.cs:line 38
+   at NewCellBot.Web.Controllers.TelegramController.Get(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Web\Controllers\TelegramController.cs:line 23
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:49:34,635 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 1940.7859ms 500 application/json 
+2019-06-10 23:49:34,636 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 1940.7859ms 500 application/json 
+2019-06-10 23:49:36,909 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:49:36,910 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:49:36,912 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:49:36,912 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:49:36,913 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:49:36,914 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:49:36,917 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:49:36,918 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:49:36,919 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 
+2019-06-10 23:49:36,920 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 
+2019-06-10 23:49:37,106 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 190.9891ms 
+2019-06-10 23:49:37,107 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 190.9891ms 
+2019-06-10 23:49:37,108 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:49:37,108 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:49:37,110 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at NewCellBot.Infrastructure.StateStorage.GetStateAsync(Int64 chatId) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Infrastructure\StateStorage.cs:line 35
+   at NewCellBot.Application.UpdateService.HandleAsync(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Application\UpdateService.cs:line 38
+   at NewCellBot.Web.Controllers.TelegramController.Get(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Web\Controllers\TelegramController.cs:line 23
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:49:37,113 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at NewCellBot.Infrastructure.StateStorage.GetStateAsync(Int64 chatId) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Infrastructure\StateStorage.cs:line 35
+   at NewCellBot.Application.UpdateService.HandleAsync(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Application\UpdateService.cs:line 38
+   at NewCellBot.Web.Controllers.TelegramController.Get(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Web\Controllers\TelegramController.cs:line 23
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:49:37,116 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 206.7934ms 500 application/json 
+2019-06-10 23:49:37,117 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 206.7934ms 500 application/json 
+2019-06-10 23:49:41,423 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:49:41,425 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:49:41,427 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:49:41,428 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:49:41,429 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:49:41,431 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:49:41,434 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:49:41,435 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:49:41,436 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 
+2019-06-10 23:49:41,437 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 
+2019-06-10 23:49:41,619 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 186.295ms 
+2019-06-10 23:49:41,620 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 186.295ms 
+2019-06-10 23:49:41,620 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:49:41,621 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:49:41,624 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at NewCellBot.Infrastructure.StateStorage.GetStateAsync(Int64 chatId) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Infrastructure\StateStorage.cs:line 35
+   at NewCellBot.Application.UpdateService.HandleAsync(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Application\UpdateService.cs:line 38
+   at NewCellBot.Web.Controllers.TelegramController.Get(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Web\Controllers\TelegramController.cs:line 23
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:49:41,627 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at NewCellBot.Infrastructure.StateStorage.GetStateAsync(Int64 chatId) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Infrastructure\StateStorage.cs:line 35
+   at NewCellBot.Application.UpdateService.HandleAsync(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Application\UpdateService.cs:line 38
+   at NewCellBot.Web.Controllers.TelegramController.Get(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Web\Controllers\TelegramController.cs:line 23
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:49:41,630 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 207.065ms 500 application/json 
+2019-06-10 23:49:41,631 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 207.065ms 500 application/json 
+2019-06-10 23:50:21,228 INFO  Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager User profile is available. Using 'C:\Users\nbaraboshkin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. 
+2019-06-10 23:50:21,609 WARN  test test 
+2019-06-10 23:50:21,610 WARN  test test 
+2019-06-10 23:50:23,111 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 DEBUG http://localhost:54776/  0 
+2019-06-10 23:50:23,112 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:50:23,118 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:50:23,121 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 DEBUG http://localhost:54776/  0 
+2019-06-10 23:50:23,250 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 132.8146ms 200  
+2019-06-10 23:50:23,251 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 132.8146ms 200  
+2019-06-10 23:50:23,267 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:50:23,268 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:50:23,407 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:50:23,408 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:50:24,418 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:50:24,420 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:50:24,447 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 
+2019-06-10 23:50:24,448 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 
+2019-06-10 23:50:26,651 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 3236.4755ms 
+2019-06-10 23:50:26,652 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 3236.4755ms 
+2019-06-10 23:50:26,660 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:50:26,661 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:50:26,792 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at NewCellBot.Infrastructure.StateStorage.GetStateAsync(Int64 chatId) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Infrastructure\StateStorage.cs:line 35
+   at NewCellBot.Application.UpdateService.HandleAsync(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Application\UpdateService.cs:line 38
+   at NewCellBot.Web.Controllers.TelegramController.Get(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Web\Controllers\TelegramController.cs:line 23
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:50:26,798 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at NewCellBot.Infrastructure.StateStorage.GetStateAsync(Int64 chatId) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Infrastructure\StateStorage.cs:line 35
+   at NewCellBot.Application.UpdateService.HandleAsync(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Application\UpdateService.cs:line 38
+   at NewCellBot.Web.Controllers.TelegramController.Get(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Web\Controllers\TelegramController.cs:line 23
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:50:26,857 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 3751.7317ms 500 application/json 
+2019-06-10 23:50:26,859 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 3751.7317ms 500 application/json 
+2019-06-10 23:50:27,192 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:50:27,193 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:50:27,198 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:50:27,199 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:50:27,204 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:50:27,205 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:50:27,216 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:50:27,217 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:50:27,222 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 
+2019-06-10 23:50:27,223 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 
+2019-06-10 23:50:27,698 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 480.607ms 
+2019-06-10 23:50:27,700 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 480.607ms 
+2019-06-10 23:50:27,707 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:50:27,710 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:50:27,725 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at NewCellBot.Infrastructure.StateStorage.GetStateAsync(Int64 chatId) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Infrastructure\StateStorage.cs:line 35
+   at NewCellBot.Application.UpdateService.HandleAsync(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Application\UpdateService.cs:line 38
+   at NewCellBot.Web.Controllers.TelegramController.Get(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Web\Controllers\TelegramController.cs:line 23
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:50:27,730 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at NewCellBot.Infrastructure.StateStorage.GetStateAsync(Int64 chatId) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Infrastructure\StateStorage.cs:line 35
+   at NewCellBot.Application.UpdateService.HandleAsync(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Application\UpdateService.cs:line 38
+   at NewCellBot.Web.Controllers.TelegramController.Get(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Web\Controllers\TelegramController.cs:line 23
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:50:27,747 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 546.8619ms 500 application/json 
+2019-06-10 23:50:27,748 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 546.8619ms 500 application/json 
+2019-06-10 23:50:28,112 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:50:28,113 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:50:28,117 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:50:28,118 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:50:28,126 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:50:28,127 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:50:28,132 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:50:28,133 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:50:28,139 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 
+2019-06-10 23:50:28,142 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 
+2019-06-10 23:50:28,666 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 531.6494ms 
+2019-06-10 23:50:28,667 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 531.6494ms 
+2019-06-10 23:50:28,698 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:50:28,699 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:50:28,727 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at NewCellBot.Infrastructure.StateStorage.GetStateAsync(Int64 chatId) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Infrastructure\StateStorage.cs:line 35
+   at NewCellBot.Application.UpdateService.HandleAsync(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Application\UpdateService.cs:line 38
+   at NewCellBot.Web.Controllers.TelegramController.Get(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Web\Controllers\TelegramController.cs:line 23
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:50:28,732 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at NewCellBot.Infrastructure.StateStorage.GetStateAsync(Int64 chatId) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Infrastructure\StateStorage.cs:line 35
+   at NewCellBot.Application.UpdateService.HandleAsync(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Application\UpdateService.cs:line 38
+   at NewCellBot.Web.Controllers.TelegramController.Get(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Web\Controllers\TelegramController.cs:line 23
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:50:28,740 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 632.1672ms 500 application/json 
+2019-06-10 23:50:28,746 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 632.1672ms 500 application/json 
+2019-06-10 23:50:31,263 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:50:31,267 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:50:31,273 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:50:31,275 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:50:31,279 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:50:31,280 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:50:31,289 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:50:31,292 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:50:31,297 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 
+2019-06-10 23:50:31,299 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 
+2019-06-10 23:50:52,123 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 20840.6835ms 
+2019-06-10 23:50:52,124 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 20840.6835ms 
+2019-06-10 23:50:52,125 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:50:52,126 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:50:52,129 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at NewCellBot.Infrastructure.StateStorage.GetStateAsync(Int64 chatId) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Infrastructure\StateStorage.cs:line 35
+   at NewCellBot.Application.UpdateService.HandleAsync(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Application\UpdateService.cs:line 38
+   at NewCellBot.Web.Controllers.TelegramController.Get(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Web\Controllers\TelegramController.cs:line 23
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:50:52,133 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at NewCellBot.Infrastructure.StateStorage.GetStateAsync(Int64 chatId) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Infrastructure\StateStorage.cs:line 35
+   at NewCellBot.Application.UpdateService.HandleAsync(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Application\UpdateService.cs:line 38
+   at NewCellBot.Web.Controllers.TelegramController.Get(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Web\Controllers\TelegramController.cs:line 23
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:50:52,136 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 21107.3654ms 500 application/json 
+2019-06-10 23:50:52,136 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 21107.3654ms 500 application/json 
+2019-06-10 23:54:08,473 INFO  Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager User profile is available. Using 'C:\Users\nbaraboshkin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. 
+2019-06-10 23:54:08,773 WARN  test test 
+2019-06-10 23:54:08,774 WARN  test test 
+2019-06-10 23:54:10,297 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:54:10,298 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:54:10,348 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 DEBUG http://localhost:54776/  0 
+2019-06-10 23:54:10,349 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 DEBUG http://localhost:54776/  0 
+2019-06-10 23:54:10,512 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 208.7344ms 200  
+2019-06-10 23:54:10,513 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 208.7344ms 200  
+2019-06-10 23:54:10,568 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:54:10,568 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:54:10,742 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:54:10,743 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:54:11,450 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:54:11,451 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:54:11,509 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 
+2019-06-10 23:54:11,512 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 
+2019-06-10 23:55:06,961 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:55:06,961 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:55:06,967 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:55:06,968 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:55:06,972 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:55:06,973 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:55:06,983 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:55:06,984 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:55:06,987 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 
+2019-06-10 23:55:06,988 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 
+2019-06-10 23:55:09,961 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 56242.8127ms 
+2019-06-10 23:55:09,965 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 56242.8127ms 
+2019-06-10 23:55:09,970 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:55:09,972 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:55:09,995 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at NewCellBot.Application.UpdateService.HandleAsync(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Application\UpdateService.cs:line 49
+   at NewCellBot.Web.Controllers.TelegramController.Get(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Web\Controllers\TelegramController.cs:line 23
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:55:10,000 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at NewCellBot.Application.UpdateService.HandleAsync(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Application\UpdateService.cs:line 49
+   at NewCellBot.Web.Controllers.TelegramController.Get(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Web\Controllers\TelegramController.cs:line 23
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:55:10,036 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 59752.1638ms 500 application/json 
+2019-06-10 23:55:10,037 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 59752.1638ms 500 application/json 
+2019-06-10 23:55:31,580 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 24601.1986ms 
+2019-06-10 23:55:31,581 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 24601.1986ms 
+2019-06-10 23:55:31,586 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:55:31,587 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:55:31,597 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at NewCellBot.Application.UpdateService.HandleAsync(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Application\UpdateService.cs:line 49
+   at NewCellBot.Web.Controllers.TelegramController.Get(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Web\Controllers\TelegramController.cs:line 23
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:55:31,599 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at NewCellBot.Application.UpdateService.HandleAsync(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Application\UpdateService.cs:line 49
+   at NewCellBot.Web.Controllers.TelegramController.Get(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Web\Controllers\TelegramController.cs:line 23
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:55:31,605 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 24646.9536ms 500 application/json 
+2019-06-10 23:55:31,607 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 24646.9536ms 500 application/json 
+2019-06-10 23:55:31,950 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:55:31,951 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:55:31,954 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:55:31,954 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:55:31,957 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:55:31,958 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:55:31,962 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:55:31,963 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:55:31,967 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 
+2019-06-10 23:55:31,968 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 
+2019-06-10 23:55:56,990 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 25028.5308ms 
+2019-06-10 23:55:56,990 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 25028.5308ms 
+2019-06-10 23:55:56,997 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:55:56,997 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:55:57,005 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at NewCellBot.Application.UpdateService.HandleAsync(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Application\UpdateService.cs:line 49
+   at NewCellBot.Web.Controllers.TelegramController.Get(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Web\Controllers\TelegramController.cs:line 23
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:55:57,007 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at NewCellBot.Application.UpdateService.HandleAsync(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Application\UpdateService.cs:line 49
+   at NewCellBot.Web.Controllers.TelegramController.Get(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Web\Controllers\TelegramController.cs:line 23
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:55:57,015 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 25061.6908ms 500 application/json 
+2019-06-10 23:55:57,016 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 25061.6908ms 500 application/json 
+2019-06-10 23:55:57,515 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:55:57,516 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:55:57,529 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:55:57,530 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:55:57,535 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:55:57,537 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:55:57,544 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:55:57,546 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:55:57,550 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 
+2019-06-10 23:55:57,552 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 
+2019-06-10 23:56:06,931 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://127.0.0.1:5510/iisintegration  0 
+2019-06-10 23:56:06,933 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://127.0.0.1:5510/iisintegration  0 
+2019-06-10 23:56:06,939 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 10.2522ms 202  
+2019-06-10 23:56:06,941 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 10.2522ms 202  
+2019-06-10 23:56:40,063 INFO  Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager User profile is available. Using 'C:\Users\nbaraboshkin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. 
+2019-06-10 23:56:40,309 WARN  test test 
+2019-06-10 23:56:40,310 WARN  test test 
+2019-06-10 23:56:41,048 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:56:41,050 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:56:41,149 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:56:41,151 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:56:41,234 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:56:41,236 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:56:42,205 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:56:42,211 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:56:42,232 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 
+2019-06-10 23:56:42,245 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 
+2019-06-10 23:57:05,844 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 24602.345ms 
+2019-06-10 23:57:05,845 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 24602.345ms 
+2019-06-10 23:57:05,849 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:57:05,850 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:57:06,003 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at NewCellBot.Application.UpdateService.HandleAsync(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Application\UpdateService.cs:line 49
+   at NewCellBot.Web.Controllers.TelegramController.Get(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Web\Controllers\TelegramController.cs:line 23
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:57:06,016 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at NewCellBot.Application.UpdateService.HandleAsync(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Application\UpdateService.cs:line 49
+   at NewCellBot.Web.Controllers.TelegramController.Get(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Web\Controllers\TelegramController.cs:line 23
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:57:06,092 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 25044.1654ms 500 application/json 
+2019-06-10 23:57:06,093 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 25044.1654ms 500 application/json 
+2019-06-10 23:57:06,629 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:57:06,630 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:57:06,632 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:57:06,632 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:57:06,634 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:57:06,635 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:57:06,639 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:57:06,643 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:57:06,644 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 
+2019-06-10 23:57:06,645 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 
+2019-06-10 23:57:27,977 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 21341.6179ms 
+2019-06-10 23:57:27,978 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 21341.6179ms 
+2019-06-10 23:57:27,979 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:57:27,980 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:57:27,982 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at NewCellBot.Application.UpdateService.HandleAsync(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Application\UpdateService.cs:line 49
+   at NewCellBot.Web.Controllers.TelegramController.Get(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Web\Controllers\TelegramController.cs:line 23
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:57:27,984 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at NewCellBot.Application.UpdateService.HandleAsync(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Application\UpdateService.cs:line 49
+   at NewCellBot.Web.Controllers.TelegramController.Get(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Web\Controllers\TelegramController.cs:line 23
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:57:27,987 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 21357.9544ms 500 application/json 
+2019-06-10 23:57:27,988 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 21357.9544ms 500 application/json 
+2019-06-10 23:57:28,344 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:57:28,346 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:57:28,347 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:57:28,349 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:57:28,350 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:57:28,351 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:57:28,354 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:57:28,356 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:57:28,357 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 
+2019-06-10 23:57:28,359 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 
+2019-06-10 23:57:50,039 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 21686.7868ms 
+2019-06-10 23:57:50,040 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 21686.7868ms 
+2019-06-10 23:57:50,041 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:57:50,042 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:57:50,045 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at NewCellBot.Application.UpdateService.HandleAsync(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Application\UpdateService.cs:line 49
+   at NewCellBot.Web.Controllers.TelegramController.Get(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Web\Controllers\TelegramController.cs:line 23
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:57:50,047 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at NewCellBot.Application.UpdateService.HandleAsync(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Application\UpdateService.cs:line 49
+   at NewCellBot.Web.Controllers.TelegramController.Get(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Web\Controllers\TelegramController.cs:line 23
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:57:50,050 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 21705.5699ms 500 application/json 
+2019-06-10 23:57:50,051 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 21705.5699ms 500 application/json 
+2019-06-10 23:57:50,516 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:57:50,518 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:57:50,521 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:57:50,522 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:57:50,524 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:57:50,526 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:57:50,532 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:57:50,535 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:57:50,538 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 
+2019-06-10 23:57:50,539 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 
+2019-06-10 23:58:22,709 INFO  Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager User profile is available. Using 'C:\Users\nbaraboshkin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. 
+2019-06-10 23:58:23,154 WARN  test test 
+2019-06-10 23:58:23,156 WARN  test test 
+2019-06-10 23:58:24,858 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 DEBUG http://localhost:54776/  0 
+2019-06-10 23:58:24,859 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:58:24,863 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 DEBUG http://localhost:54776/  0 
+2019-06-10 23:58:24,864 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:58:25,217 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:58:25,218 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:58:25,266 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 381.3041ms 200  
+2019-06-10 23:58:25,268 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 381.3041ms 200  
+2019-06-10 23:58:25,382 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:58:25,383 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:58:26,301 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:58:26,303 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:58:26,351 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 
+2019-06-10 23:58:26,353 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 
+2019-06-10 23:58:49,950 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 24560.5183ms 
+2019-06-10 23:58:49,957 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executed action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) in 24560.5183ms 
+2019-06-10 23:58:49,966 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:58:49,967 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executed endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:58:50,064 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at NewCellBot.Application.UpdateService.HandleAsync(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Application\UpdateService.cs:line 49
+   at NewCellBot.Web.Controllers.TelegramController.Get(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Web\Controllers\TelegramController.cs:line 23
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:58:50,072 ERROR Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware An unhandled exception has occurred while executing the request. 
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at NewCellBot.Application.UpdateService.HandleAsync(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Application\UpdateService.cs:line 49
+   at NewCellBot.Web.Controllers.TelegramController.Get(Update update) in C:\Users\nbaraboshkin\Documents\my_code\NewCellBot\NewCellBot.Web\Controllers\TelegramController.cs:line 23
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.Invoke(HttpContext context)
+2019-06-10 23:58:50,127 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 25270.6946ms 500 application/json 
+2019-06-10 23:58:50,128 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request finished in 25270.6946ms 500 application/json 
+2019-06-10 23:58:50,470 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:58:50,472 INFO  Microsoft.AspNetCore.Hosting.Internal.WebHost Request starting HTTP/1.1 POST http://localhost:54776/api/telegram application/json 395 
+2019-06-10 23:58:50,477 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:58:50,478 INFO  Microsoft.AspNetCore.Routing.EndpointMiddleware Executing endpoint 'NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web)' 
+2019-06-10 23:58:50,483 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:58:50,484 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Route matched with {action = "Get", controller = "Telegram"}. Executing action NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) 
+2019-06-10 23:58:50,494 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:58:50,495 INFO  Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker Executing action method NewCellBot.Web.Controllers.TelegramController.Get (NewCellBot.Web) with arguments (Telegram.Bot.Types.Update) - Validation state: Valid 
+2019-06-10 23:58:50,500 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 
+2019-06-10 23:58:50,501 INFO  NewCellBot.Application.UpdateService Received Message from 235164010 

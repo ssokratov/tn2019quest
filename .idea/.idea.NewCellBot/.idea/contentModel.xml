@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\nbaraboshkin\.Rider2019.1\config\consoles\db" t="IncludeRecursive" />
+    <e p="C:\Users\nbaraboshkin\.Rider2019.1\config\extensions" t="IncludeRecursive" />
+    <e p="C:\Users\nbaraboshkin\.Rider2019.1\config\scratches" t="IncludeRecursive" />
+    <e p="C:\Users\nbaraboshkin\.Rider2019.1\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\nbaraboshkin\.Rider2019.1\system\resharper-host\local\Transient\ReSharperHost\v191\SolutionCaches\_NewCellBot.-976969281.00" t="ExcludeRecursive" />
+    <e p="C:\Users\nbaraboshkin\Documents\my_code\NewCellBot" t="IncludeFlat">
+      <e p="NewCellBot.Application" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="NewCellBot.Application.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.2" t="Include">
+              <e p="NewCellBot.Application.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="UpdateService.cs" t="Include" />
+      </e>
+      <e p="NewCellBot.Domain" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="ConversationState.cs" t="Include" />
+        <e p="ConversationStates.cs" t="Include" />
+        <e p="ConversationTriggers.cs" t="Include" />
+        <e p="MainConversation.cs" t="Include" />
+        <e p="NewCellBot.Domain.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.2" t="Include">
+              <e p="NewCellBot.Domain.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Quest" t="Include">
+          <e p="Journal.cs" t="Include" />
+          <e p="Model" t="Include">
+            <e p="Dialog.cs" t="Include" />
+            <e p="Inventory.cs" t="Include" />
+            <e p="VisibleState.cs" t="Include" />
+          </e>
+          <e p="NewCellQuest.cs" t="Include" />
+          <e p="PlayerValidationResult.cs" t="Include" />
+          <e p="QuestService.cs" t="Include" />
+          <e p="QuestState.cs" t="Include" />
+          <e p="SmileTranslator.cs" t="Include" />
+          <e p="Stories" t="Include">
+            <e p="NastyaStory.cs" t="Include" />
+            <e p="ToshikStory.cs" t="Include" />
+          </e>
+          <e p="StringExtensions.cs" t="Include" />
+          <e p="Strings.cs" t="Include" />
+        </e>
+        <e p="StateMachineDefinition.cs" t="Include" />
+        <e p="UserIds.cs" t="Include" />
+      </e>
+      <e p="NewCellBot.Infrastructure" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="BotConfiguration.cs" t="Include" />
+        <e p="BotWrapper.cs" t="Include" />
+        <e p="ChatStateRecord.cs" t="Include" />
+        <e p="NewCellBot.Infrastructure.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.2" t="Include">
+              <e p="NewCellBot.Infrastructure.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Quest" t="Include">
+          <e p="DialogUpdater.cs" t="Include" />
+        </e>
+        <e p="StateStorage.cs" t="Include" />
+      </e>
+      <e p="NewCellBot.sln" t="IncludeFlat" />
+      <e p="NewCellBot.Web" t="IncludeRecursive">
+        <e p="appsettings.Development.json" t="Include" />
+        <e p="appsettings.json" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Controllers" t="Include">
+          <e p="TelegramController.cs" t="Include" />
+        </e>
+        <e p="log4net.config" t="Include" />
+        <e p="logs" t="Include">
+          <e p="10.06.2019.txt" t="Include" />
+          <e p="11.06.2019.txt" t="Include" />
+          <e p="20.06.2019.txt" t="Include" />
+        </e>
+        <e p="NewCellBot.Web.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.2" t="Include">
+              <e p="NewCellBot.Web.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="launchSettings.json" t="Include" />
+          <e p="PublishProfiles" t="Include">
+            <e p="NewCellBot - Web Deploy.pubxml" t="Include" />
+          </e>
+        </e>
+        <e p="Resources" t="Include">
+          <e p="Kabluk.jpg" t="Include" />
+          <e p="Skolko.jpg" t="Include" />
+        </e>
+        <e p="Startup.cs" t="Include" />
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
