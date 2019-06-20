@@ -6,6 +6,9 @@ using NewCellBot.Domain;
 using NewCellBot.Domain.Quest;
 using NewCellBot.Infrastructure;
 using NewCellBot.Infrastructure.Quest;
+using Newtonsoft.Json;
+using Polly;
+using Telegram.Bot.Exceptions;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 
@@ -18,6 +21,8 @@ namespace NewCellBot.Application
         private readonly BotWrapper _botWrapper;
         private readonly DialogUpdater _dialogUpdater;
 
+        private readonly AsyncPolicy<string> _concurrencyRetryPolicy;
+
         public UpdateService(
             StateStorage stateStorage,
             ILogger<UpdateService> logger,
@@ -28,27 +33,46 @@ namespace NewCellBot.Application
             _logger = logger;
             _botWrapper = botWrapper;
             _dialogUpdater = dialogUpdater;
+
+            Random jitterer = new Random();
+            _concurrencyRetryPolicy = Policy<string>
+                .Handle<MessageIsNotModifiedException>()
+                .Or<ApiRequestException>(e => e.Message.ToLowerInvariant().Contains("message"))
+                .WaitAndRetryAsync(
+                    5,
+                    i => TimeSpan.FromSeconds(i).Add(TimeSpan.FromMilliseconds(jitterer.Next(0, 1000))),
+                    (result, span) => _logger.LogWarning(result.Exception, "Retrying concurrency error"));
         }
 
         public async Task HandleAsync(Update update)
         {
-            if (update.Type == UpdateType.CallbackQuery)
+            try
             {
-                await BotOnCallbackQuery(update.CallbackQuery);
-            }
-
-            if (update.Type == UpdateType.Message)
-            {
-                var message = update.Message;
-                var chatId = message.Chat.Id;
-                var user = message.From.Username ?? message.From.Id.ToString();
-
-                _logger.LogInformation("Received Message from user {0}, chat {2}", user, chatId);
-
-                if (message.Type == MessageType.Text)
+                if (update.Type == UpdateType.CallbackQuery)
                 {
-                    BotOnMessage(message);
+                    await BotOnCallbackQuery(update.CallbackQuery);
                 }
+                else if (update.Type == UpdateType.Message)
+                {
+                    var message = update.Message;
+                    var chatId = message.Chat.Id;
+                    var user = message.From.Username ?? message.From.Id.ToString();
+
+                    _logger.LogInformation("Received Message from user {0}, chat {2}", user, chatId);
+
+                    if (message.Type == MessageType.Text)
+                    {
+                        BotOnMessage(message);
+                    }
+                }
+                else
+                {
+                    _logger.LogWarning("Dropping update: \n" + JsonConvert.SerializeObject(update));
+                }
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Error handling update");
             }
         }
 
@@ -58,7 +82,10 @@ namespace NewCellBot.Application
             var messageText = query.Data;
             var user = query.From.Username ?? query.From.Id.ToString();
             var chatId = callbackMessage.Chat.Id;
-            var message = await Process(chatId, messageText, user, callbackMessage.MessageId);
+
+
+            var message = await _concurrencyRetryPolicy.ExecuteAsync(async () => await Process(chatId, messageText, user, callbackMessage.MessageId));
+
             try
             {
                 if (!string.IsNullOrEmpty(message))
@@ -68,7 +95,8 @@ namespace NewCellBot.Application
             }
             catch (Exception exception)
             {
-                Console.WriteLine(exception);
+                _logger.LogError(exception, "Cannot answer callback query");
+                throw;
             }
         }
 
@@ -77,7 +105,8 @@ namespace NewCellBot.Application
             var messageText = message.Text;
             var user = message.From.Username ?? message.From.Id.ToString();
             var chatId = message.Chat.Id;
-            await Process(chatId, messageText, user);
+
+            await _concurrencyRetryPolicy.ExecuteAsync(async () => await Process(chatId, messageText, user));
         }
 
         public async Task<string> Process(
@@ -119,7 +148,8 @@ namespace NewCellBot.Application
             }
             catch (Exception exception)
             {
-                _logger.LogError($"Error handling message", exception);
+                _logger.LogError(exception, "Error handling message");
+                throw;
             }
 
             return "";

@@ -50,6 +50,7 @@ namespace NewCellBot.Infrastructure.Quest
                     catch (Exception exception)
                     {
                         _logger.LogError(exception, "Cannot edit message");
+                        throw;
                     }
                 }
 
@@ -70,6 +71,7 @@ namespace NewCellBot.Infrastructure.Quest
                         catch (Exception exception)
                         {
                             _logger.LogError(exception, "Cannot delete message");
+                            throw;
                         }
                     }
 
@@ -85,6 +87,7 @@ namespace NewCellBot.Infrastructure.Quest
                     catch (Exception exception)
                     {
                         _logger.LogError(exception, "Cannot send message");
+                        throw;
                     }
                 }
 
@@ -121,7 +124,8 @@ namespace NewCellBot.Infrastructure.Quest
                     }
                     catch (Exception exception)
                     {
-                        _logger.LogError("Cannot delete message", exception);
+                        _logger.LogError(exception, "Cannot delete message");
+                        throw;
                     }
                 }
 
@@ -138,7 +142,8 @@ namespace NewCellBot.Infrastructure.Quest
                     }
                     catch (Exception e)
                     {
-                        _logger.LogError("Cannot send photo", e);
+                        _logger.LogError(e, "Cannot send photo");
+                        throw;
                     }
                 }
 
@@ -161,7 +166,8 @@ namespace NewCellBot.Infrastructure.Quest
                     }
                     catch (Exception e)
                     {
-                        _logger.LogError("Cannot upload photo", e);
+                        _logger.LogError(e, "Cannot upload photo");
+                        throw;
                     }
                 }
 

@@ -1,26 +1,26 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos.Table;
-using Microsoft.Azure.Documents.SystemFunctions;
-using Microsoft.Extensions.Options;
 using NewCellBot.Domain;
 
 namespace NewCellBot.Infrastructure
 {
     public class StateStorage
     {
-        private CloudStorageAccount _storageAccount;
-        private CloudTableClient _tableClient;
+        private readonly CloudTableClient _tableClient;
 
         public StateStorage(string connectionString)
         {
+            CloudStorageAccount storageAccount;
             if (string.IsNullOrWhiteSpace(connectionString))
             {
-                _storageAccount = CloudStorageAccount.DevelopmentStorageAccount;
+                storageAccount = CloudStorageAccount.DevelopmentStorageAccount;
+            }
+            else
+            {
+                storageAccount = CloudStorageAccount.Parse(connectionString);
             }
 
-            _storageAccount = CloudStorageAccount.Parse(connectionString);
-            _tableClient = _storageAccount.CreateCloudTableClient();
+            _tableClient = storageAccount.CreateCloudTableClient();
         }
 
         public async Task<BotState> GetStateAsync(long chatId)

@@ -17,6 +17,6 @@ namespace NewCellBot.Web
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
-                .ConfigureLogging(builder => builder.AddLog4Net());
+                .ConfigureLogging(builder => builder.AddLog4Net().AddConsole());
     }
 }
