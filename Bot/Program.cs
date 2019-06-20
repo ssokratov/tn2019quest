@@ -48,8 +48,22 @@ namespace Bot
             botClient.OnCallbackQuery += BotOnCallbackQuery;
             botClient.OnMessage += BotOnMessage;
 
+            // debug logs:
+            //botClient.MakingApiRequest += BotOnSendRequest;
+            //botClient.ApiResponseReceived += BotOnReceiveResponse;
+
             botClient.StartReceiving();
             Thread.Sleep(int.MaxValue);
+        }
+
+        private static async void BotOnSendRequest(object sender, ApiRequestEventArgs e)
+        {
+            Console.WriteLine($"\n{DateTime.Now.ToLongTimeString()}: request sent {e.MethodName}. \n {await e.HttpContent.ReadAsStringAsync()}");
+        }
+
+        private static async void BotOnReceiveResponse(object sender, ApiResponseEventArgs e)
+        {
+            Console.WriteLine($"\n{DateTime.Now.ToLongTimeString()}: response received {e.ApiRequestEventArgs.MethodName}. \n {await e.ResponseMessage.Content.ReadAsStringAsync()}");
         }
     }
 }

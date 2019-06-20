@@ -22,6 +22,11 @@ public class MessageProcessor
         string user,
         int? answerToMessageId = null)
     {
+        if (string.IsNullOrEmpty(messageText)) {
+            Console.WriteLine("Message is empty.");
+            return "";
+        }
+
         var synchronizer = synchronizerDict.ContainsKey(chatId)
             ? synchronizerDict[chatId]
             : (synchronizerDict[chatId] = new SemaphoreSlim(1, 1));

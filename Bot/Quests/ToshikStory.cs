@@ -14,8 +14,8 @@ namespace Bot.Quests
 ##K----#f-###
 ##-v---п--###
 ###П#########
-##-O#########
-##8-#########
+##O-#########
+##M-#########
 ##~~#########
 ##--#########
 ##--#########
@@ -31,8 +31,7 @@ namespace Bot.Quests
 
         public static DialogQuestion[] GetDialogs()
         {
-            var mapDialog = new DialogQuestion
-            {
+            var mapDialog = new DialogQuestion {
                 Name = Dialog.MapToshik,
                 Message = "_Перемещайтесь по карте, или выберите действие_",
                 Answers = new[] {
@@ -83,8 +82,19 @@ namespace Bot.Quests
                 DisplayMap = true
             };
 
-            var moveToDialog = new DialogQuestion
-            {
+            var startDialog = new DialogQuestion {
+                Name = Dialog.StartToshik,
+                Message = "Тошик обнаруживает себя в длинном светлом коридоре. Впереди - массивная деревянная дверь. " +
+                          "Сзади на полу лежит монокль.",
+                Answers = new [] {
+                    new DialogAnswer {
+                        Message = "Дальше",
+                        MoveToDialog = Dialog.MapToshik
+                    }, 
+                },
+            };
+
+            var moveToDialog = new DialogQuestion {
                 Name = Dialog.MapMoveTo,
                 Message = "_Хорошо, куда пойдём?_",
                 Answers = new[] {
@@ -126,13 +136,12 @@ namespace Bot.Quests
                 DisplayMap = true
             };
 
-            var inventoryDialog = new DialogQuestion
-            {
+            var inventoryDialog = new DialogQuestion {
                 Name = Dialog.InventoryToshik,
                 DynamicMessage = (i, j) => {
                     return "*Инвентарь*:\n"
                            + (i.Has(Item.Phone) ? "\ud83d\udcf1 телефон\n" : "")
-                           + (i.Has(Item.Project) ? "\ud83d\udcc3 проект\n" : "")
+                           + (i.Has(Item.Project) ? "\ud83d\udcc4 проект\n" : "")
                            + (i.Has(Item.Stick) ? "\u26a1\ufe0f жезл\n" : "")
                            + (i.Has(Item.KolyanDachaKey) ? $"{MapIcon.KolyanDachaKey.ToSmile()} ключ\n" : "")
                            + (i.Has(Item.FireExtinguisher)
@@ -151,8 +160,7 @@ namespace Bot.Quests
                 }
             };
 
-            var journalDialog = new DialogQuestion
-            {
+            var journalDialog = new DialogQuestion {
                 Name = Dialog.JournalToshik,
                 DynamicMessage = (i, j) => {
                     var done = "\u2714\ufe0f";
@@ -432,8 +440,8 @@ namespace Bot.Quests
             var kolyanDialogs = new[] {
                 new DialogQuestion {
                     Name = Dialog.Kolyan1,
-                    Message =
-                        "Колян горячо приветвтвует вас, попивая лавандовый смузи. Однако, вид у него встревоженный. Похоже, что-то не так.",
+                    Message = "Колян горячо приветвтвует вас, попивая лавандовый смузи. " +
+                              "Однако, вид у него встревоженный. Похоже, что-то не так.",
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Поговорить",
@@ -497,7 +505,7 @@ namespace Bot.Quests
                         "маминой подруге на Юго-Западе и буквально через часок оказываетесь на даче.",
                     Answers = new[] {
                         new DialogAnswer {
-                            Message = "fffuuuu...",
+                            Message = "\ud83d\ude20 fffuuuu...",
                             MoveToDialog = Dialog.MapToshik,
                             MoveToPos = (pos, map) => map.PosLeft(MapIcon.KolyanDacha)
                         }
@@ -532,7 +540,7 @@ namespace Bot.Quests
                     Answers = new[] {
                         new DialogAnswer {
                             Available = (i, j) => !j.IsOpen(Quest.KolyanDachaOpenDoor) && !i.Has(Item.KolyanDachaKey),
-                            Message = "Fffuuuu?",
+                            Message = "\ud83d\ude21 Fffuuuu?",
                             MoveToDialog = Dialog.KolyanDacha2
                         },
                         new DialogAnswer {
@@ -541,7 +549,7 @@ namespace Bot.Quests
                             MoveToDialog = Dialog.KolyanDacha4,
                         },
                         new DialogAnswer {
-                            Message = "fu (уйти)",
+                            Message = "Уйти",
                             MoveToDialog = Dialog.MapToshik,
                             MoveToPos = (pos, map) => map.PosLeft(MapIcon.KolyanDacha)
                         },
@@ -556,7 +564,7 @@ namespace Bot.Quests
                         " здесь выронил. Можешь поискать? Я пока маминой подруге на цифры наберу.",
                     Answers = new[] {
                         new DialogAnswer {
-                            Message = "FFFUUUU",
+                            Message = "\ud83e\udd2c FFFUUUU",
                             MoveToDialog = Dialog.MapToshik,
                             MoveToPos = (pos, map) => map.PosLeft(MapIcon.KolyanDacha),
                             ChangeMap = (pos, map) =>
@@ -571,7 +579,7 @@ namespace Bot.Quests
                               " падает на ваши брюки.",
                     Answers = new[] {
                         new DialogAnswer {
-                            Message = "fffuuuuuuuu",
+                            Message = "\ud83e\udd76 FFFFUUUU",
                             MoveToDialog = Dialog.MapToshik,
                             ChangeInventory = i => i.Give(Item.KolyanDachaKey),
                             ChangeMap = (pos, map) =>
@@ -588,7 +596,7 @@ namespace Bot.Quests
                               " просит вас попробовать открыть дверь найденным ключом.",
                     Answers = new[] {
                         new DialogAnswer {
-                            Message = "FFFUUUUU!!",
+                            Message = "\ud83d\udca3 FFUUUU!! \ud83d\udca3",
                             MoveToDialog = Dialog.MapToshik,
                             MoveToPos = (pos, map) => map.PosLeft(map.PosLeft(MapIcon.KolyanDachaDoor)),
                             ChangeMap = (pos, map) => map
@@ -604,7 +612,7 @@ namespace Bot.Quests
                         "Пока вы пытаетесь открыть дверь, Колян отходит дальше. Видимо, ваше пыхтение мешает ему общаться.",
                     Answers = new[] {
                         new DialogAnswer {
-                            Message = "Дальше",
+                            Message = "\ud83e\udd75 ...",
                             MoveToDialog = Dialog.KolyanDacha6,
                             ChangeMap = (pos, map) => map.Replace(MapIcon.KolyanDacha, MapIcon.Empty),
                         }
@@ -618,7 +626,7 @@ namespace Bot.Quests
                               "Вы слышите, как машина Коляна заводится и уезжает. Может быть он поехал встречать кого-то у ворот?",
                     Answers = new[] {
                         new DialogAnswer {
-                            Message = "FFFFUUUU!!1",
+                            Message = "\ud83c\udf0b FFFFUUUU!!1 \ud83c\udf0b",
                             MoveToDialog = Dialog.KolyanDacha7,
                         }
                     },
@@ -632,7 +640,7 @@ namespace Bot.Quests
                         "в ЗАГС на делике.",
                     Answers = new[] {
                         new DialogAnswer {
-                            Message = "FUU#№;%!!",
+                            Message = "\ud83e\udd2f F#№;%\ud83e\udde8\ud83d\udca5!! \ud83e\udd2f",
                             MoveToDialog = Dialog.MapToshik,
                             MoveToPos = (pos, map) => NewCellQuest.Map.IndexOf(MapIcon.Toshik),
                             ChangeJournal = j => j.Finish(Quest.KolyanDachaOpenDoor).Finish(Quest.Kolyan),
@@ -914,10 +922,7 @@ namespace Bot.Quests
                             MoveToDialog = Dialog.Flame2,
                             ChangeJournal = j => j.Finish(Quest.FireAlarm),
                             ChangeInventory = i => i.Take(Item.FireExtinguisher),
-                            ChangeMap = (pos, map) => map
-                                .Replace(map.PosLeft(MapIcon.Sokrat), MapIcon.Empty)
-                                .Replace(map.PosDown(MapIcon.Sokrat), MapIcon.Empty)
-                                .Replace(map.PosLeft(map.PosDown(MapIcon.Sokrat)), MapIcon.Empty)
+                            ChangeMap = (pos, map) => map.Replace(MapIcon.Flame, MapIcon.Empty)
                         },
                         new DialogAnswer {
                             Message = "Нужно что-то придумать...",
@@ -1032,7 +1037,7 @@ namespace Bot.Quests
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Далее",
-                            MoveToDialog = Dialog.MapNastya,
+                            MoveToDialog = Dialog.StartNastya,
                             MoveToPos = (pos, map) => NewCellQuest.Map.IndexOf(MapIcon.Nastya),
                             ChangeMap = (pos, map) => map.ClearPos(NewCellQuest.Map.IndexOf(MapIcon.Nastya)),
                         },
@@ -1061,6 +1066,7 @@ namespace Bot.Quests
             };
 
             return new[] {
+                    startDialog,
                     mapDialog,
                     moveToDialog,
                     inventoryDialog,
