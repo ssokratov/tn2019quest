@@ -9,7 +9,7 @@ namespace Bot.Quests
             @"
 %%%%%%%%%=====
 %%%%%%%%%=====
-%%TCc--%%--R%%
+%%TCc--%%z-R%%
 %%TCcN-P----%%
 %%TCc--%%%%%%%
 %%%%%%%%%%%%%%
@@ -96,6 +96,7 @@ namespace Bot.Quests
                         + RenderQuest(Quest.Police, "Обойти полицейского")
                         + RenderQuest(Quest.BuyBeer, "Купить пива")
                         + RenderQuest(Quest.OrderTaxi, "Заказать такси")
+                        + RenderQuest(Quest.FindCredits, "Достать 20 кредитов")
                         ;
                 },
                 Answers = new[] {
@@ -495,7 +496,7 @@ namespace Bot.Quests
                             MoveToDialog = Dialog.Genich7
                         },
                         new DialogAnswer {
-                            Message = "Уйти",
+                            Message = "Метнуться",
                             ChangeJournal = j => j.Open(Quest.BuyBeer),
                             MoveToDialog = Dialog.MapNastya,
                             MoveToPos = (pos, map) => map.PosDown(MapIcon.Genich)
@@ -527,30 +528,165 @@ namespace Bot.Quests
                         new DialogAnswer {
                             Message = "Прокрасться мимо",
                             MoveToDialog = Dialog.GenichPolice2,
-                            MoveToPos = (pos, map) => map.PosRight(MapIcon.Policeman)
+                            MoveToPos = (pos, map) => map.PosRight(MapIcon.Policeman),
+                            ChangeJournal = j => j.Open(Quest.OrderTaxi)
                         },
                     }
                 },
                 new DialogQuestion {
                     Name = Dialog.GenichPolice2,
-                    Message = "Пока полицейского отвлекли, вам удаётся незаметно выскочить на улицу",
+                    Message = "Пока полицейского отвлекли, вам удаётся незаметно выскочить на улицу. " +
+                              "Начало свадьбы через 30 минут, надо бы вызвать такси, но телефон всё так же сел.",
                     Answers = mapDialog.Answers,
                     DisplayMap = true,
                 }
             };
 
+            var taxofonDialogs = new[] {
+                new DialogQuestion {
+                    Name = Dialog.Taxofon1,
+                    Message = "_Таксофон:_ Здравствуйте! Спасибо, что позвонили в нашу таксомоторную компанию! " +
+                              "Ваш звонок очень важен для нас. Оставайтесь на линии, первый освободившийся " +
+                              "оператор примет ваш звонок. Примерное время ожидания 28 минут.",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Available = (i, j) => j.IsOpen(Quest.OrderTaxi),
+                            Message = "Ждать",
+                            MoveToDialog = Dialog.Taxofon2,
+                        },
+                        new DialogAnswer {
+                            Available = (i, j) => j.IsOpen(Quest.OrderTaxi),
+                            Message = "Нетерпеливо топнуть ножкой",
+                            MoveToDialog = Dialog.Taxofon2,
+                        },
+                        new DialogAnswer {
+                            Available = (i, j) => i.Has(Item.PhoneNumber),
+                            Message = "Набрать корешу",
+                            MoveToDialog = Dialog.Taxofon9,
+                        },
+                        new DialogAnswer {
+                            Available = (i, j) => j.IsFinished(Quest.OrderTaxi),
+                            Message = "Уже не нужно",
+                            MoveToDialog = Dialog.MapNastya,
+                            MoveToPos = (pos, map) => map.PosDown(MapIcon.Taxofon)
+                        }
+                    }
+                },
+                new DialogQuestion {
+                    Name = Dialog.Taxofon2,
+                    Message = "_Таксофон:_ Примерное время ожидания 27 минут.",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "Ждать",
+                            MoveToDialog = Dialog.Taxofon3,
+                        },
+                        new DialogAnswer {
+                            Message = "Пнуть",
+                            MoveToDialog = Dialog.Taxofon6,
+                        }
+                    }
+                },
+                new DialogQuestion {
+                    Name = Dialog.Taxofon3,
+                    Message = "_Таксофон:_ Примерное время ожидания 26 минут.",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "Ждать",
+                            MoveToDialog = Dialog.Taxofon4,
+                        },
+                        new DialogAnswer {
+                            Message = "Пнуть",
+                            MoveToDialog = Dialog.Taxofon6,
+                        }
+                    }
+                },
+                new DialogQuestion {
+                    Name = Dialog.Taxofon4,
+                    Message = "_Таксофон:_ Примерное время ожидания 25 минут.",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "Ждать",
+                            MoveToDialog = Dialog.Taxofon5,
+                        },
+                        new DialogAnswer {
+                            Message = "Пнуть",
+                            MoveToDialog = Dialog.Taxofon6,
+                        }
+                    }
+                },
+                new DialogQuestion {
+                    Name = Dialog.Taxofon5,
+                    Message = "_Таксофон:_ Пшшшшшш... [звонок сорвался]",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "Набрать снова",
+                            MoveToDialog = Dialog.Taxofon1,
+                        }
+                    }
+                },
+                new DialogQuestion {
+                    Name = Dialog.Taxofon6,
+                    Message = "_Таксофон:_ Здравствуйте! Трансгалактическая таксомоторная компания рада " +
+                              "приветствовать вас! Нами была зафиксирована вспышка ярости при попытке вызвать " +
+                              "такси. Не нужно свирепствовать, трансгалактическая таксомоторная компания всегда " +
+                              "придёт на помощь!",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "Заказать такси",
+                            MoveToDialog = Dialog.Taxofon7,
+                        }
+                    }
+                },
+                new DialogQuestion {
+                    Name = Dialog.Taxofon7,
+                    Message = "_Таксофон:_ Водитель приедет в ближайшее время! С вас 20 галактических кредитов.",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "У меня только рубли",
+                            MoveToDialog = Dialog.Taxofon8,
+                            ChangeJournal = j => j.Open(Quest.FindCredits),
+                            MoveToPos = (pos, map) => map.PosDown(MapIcon.Taxofon)
+                        }
+                    }
+                },
+                new DialogQuestion {
+                    Name = Dialog.Taxofon8,
+                    Message = "_Таксофон:_ Что ж, извините, всего хорошего.",
+                    Answers = mapDialog.Answers,
+                    DisplayMap = true
+                },
+                new DialogQuestion {
+                    Name = Dialog.Taxofon9,
+                    Message = "_Таксофон:_ Дорогой вы мой человечек, категорически вас приветствую! Если вам " +
+                              "необходимо произвести обмен рублей на галактические кредиты, то вы обратились " +
+                              "по нужному адресу! Ведь так много зависит от правильного выбора надёждного поставщика " +
+                              "финансовых услуг. Оставайтесь на месте, наш человечек уже выдвинулся в Вашу сторону " +
+                              "чтобы порешать вопросик!",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "Окей...",
+                            MoveToDialog = Dialog.MapNastya,
+                            MoveToPos = (pos, map) => map.PosDown(MapIcon.Taxofon),
+                            ChangeMap = (pos, map) => map
+                                .Replace(map.PosUp(map.PosRight(MapIcon.Taxofon)), MapIcon.Okusheva)
+                        }
+                    }
+                },
+            };
+
             var repaDialogs = new[] {
                 new DialogQuestion {
                     Name = Dialog.Repa1,
-                    Message = "Ик пук",
+                    Message = "_Репа_: Привет, Настён!",
                     Answers = new[] {
                         new DialogAnswer {
-                            Message = "Кряк?",
+                            Message = "Есть 20 кредитов?",
+                            Available = (i, j) => j.IsOpen(Quest.FindCredits) && !i.Has(Item.PhoneNumber),
                             MoveToDialog = Dialog.Repa2,
                             MoveToPos = (pos, map) => map.PosLeft(MapIcon.Repa)
                         },
                         new DialogAnswer {
-                            Message = "Кряк!",
+                            Message = "Уйти",
                             MoveToDialog = Dialog.MapNastya,
                             MoveToPos = (pos, map) => map.PosLeft(MapIcon.Repa)
                         },
@@ -560,9 +696,17 @@ namespace Bot.Quests
                 },
                 new DialogQuestion {
                     Name = Dialog.Repa2,
-                    Message = "ПУУУУУК??",
-                    Answers = mapDialog.Answers,
-                    DisplayMap = true
+                    Message = "_Репа_: 20 Галактических кредитов до ЗАГСа?! Офигеть! Нет, у меня нет налика. " +
+                              "Но если у тебя есть немного рублей, то у меня есть кент, готовый их превратить " +
+                              "в некоторое количество кредитов. *Набери ему на цифры*, он подскочет, обкашляете.",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "Спасибо!",
+                            ChangeInventory = i => i.Give(Item.PhoneNumber),
+                            MoveToDialog = Dialog.MapNastya,
+                            MoveToPos = (pos, map) => map.PosLeft(MapIcon.Repa)
+                        }
+                    }
                 },
             };
 
@@ -575,6 +719,7 @@ namespace Bot.Quests
                 .Concat(crowdDialogs)
                 .Concat(genichDialogs)
                 .Concat(bartenderDialogs)
+                .Concat(taxofonDialogs)
                 .Concat(repaDialogs)
                 .Concat(randomDialogs)
                 .ToArray();

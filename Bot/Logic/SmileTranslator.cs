@@ -14,6 +14,8 @@ namespace Bot
             [MapIcon.Genich] = "\ud83d\ude4b\u200d\u2642\ufe0f",
             [MapIcon.Bartender] = "\ud83c\udf77",
             [MapIcon.Policeman] = "\ud83d\udc6e\u200d\u2642\ufe0f",
+            [MapIcon.Taxofon] = "\u260e\ufe0f",
+            [MapIcon.Okusheva] = "\ud83c\udd97",
             [MapIcon.Nastya] = "\ud83d\udc83\ud83c\udffc",
             //[MapIcon.Nastya] = "\ud83d\udc70\ud83c\udffc",
             //[MapIcon.Empty] = "\u2b1c\ufe0f",

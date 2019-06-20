@@ -13,13 +13,13 @@ namespace Bot
         {
             var toshikDialogs = ToshikStory.GetDialogs();
             foreach (var dialogQuestion in toshikDialogs) {
-                dialogQuestion.ForPlayer = "@Insomnov;@MistifliQ;@starteleport;@svsokrat;296536101;cloudpaper_girl";
+                dialogQuestion.ForPlayer = "@Insomnov;@MistifliQ;@starteleport;@svsokrat;296536101;cloudpaper_girl;496240497";
                 dialogQuestion.PlayerIcon = MapIcon.Toshik;
             }
 
             var nastyaDialogs = NastyaStory.GetDialogs();
             foreach (var dialogQuestion in nastyaDialogs) {
-                dialogQuestion.ForPlayer = "@Naimushina;255239749;@MistifliQ;@starteleport;@svsokrat;296536101;cloudpaper_girl";
+                dialogQuestion.ForPlayer = "@Naimushina;255239749;@MistifliQ;@starteleport;@svsokrat;296536101;cloudpaper_girl;496240497";
                 dialogQuestion.PlayerIcon = MapIcon.Nastya;
             }
 

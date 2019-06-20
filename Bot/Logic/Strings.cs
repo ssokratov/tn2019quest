@@ -24,6 +24,9 @@
         public const char FireExtinguisher = 'f';
         public const char Boots = 'b';
 
+        public const char Taxofon = 'z';
+        public const char Esin = 'E';
+        public const char Okusheva = 'o';
         public const char Repa = 'R';
         public const char Kolyan = 'k';
         public const char KolyanDacha = 'U';
@@ -79,6 +82,7 @@
         public const string Police = nameof(Police);
         public const string BuyBeer = nameof(BuyBeer);
         public const string OrderTaxi = nameof(OrderTaxi);
+        public const string FindCredits = nameof(FindCredits);
     }
 
     public static class Dialog
@@ -127,6 +131,16 @@
         public const string GenichPolice1 = nameof(GenichPolice1);
         public const string GenichPolice2 = nameof(GenichPolice2);
         public const string GenichPolice3 = nameof(GenichPolice3);
+        public const string Taxofon1 = nameof(Taxofon1);
+        public const string Taxofon2 = nameof(Taxofon2);
+        public const string Taxofon3 = nameof(Taxofon3);
+        public const string Taxofon4 = nameof(Taxofon4);
+        public const string Taxofon5 = nameof(Taxofon5);
+        public const string Taxofon6 = nameof(Taxofon6);
+        public const string Taxofon7 = nameof(Taxofon7);
+        public const string Taxofon8 = nameof(Taxofon8);
+        public const string Taxofon9 = nameof(Taxofon9);
+        public const string Taxofon10 = nameof(Taxofon10);
         public const string Repa1 = nameof(Repa1);
         public const string Repa2 = nameof(Repa2);
         public const string Kolyan1 = nameof(Kolyan1);
