@@ -714,6 +714,154 @@ namespace Bot.Quests
                 },
             };
 
+            var okushevaDialogs = new[] {
+                new DialogQuestion {
+                    Name = Dialog.Okusheva1,
+                    Message = "_Ксения Окушева_: Добрейший вечерочек! Приветствуем вас в нашей " +
+                              "компании \"Бизнес зрелость\", меня зовут Ксения Окушева! Мы очень " +
+                              "рады за вас, что вы смогли выбрать именно того финансового партнера, " +
+                              "который научит Вас правильно распоряжаться свобоными средствами, поможет " +
+                              "вам создать финансовую подушку безопасности и вселит уверенность в " +
+                              "завтрашнем дне.",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "Распросить подробнеe",
+                            MoveToDialog = Dialog.Okusheva2,
+                        },
+                        new DialogAnswer {
+                            Message = "Спросить про кредиты",
+                            MoveToDialog = Dialog.Okusheva2,
+                        },
+                    },
+                    DisplayMap = true,
+                    MapIcon = MapIcon.Okusheva
+                },
+                new DialogQuestion {
+                    Name = Dialog.Okusheva2,
+                    Message = "Наша компания насчитывает уже более чем двухсотлетнюю историю и зарекомендавала " +
+                              "себя на рынке как настоящий мастодонт среди прочих финансовых компаний. Мы оказываем " +
+                              "весь спектр финансовых услуг вплоть до конверсии рубей в галактические кредиты. Для начала " +
+                              "мы рекомендуем вам записаться на личную финансовую консультацию к Андрею Сергеевичу, нашему " +
+                              "лучшему и самому опытному эксперту. С ним вы разберете своё финансовое положение в реальной " +
+                              "жизни \"под микроскопом\", определите точку \"А\", внедрите в жизнь инструменты по эффективному " +
+                              "управлению и формированию капиталом. С ним вы научитесь ставить финансовые цели, выстраивать " +
+                              "стратегии и идти к их реализации без срывов и страхов.",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "Насчет кредитов...",
+                            MoveToDialog = Dialog.Okusheva3,
+                        },
+                    },
+                },
+                new DialogQuestion {
+                    Name = Dialog.Okusheva3,
+                    Message = "Мы вам можем предложить лучшие условия на рынке! Именно наша компания имеет " +
+                              "прямой доступ к галактической бирже. Кстати о биржах, предлагаем вам пройти " +
+                              "персональную школу трейдеров \"Греби лопатой\" и тогда вы сможете начать зарабатывать " +
+                              "в среднем по 200% в минуту. Сейчас созвонимся с Аркадием Леонидовичем и узнаем когда он " +
+                              "свободен, чтобы он показал вам азы биржевого дела.",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "ГАЛАКТИЧЕСКИЕ КРЕДИТЫ МНЕ",
+                            MoveToDialog = Dialog.Okusheva4,
+                        },
+                    },
+                },
+                new DialogQuestion {
+                    Name = Dialog.Okusheva4,
+                    Message = "Хорошо, что ж вы сразу не сказали что Вам необходимо купить кредиты? У нас самый " +
+                              "лучший курс 1:200. Если вам нужно 20 кредитов, с вас 8000 рублей.",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "Что там про 200%/мин?",
+                            MoveToDialog = Dialog.Okusheva5,
+                        },
+                    },
+                },
+                new DialogQuestion {
+                    Name = Dialog.Okusheva5,
+                    Message = "Смотрите, здесь всё очень просто. Сейчас я вам всё покажу в моменте. " +
+                              "Сегодня хорошим спросом пользуются собачьи ценные бумаги, предлагаем рассмотреть варианты:\n" +
+                              "1. Купить акции Коляна\n" +
+                              "2. Купить фьючерсы Репы\n" +
+                              "3. Купить опцион на Володю\n" +
+                              "4. Вложиться в облигационный ПИФ \"Яков&Сократ\"",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "1",
+                            MoveToDialog = Dialog.Okusheva6,
+                        },
+                        new DialogAnswer {
+                            Message = "2",
+                            MoveToDialog = Dialog.Okusheva7,
+                        },
+                        new DialogAnswer {
+                            Message = "3",
+                            MoveToDialog = Dialog.Okusheva9,
+                        },
+                        new DialogAnswer {
+                            Message = "4",
+                            MoveToDialog = Dialog.Okusheva8,
+                        },
+                    },
+                },
+                new DialogQuestion {
+                    Name = Dialog.Okusheva6,
+                    Message = "Поздравляем! Ваши вложения за минуту упали на 50%",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "Трейдить дальше",
+                            MoveToDialog = Dialog.Okusheva5,
+                        },
+                    },
+                },
+                new DialogQuestion {
+                    Name = Dialog.Okusheva7,
+                    Message = "Поздравляем! Ваши вложения обесценились за минуту на 25%",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "Трейдить дальше",
+                            MoveToDialog = Dialog.Okusheva5,
+                        },
+                    },
+                },
+                new DialogQuestion {
+                    Name = Dialog.Okusheva8,
+                    Message = "Поздравляем! Ваши сбережения увеличились на 0,07% за минуту",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "Трейдить дальше",
+                            MoveToDialog = Dialog.Okusheva5,
+                        },
+                    },
+                },
+                new DialogQuestion {
+                    Name = Dialog.Okusheva9,
+                    Message = "Поздравляем! Опцион Володи купленный за 150 исполняется за 8000",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "Обменять на кредиты!",
+                            MoveToDialog = Dialog.Okusheva10,
+                        },
+                    },
+                },
+                new DialogQuestion {
+                    Name = Dialog.Okusheva10,
+                    Message = "О! Я смотрю вы быстро разобрались, Вам точно надо посетить нашу школу трейдеров. " +
+                              "Завтра у нас будет проходить семинар в отеле \"Гранд Будапешт\", вам обязательно " +
+                              "надо его постетить. Держите ваши *20 галактический кредитов* До встречи!",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "Прощайте",
+                            MoveToDialog = Dialog.MapNastya,
+                            MoveToPos = (pos, map) => map.PosDown(pos),
+                            ChangeJournal = j => j.Finish(Quest.FindCredits),
+                            ChangeMap = (pos, map) => map.Replace(MapIcon.Okusheva, MapIcon.Empty)
+                        },
+                    },
+                },
+            };
+
             return new[] {
                     startDialog,
                     mapDialog,
@@ -724,6 +872,7 @@ namespace Bot.Quests
                 .Concat(genichDialogs)
                 .Concat(bartenderDialogs)
                 .Concat(taxofonDialogs)
+                .Concat(okushevaDialogs)
                 .Concat(repaDialogs)
                 .Concat(randomDialogs)
                 .ToArray();

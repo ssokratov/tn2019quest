@@ -141,6 +141,17 @@
         public const string Taxofon8 = nameof(Taxofon8);
         public const string Taxofon9 = nameof(Taxofon9);
         public const string Taxofon10 = nameof(Taxofon10);
+        public const string Okusheva1 = nameof(Okusheva1);
+        public const string Okusheva2 = nameof(Okusheva2);
+        public const string Okusheva3 = nameof(Okusheva3);
+        public const string Okusheva4 = nameof(Okusheva4);
+        public const string Okusheva5 = nameof(Okusheva5);
+        public const string Okusheva6 = nameof(Okusheva6);
+        public const string Okusheva7 = nameof(Okusheva7);
+        public const string Okusheva8 = nameof(Okusheva8);
+        public const string Okusheva9 = nameof(Okusheva9);
+        public const string Okusheva10 = nameof(Okusheva10);
+        public const string Okusheva11 = nameof(Okusheva11);
         public const string Repa1 = nameof(Repa1);
         public const string Repa2 = nameof(Repa2);
         public const string Kolyan1 = nameof(Kolyan1);
