@@ -143,7 +143,6 @@ namespace NewCellBot.Infrastructure.Quest
                     catch (Exception e)
                     {
                         _logger.LogError(e, "Cannot send photo");
-                        throw;
                     }
                 }
 
@@ -160,14 +159,13 @@ namespace NewCellBot.Infrastructure.Quest
                                 caption: response
                             );
                             _logger.LogWarning(
-                                "FILE UPLOADED. " + string.Join("\n", message.Photo.Select(p =>
+                                $"FILE '{filePath}' UPLOADED. " + string.Join("\n", message.Photo.Select(p =>
                                     $"W: {p.Width}, H: {p.Height}, ID:{p.FileId}")));
                         }
                     }
                     catch (Exception e)
                     {
                         _logger.LogError(e, "Cannot upload photo");
-                        throw;
                     }
                 }
 

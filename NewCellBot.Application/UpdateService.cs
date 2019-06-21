@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Threading.Tasks;
 using Bot;
 using Microsoft.Extensions.Logging;
@@ -22,6 +23,7 @@ namespace NewCellBot.Application
         private readonly DialogUpdater _dialogUpdater;
 
         private readonly AsyncPolicy<string> _concurrencyRetryPolicy;
+        private readonly Random _jitterer;
 
         public UpdateService(
             StateStorage stateStorage,
@@ -34,13 +36,15 @@ namespace NewCellBot.Application
             _botWrapper = botWrapper;
             _dialogUpdater = dialogUpdater;
 
-            Random jitterer = new Random();
+            _jitterer = new Random();
+
             _concurrencyRetryPolicy = Policy<string>
                 .Handle<MessageIsNotModifiedException>()
                 .Or<ApiRequestException>(e => e.Message.ToLowerInvariant().Contains("message"))
+                .Or<DBConcurrencyException>()
                 .WaitAndRetryAsync(
                     5,
-                    i => TimeSpan.FromSeconds(i).Add(TimeSpan.FromMilliseconds(jitterer.Next(0, 1000))),
+                    i => TimeSpan.FromSeconds(i).Add(TimeSpan.FromMilliseconds(_jitterer.Next(0, 1000))),
                     (result, span) => _logger.LogWarning(result.Exception, "Retrying concurrency error"));
         }
 
@@ -136,6 +140,9 @@ namespace NewCellBot.Application
                     ? messageText.FromSmile().ToString()
                     : messageText);
                 var answerButtons = _dialogUpdater.GetButtons(currentMove);
+
+                await Task.Delay(_jitterer.Next(0, 500));
+
                 var message = currentMove.Photo != null
                     ? await _dialogUpdater.SendMediaMessage(chatId, currentMove, state.ChatState, answerButtons, answerToMessageId)
                     : await _dialogUpdater.SendTextMessage(chatId, currentMove, state.ChatState, answerButtons, answerToMessageId);
