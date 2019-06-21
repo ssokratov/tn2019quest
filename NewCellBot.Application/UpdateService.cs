@@ -198,6 +198,23 @@ namespace NewCellBot.Application
                 };
                 await _stateStorage.StoreStateAsync(state);
             }
+            else if (messageText.StartsWith("/finale"))
+            {
+                var questState = new QuestService(NewCellQuest.Map,
+                        NewCellQuest.GetStartingInventory(),
+                        NewCellQuest.GetStartingJournal(),
+                        NewCellQuest.GetDialogs())
+                    .State;
+                questState.OpenDialogName = Dialog.Esin16;
+                questState.Inventory = questState.Inventory.Give(Item.Glasses);
+                state = new BotState
+                {
+                    ChatId = chatId,
+                    QuestState = questState,
+                    ChatState = new ChatState()
+                };
+                await _stateStorage.StoreStateAsync(state);
+            }
             // reset all hashcodes to send all messages again if "play" commend is received
             else if (messageText.StartsWith("/play"))
             {

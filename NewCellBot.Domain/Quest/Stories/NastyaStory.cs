@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using NewCellBot.Domain.Quest.Model;
+using NewCellBot.Domain.Quest.Stories;
 
 namespace Bot.Quests
 {
@@ -21,8 +22,7 @@ namespace Bot.Quests
             var initialMap = NewCellQuest.Map;
             var startPosition = initialMap.IndexOf(MapIcon.Nastya);
 
-            var mapDialog = new DialogQuestion
-            {
+            var mapDialog = new DialogQuestion {
                 Name = Dialog.MapNastya,
                 Message = "_Перемещайтесь по карте, или выберите действие_",
                 Answers = new[] {
@@ -58,8 +58,7 @@ namespace Bot.Quests
                 DisplayMap = true
             };
 
-            var startDialog = new DialogQuestion
-            {
+            var startDialog = new DialogQuestion {
                 Name = Dialog.StartNastya,
                 Message = "Концерт Триагрутрики только что закончился. Вы, конечно, не могли его пропустить, " +
                           "даже в день свадьбы. В любом случае это не проблема, надо только как-то такси заказать, " +
@@ -68,13 +67,12 @@ namespace Bot.Quests
                 DisplayMap = true,
             };
 
-            var inventoryDialog = new DialogQuestion
-            {
+            var inventoryDialog = new DialogQuestion {
                 Name = Dialog.InventoryNastya,
                 DynamicMessage = (i, j) => {
                     return "*Инвентарь*:\n"
                            + (i.Has(Item.Beer) ? "\ud83c\udf7b два пива\n" : "")
-                    ;
+                        ;
                 },
                 Answers = new[] {
                     new DialogAnswer {
@@ -84,8 +82,7 @@ namespace Bot.Quests
                 }
             };
 
-            var journalDialog = new DialogQuestion
-            {
+            var journalDialog = new DialogQuestion {
                 Name = Dialog.JournalNastya,
                 DynamicMessage = (i, j) => {
                     var done = "\u2714\ufe0f";
@@ -97,10 +94,11 @@ namespace Bot.Quests
                     }
 
                     return "*Журнал*:\n"
-                        + RenderQuest(Quest.Police, "Обойти полицейского")
-                        + RenderQuest(Quest.BuyBeer, "Купить пива")
-                        + RenderQuest(Quest.OrderTaxi, "Заказать такси")
-                        + RenderQuest(Quest.FindCredits, "Достать 20 кредитов")
+                           + RenderQuest(Quest.Police, "Обойти полицейского")
+                           + RenderQuest(Quest.BuyBeer, "Купить пива")
+                           + RenderQuest(Quest.OrderTaxi, "Заказать такси")
+                           + RenderQuest(Quest.FindCredits, "Достать 20 кредитов")
+                           + RenderQuest(Quest.StartWedding, "Пожениться")
                         ;
                 },
                 Answers = new[] {
@@ -283,8 +281,7 @@ namespace Bot.Quests
                               "отсылочки к библии. Михалков заказал гвоздь в ладонь и 5 хлебов. Герман " +
                               "заказал предательство друга и брошенный камень, а Аранофски поправил венок и достал айфон. " +
                               "У бармена от такого случился апокалипсис, пиво стало полынью и чуть не умер брат.\n" +
-                              "*Вопрос*: сколько отсылочек к библии было заказано?\n" +
-                              "_(ответьте сообщением)_",
+                              "_Вопрос_: сколько отсылочек к библии было *заказано*?",
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "1",
@@ -561,25 +558,13 @@ namespace Bot.Quests
 
             var taxofonDialogs = new[] {
                 new DialogQuestion {
-                    Name = Dialog.Taxofon1,
-                    Message = "_Таксофон:_ Здравствуйте! Спасибо, что позвонили в нашу таксомоторную компанию! " +
-                              "Ваш звонок очень важен для нас. Оставайтесь на линии, первый освободившийся " +
-                              "оператор примет ваш звонок. Примерное время ожидания 28 минут.",
+                    Name = Dialog.Taxofon0,
+                    Message = "_Таксофон:_ Наберите номер.",
                     Answers = new [] {
                         new DialogAnswer {
-                            Available = (i, j) => j.IsOpen(Quest.OrderTaxi) && !j.IsKnown(Quest.FindCredits),
-                            Message = "Ждать",
-                            MoveToDialog = Dialog.Taxofon2,
-                        },
-                        new DialogAnswer {
-                            Available = (i, j) => j.IsOpen(Quest.OrderTaxi) && !j.IsKnown(Quest.FindCredits),
-                            Message = "Нетерпеливо топнуть ножкой",
-                            MoveToDialog = Dialog.Taxofon2,
-                        },
-                        new DialogAnswer {
-                            Available = (i, j) => j.IsOpen(Quest.OrderTaxi) && j.IsFinished(Quest.FindCredits),
-                            Message = "Пнуть со всей силы!",
-                            MoveToDialog = Dialog.Taxofon7,
+                            Available = (i, j) => j.IsOpen(Quest.OrderTaxi),
+                            Message = "Вызвать такси",
+                            MoveToDialog = Dialog.Taxofon1,
                         },
                         new DialogAnswer {
                             Available = (i, j) => i.Has(Item.PhoneNumber) && !j.IsFinished(Quest.FindCredits),
@@ -588,13 +573,46 @@ namespace Bot.Quests
                         },
                         new DialogAnswer {
                             Available = (i, j) => j.IsFinished(Quest.OrderTaxi),
-                            Message = "Уже не нужно",
+                            Message = "Уйти",
                             MoveToDialog = Dialog.MapNastya,
                             MoveToPos = (pos, map) => map.PosRight(MapIcon.Taxofon)
                         }
                     },
                     DisplayMap = true,
                     MapIcon = MapIcon.Taxofon
+                },
+                new DialogQuestion {
+                    Name = Dialog.Taxofon1,
+                    DynamicMessage = (i,j) => !j.IsFinished(Quest.FindCredits)
+                        ? "_Таксофон:_ Здравствуйте! Спасибо, что позвонили в нашу таксомоторную компанию! " +
+                        "Ваш звонок очень важен для нас. Оставайтесь на линии, первый освободившийся " +
+                        "оператор примет ваш звонок. Примерное время ожидания 28 минут."
+                        : "_Таксофон:_ Спасибо что позвонили в нашу таксомоторную компанию! Ваш звонок очень важен для нас, " +
+                          "оставайтесь на линии, первый освободившийся оператор примет ваш звонок. " +
+                          "Примерное время ожидания 59 минут. Приносим извинения за столь длительное ожидание, " +
+                          "у нас много заказов в лофт \"Шалфей\"",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Available = (i, j) => !j.IsKnown(Quest.FindCredits),
+                            Message = "Ждать",
+                            MoveToDialog = Dialog.Taxofon2,
+                        },
+                        new DialogAnswer {
+                            Available = (i, j) => !j.IsKnown(Quest.FindCredits),
+                            Message = "Нетерпеливо топнуть ножкой",
+                            MoveToDialog = Dialog.Taxofon2,
+                        },
+                        new DialogAnswer {
+                            Available = (i, j) => j.IsFinished(Quest.FindCredits),
+                            Message = "Посетовать на судьбу",
+                            MoveToDialog = Dialog.Taxofon7,
+                        },
+                        new DialogAnswer {
+                            Message = "Уйти",
+                            MoveToDialog = Dialog.MapNastya,
+                            MoveToPos = (pos, map) => map.PosRight(MapIcon.Taxofon)
+                        }
+                    }
                 },
                 new DialogQuestion {
                     Name = Dialog.Taxofon2,
@@ -664,9 +682,9 @@ namespace Bot.Quests
                 new DialogQuestion {
                     Name = Dialog.Taxofon7,
                     DynamicMessage = (i,j) => j.IsFinished(Quest.FindCredits)
-                        ? "_Таксофон:_ Водитель приедет в ближайшее время! Рады вам сообщить, что теперь мы " +
-                          "также принимаем к оплате рубли! Ваша поездка будет стоить 20 галактических кредитов, " +
-                          "либо 150 рублей."
+                        ? "_Таксофон:_ Трансгалактическая таксомоторная компания вновь рада вас приветствовать! " +
+                          "Мы услышали Ваши молитвы, машина будет подана к Вам в течении ближайшего времени. С " +
+                          "нынешнего момента мы принимаем к оплате рубли, поездка обойдётся вам в 250 рублей."
                         : "_Таксофон:_ Водитель приедет в ближайшее время! С вас 20 галактических кредитов.",
                     Answers = new [] {
                         new DialogAnswer {
@@ -715,7 +733,7 @@ namespace Bot.Quests
             var repaDialogs = new[] {
                 new DialogQuestion {
                     Name = Dialog.Repa1,
-                    Message = "_Репа_: Привет, Настён!",
+                    Message = "_Репа_: Привет, Настён! Какие дела? Говорят у вас скоро свадьба. Пора бы уже, часики-то тикают.",
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Есть 20 кредитов?",
@@ -754,7 +772,7 @@ namespace Bot.Quests
                     Message = "_Ксения Окушева_: Добрейший вечерочек! Приветствуем вас в нашей " +
                               "компании \"Бизнес зрелость\", меня зовут Ксения Окушева! Мы очень " +
                               "рады за вас, что вы смогли выбрать именно того финансового партнера, " +
-                              "который научит Вас правильно распоряжаться свобоными средствами, поможет " +
+                              "который научит Вас правильно распоряжаться свободными средствами, поможет " +
                               "вам создать финансовую подушку безопасности и вселит уверенность в " +
                               "завтрашнем дне.",
                     Answers = new [] {
@@ -883,7 +901,7 @@ namespace Bot.Quests
                     Name = Dialog.Okusheva10,
                     Message = "_Ксения Окушева_: О! Я смотрю вы быстро разобрались, Вам точно надо посетить нашу школу трейдеров. " +
                               "Завтра у нас будет проходить семинар в отеле \"Гранд Будапешт\", вам обязательно " +
-                              "надо его постетить. Держите ваши *20 галактический кредитов*. До встречи!",
+                              "надо его постетить. Держите ваши *20 галактических кредитов*. До встречи!",
                     Answers = new [] {
                         new DialogAnswer {
                             Message = "Прощайте",
@@ -937,7 +955,7 @@ namespace Bot.Quests
                     Message = "_Есин_: Не переживай, я на \"Сокол\" поставил новый сверхсветовой гиперускоритель, мы " +
                               "домчимся за пару секунд. Только нужно приготовить топливо из концентрированной " +
                               "тёмной материи. Там точно должна быть вода, 1 часть цезия и 2 части чего-то ещё... Забыл, " +
-                              "поэкспериментируй, пожалуйста, с ингридиентами на заднем сидении.",
+                              "поэкспериментируй, пожалуйста, с ингрeдиентами на заднем сидении.",
                     Answers = new [] {
                         new DialogAnswer {
                             Message = "Начать эксперимент",
@@ -994,15 +1012,154 @@ namespace Bot.Quests
                     Name = Dialog.Esin8,
                     Message = "Несколько минут спустя вы слышите шум и звуки выстрелов. Есин забегает в рубку, отшвартовывается " +
                               "и напрабляет корабль в открытый космос. \n\n" +
-                              "_Есин_: Такс, други и подруги! Тут произошел некоторый казуз. Я забыл, что эта звездная система " +
+                              "_Есин_: Такс, други и подруги! Тут произошел некоторый казус. Я забыл, что эта звездная система " +
                               "контролируется Империей, а они меня, скажем так, не очень любят. Я сейчас при помощи нашей гостьи " +
                               "постараюсь оторваться от преследующих нас штурмовиков, пока сверхзвуковой ускоритель перезаряжается. " +
                               "Ну и минут через 5-10 мы, полагаю, сможем сделать прыжок обратно к нашей планете.",
                     Answers = new [] {
                         new DialogAnswer {
-                            Message = "Ждать",
+                            Message = "WAT?!",
                             MoveToDialog = Dialog.Esin9
                         }
+                    }
+                },
+                new DialogQuestion {
+                    Name = Dialog.Esin9,
+                    Message = "_Есин_: Таксс, вот уже по нам стреляют. Но нет причин волноваться. Главное делать всё быстро и чётко. " +
+                              "ПРОБОИНА В ГРУЗОВОМ ОТСЕКЕ! СРОЧНО ЗАДРАИТЬ ЛЮКИ!",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "Вытащить поршень",
+                            MoveToDialog = Dialog.Esin10
+                        },
+                        new DialogAnswer {
+                            Message = "Дернуть перемычку",
+                            MoveToDialog = Dialog.Esin10
+                        },
+                        new DialogAnswer {
+                            Message = "Принести напитки",
+                            MoveToDialog = Dialog.Esin11
+                        },
+                    }
+                },
+                new DialogQuestion {
+                    Name = Dialog.Esin10,
+                    Message = "Корабль трясёт. Вы слышите скрежет металла. Кажется, что-то отвалилось... \n\n" +
+                              "_Есин_: УТЕЧКА КИСЛОРОДА! ВКЛЮЧИТЬ РЕЗЕРВНЫЙ СВЕТИЛЬНИК ДЛЯ РАСТЕНИЙ!",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "Нажать красную кнопку",
+                            MoveToDialog = Dialog.Esin12
+                        },
+                        new DialogAnswer {
+                            Message = "Раскрутить пропеллер",
+                            MoveToDialog = Dialog.Esin12
+                        },
+                        new DialogAnswer {
+                            Message = "Принести алкоголь",
+                            MoveToDialog = Dialog.Esin13
+                        },
+                    }
+                },
+                new DialogQuestion {
+                    Name = Dialog.Esin11,
+                    Message = "Саша с наслаждением отпивает банановый милкшейк и благодарит вас за столь замечательное решение. " +
+                              "Корабль трясёт. Вы слышите скрежет металла. Кажется, что-то отвалилось... \n\n" +
+                              "_Есин_: УТЕЧКА КИСЛОРОДА! ВКЛЮЧИТЬ РЕЗЕРВНЫЙ СВЕТИЛЬНИК ДЛЯ РАСТЕНИЙ!",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "Нажать красную кнопку",
+                            MoveToDialog = Dialog.Esin12
+                        },
+                        new DialogAnswer {
+                            Message = "Раскрутить пропеллер",
+                            MoveToDialog = Dialog.Esin12
+                        },
+                        new DialogAnswer {
+                            Message = "Принести алкоголь",
+                            MoveToDialog = Dialog.Esin13
+                        },
+                    }
+                },
+                new DialogQuestion {
+                    Name = Dialog.Esin12,
+                    Message = "Погас свет. Воздух становится разряженным, вы чувствуете лёгкое головокружение... \n\n" +
+                              "_Есин_: РАЗГЕРМЕТИЗАЦИЯ В КАРТИННОМ ЗАЛЕ! СРОЧНО ЗАКРЫТЬ ВСЕ ФОРТОЧКИ!",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "Взять кипятильник",
+                            MoveToDialog = Dialog.Esin14
+                        },
+                        new DialogAnswer {
+                            Message = "Взять \"Тайд\"",
+                            MoveToDialog = Dialog.Esin14
+                        },
+                        new DialogAnswer {
+                            Message = "Принести кокаинум",
+                            MoveToDialog = Dialog.Esin15
+                        },
+                    }
+                },
+                new DialogQuestion {
+                    Name = Dialog.Esin13,
+                    Message = "Вы чокаетесь бокалами \"Секса На Пляже\" и выпиваете за удачное приключение. " +
+                              "Погас свет. Воздух становится разряженным, вы чувствуете лёгкое головокружение... \n\n" +
+                              "_Есин_: РАЗГЕРМЕТИЗАЦИЯ В КАРТИННОМ ЗАЛЕ! СРОЧНО ЗАКРЫТЬ ВСЕ ФОРТОЧКИ!",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "Взять кипятильник",
+                            MoveToDialog = Dialog.Esin14
+                        },
+                        new DialogAnswer {
+                            Message = "Взять \"Тайд\"",
+                            MoveToDialog = Dialog.Esin14
+                        },
+                        new DialogAnswer {
+                            Message = "Принести кокаинум",
+                            MoveToDialog = Dialog.Esin15
+                        },
+                    }
+                },
+                new DialogQuestion {
+                    Name = Dialog.Esin14,
+                    Message = "Где-то за спиной раздаётся взрыв. Вы понимаете, что половины корабля уже просто нет. " +
+                              "Все диски с шансоном вылетают из бардачка и падают на пол. Вы понимаете, что это *конец*, " +
+                              "но внезапно лампочка заряда гуперускорителя загоряется зелёным, и в ту же секунду вы " +
+                              "совершаете гиперпрыжок.",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "Дальше",
+                            MoveToDialog = Dialog.Esin16
+                        },
+                    }
+                },
+                new DialogQuestion {
+                    Name = Dialog.Esin15,
+                    Message = "Два мизинца белого порошка делают вечеринку немного веселее. Вы начинаете пританцовывать под " +
+                              "ритм выстрелов и аварийных сирен.\n" +
+                              "Где-то за спиной раздаётся взрыв. Вы понимаете, что половины корабля уже просто нет. " +
+                              "Все диски с шансоном вылетают из бардачка и падают на пол. Вы понимаете, что это *конец*, " +
+                              "но внезапно лампочка заряда гуперускорителя загоряется зелёным, и в ту же секунду вы " +
+                              "совершаете гиперпрыжок.",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "Дальше",
+                            MoveToDialog = Dialog.Esin16
+                        },
+                    }
+                },
+                new DialogQuestion {
+                    Name = Dialog.Esin16,
+                    Message = "Корабль падает на землю, пробивая стены зданий и разрушая всё на своём пути. Через несколько секунд " +
+                              "всё заканчивается. К счастью, вы успели пристегнуться, так что на вас ни царапины. Вы выбираетесь " +
+                              "наружу, чтобы оглядеться. На выходе вас уже ожидает Есин.",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "Дальше",
+                            MoveToDialog = Dialog.FinaleStart,
+                            ChangeMap = (pos, map) => FinaleStory.Map,
+                            MoveToPos = (pos, map) => map.PosDown(MapIcon.EsinFinale)
+                        },
                     }
                 },
             };

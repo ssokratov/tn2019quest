@@ -18,7 +18,8 @@
         public const char WallNastya = '%';
         public const char Fear = '~';
         public const char Empty = '-';
-        public const char Flame = 'F';
+        public const char FlameToshik = 'F';
+        public const char FlameFinale = '!';
 
         public const char SmallDoor = 'п';
         public const char FireExtinguisher = 'f';
@@ -26,15 +27,21 @@
 
         public const char Taxofon = 'z';
         public const char Esin = 'E';
+        public const char EsinFinale = 'Е';
         public const char Okusheva = 'o';
         public const char Repa = 'R';
         public const char Kolyan = 'k';
+        public const char KolyanFinale = 'к';
         public const char KolyanDacha = 'U';
         public const char KolyanDachaKey = '?';
         public const char Sedosh = 'K';
+        public const char SedoshFinale = 'К';
         public const char Sokrat = 'S';
+        public const char SokratFinale = 'с';
         public const char Jacob = 'J';
+        public const char JacobFinale = 'ж';
         public const char ZagsWorker = 'Z';
+        public const char ZagsWorkerfinale = 'з';
         public const char Genich = 'G';
         public const char Bartender = 'B';
         public const char Policeman = 'P';
@@ -83,6 +90,8 @@
         public const string BuyBeer = nameof(BuyBeer);
         public const string OrderTaxi = nameof(OrderTaxi);
         public const string FindCredits = nameof(FindCredits);
+
+        public const string StartWedding = nameof(StartWedding);
     }
 
     public static class Dialog
@@ -131,6 +140,7 @@
         public const string GenichPolice1 = nameof(GenichPolice1);
         public const string GenichPolice2 = nameof(GenichPolice2);
         public const string GenichPolice3 = nameof(GenichPolice3);
+        public const string Taxofon0 = nameof(Taxofon0);
         public const string Taxofon1 = nameof(Taxofon1);
         public const string Taxofon2 = nameof(Taxofon2);
         public const string Taxofon3 = nameof(Taxofon3);
@@ -161,6 +171,27 @@
         public const string Esin7 = nameof(Esin7);
         public const string Esin8 = nameof(Esin8);
         public const string Esin9 = nameof(Esin9);
+        public const string Esin10 = nameof(Esin10);
+        public const string Esin11 = nameof(Esin11);
+        public const string Esin12 = nameof(Esin12);
+        public const string Esin13 = nameof(Esin13);
+        public const string Esin14 = nameof(Esin14);
+        public const string Esin15 = nameof(Esin15);
+        public const string Esin16 = nameof(Esin16);
+        public const string FinaleStart = nameof(FinaleStart);
+        public const string Finale1 = nameof(Finale1);
+        public const string Finale2 = nameof(Finale2);
+        public const string Finale3 = nameof(Finale3);
+        public const string Finale4 = nameof(Finale4);
+        public const string Finale5 = nameof(Finale5);
+        public const string Finale6 = nameof(Finale6);
+        public const string Finale7 = nameof(Finale7);
+        public const string Finale8 = nameof(Finale8);
+        public const string Finale9 = nameof(Finale9);
+        public const string Finale10 = nameof(Finale10);
+        public const string Finale11 = nameof(Finale11);
+        public const string Finale12 = nameof(Finale12);
+        public const string Finale13 = nameof(Finale13);
         public const string Repa1 = nameof(Repa1);
         public const string Repa2 = nameof(Repa2);
         public const string Kolyan1 = nameof(Kolyan1);
@@ -202,6 +233,7 @@
 
         public const string Flame1 = nameof(Flame1);
         public const string Flame2 = nameof(Flame2);
+        public const string Flame3 = nameof(Flame3);
         public const string SmallDoor = nameof(SmallDoor);
         public const string FireExtinguisher = nameof(FireExtinguisher);
 

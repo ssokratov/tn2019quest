@@ -462,9 +462,9 @@ namespace NewCellBot.Domain.Quest.Stories
                             MoveToDialog = Dialog.Kolyan2,
                             ChangeJournal = j => j.Open(Bot.Quest.FireAlarm),
                             ChangeMap = (pos, map) => map
-                                .Replace(map.PosLeft(MapIcon.Sokrat), MapIcon.Flame)
-                                .Replace(map.PosDown(MapIcon.Sokrat), MapIcon.Flame)
-                                .Replace(map.PosLeft(map.PosDown(MapIcon.Sokrat)), MapIcon.Flame)
+                                .Replace(map.PosLeft(MapIcon.Sokrat), MapIcon.FlameToshik)
+                                .Replace(map.PosDown(MapIcon.Sokrat), MapIcon.FlameToshik)
+                                .Replace(map.PosLeft(map.PosDown(MapIcon.Sokrat)), MapIcon.FlameToshik)
                         },
                         new DialogAnswer {
                             Message = "WTF?!?!?!",
@@ -935,7 +935,7 @@ namespace NewCellBot.Domain.Quest.Stories
                             MoveToDialog = Dialog.Flame2,
                             ChangeJournal = j => j.Finish(Bot.Quest.FireAlarm),
                             ChangeInventory = i => i.Take(Item.FireExtinguisher),
-                            ChangeMap = (pos, map) => map.Replace(MapIcon.Flame, MapIcon.Empty)
+                            ChangeMap = (pos, map) => map.Replace(MapIcon.FlameToshik, MapIcon.Empty)
                         },
                         new DialogAnswer {
                             Message = "Нужно что-то придумать...",
@@ -944,7 +944,7 @@ namespace NewCellBot.Domain.Quest.Stories
                     },
                     DisplayMap = true,
                     PreventMove = true,
-                    MapIcon = MapIcon.Flame
+                    MapIcon = MapIcon.FlameToshik
                 },
                 new DialogQuestion {
                     Name = Dialog.Flame2,
