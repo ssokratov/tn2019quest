@@ -55,7 +55,7 @@ namespace NewCellBot.Domain.Quest.Stories
                 new DialogQuestion {
                     Name = Dialog.FinaleKiss,
                     Message = "Гости охнули в умилении",
-                    Photo = "Resourses/Finale2.jpg",
+                    Photo = "Resources/Finale2.jpg",
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Вернуться к гостям",
@@ -134,7 +134,7 @@ namespace NewCellBot.Domain.Quest.Stories
             var zagsDialogs = new[] {
                 new DialogQuestion {
                     Name = Dialog.Finale6,
-                    Photo = "Resourses/Tamada.jpg",
+                    Photo = "Resources/Tamada.jpg",
                     Message = "_Работница ЗАГСа:_ Ну вот и невеста подоспела!",
                     Answers = new[] {
                         new DialogAnswer {
