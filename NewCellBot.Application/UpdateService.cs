@@ -162,7 +162,7 @@ namespace NewCellBot.Application
 
             if (state == null || messageText.StartsWith("/reset"))
             {
-                await _stateStorage.StoreStateAsync(new BotState
+                state = new BotState
                 {
                     QuestState = new QuestService(NewCellQuest.Map,
                             NewCellQuest.GetStartingInventory(),
@@ -171,7 +171,8 @@ namespace NewCellBot.Application
                         .State,
                     ChatId = chatId,
                     ChatState = new ChatState()
-                });
+                };
+                await _stateStorage.StoreStateAsync(state);
             }
             else if (messageText.StartsWith("/nastya"))
             {
@@ -182,19 +183,19 @@ namespace NewCellBot.Application
                     .State;
                 questState.OpenDialogName = Dialog.ZagsEnd;
                 questState.Inventory = questState.Inventory.Give(Item.Glasses);
-                await _stateStorage.StoreStateAsync(new BotState
+                state = new BotState
                 {
                     ChatId = chatId,
                     QuestState = questState,
                     ChatState = new ChatState()
-                });
+                };
+                await _stateStorage.StoreStateAsync(state);
             }
             // reset all hashcodes to send all messages again if "play" commend is received
             else if (messageText.StartsWith("/play"))
             {
                 var oldState = state;
                 oldState.ChatState.PreviousMessageHash = -1;
-
                 await _stateStorage.StoreStateAsync(oldState);
             }
 
