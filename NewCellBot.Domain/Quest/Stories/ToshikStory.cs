@@ -90,7 +90,7 @@ namespace NewCellBot.Domain.Quest.Stories
             {
                 Name = Dialog.StartToshik,
                 Message = "Тошик обнаруживает себя в длинном светлом коридоре. Впереди - массивная деревянная дверь. " +
-                          "Сзади на полу лежит монокль.",
+                          "Сзади на полу лежит монокль.\n\n_Совет: квест лучше проходить вдвоём._",
                 Answers = new[] {
                     new DialogAnswer {
                         Message = "Дальше",
@@ -342,7 +342,7 @@ namespace NewCellBot.Domain.Quest.Stories
                 },
                 new DialogQuestion {
                     Name = Dialog.Veil3,
-                    Photo = "Resources/Kabluk.jpg;AgADAgADkaoxG1sH0Uu7QaMcUhByutN4Xw8ABDuyScUAAeRl2Zu7BQABAg",
+                    Photo = "Resources/Kabluk.jpg",
                     Message = "Вы поднимаете фотографию.",
                     Answers = new[] {
                         new DialogAnswer {
@@ -403,7 +403,7 @@ namespace NewCellBot.Domain.Quest.Stories
                 new DialogQuestion {
                     Name = Dialog.Demianov3,
                     Message = "Повторю вопрос. Недосдача сколько?",
-                    Photo = "Resources/Skolko.jpg;AgADAgADO60xG1B3CUivpD44cbs7aK5rXw8ABNee4rv3h__EzfoFAAEC",
+                    Photo = "Resources/Skolko.jpg",
                     Answers = new[] {
                         new DialogAnswer {
                             IsHidden = true,

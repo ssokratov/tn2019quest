@@ -179,6 +179,7 @@
         public const string Esin15 = nameof(Esin15);
         public const string Esin16 = nameof(Esin16);
         public const string FinaleStart = nameof(FinaleStart);
+        public const string FinaleKiss = nameof(FinaleKiss);
         public const string Finale1 = nameof(Finale1);
         public const string Finale2 = nameof(Finale2);
         public const string Finale3 = nameof(Finale3);

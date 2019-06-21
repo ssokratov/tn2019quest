@@ -46,12 +46,23 @@ namespace NewCellBot.Domain.Quest.Stories
                     Answers = new[] {
                         new DialogAnswer {
                             Message = "Поцеловать",
-                            MoveToDialog = Dialog.MapNastya,
-                            MoveToPos = (pos, map) => map.PosDown(MapIcon.Toshik),
+                            MoveToDialog = Dialog.FinaleKiss
                         }
                     },
                     DisplayMap = true,
                     MapIcon = MapIcon.Toshik
+                },
+                new DialogQuestion {
+                    Name = Dialog.FinaleKiss,
+                    Message = "Гости охнули в умилении",
+                    Photo = "Resourses/Finale2.jpg",
+                    Answers = new[] {
+                        new DialogAnswer {
+                            Message = "Вернуться к гостям",
+                            MoveToDialog = Dialog.MapNastya,
+                            MoveToPos = (pos, map) => map.PosDown(MapIcon.Toshik),
+                        }
+                    }
                 },
                 new DialogQuestion {
                     Name = Dialog.Finale2,
@@ -123,6 +134,7 @@ namespace NewCellBot.Domain.Quest.Stories
             var zagsDialogs = new[] {
                 new DialogQuestion {
                     Name = Dialog.Finale6,
+                    Photo = "Resourses/Tamada.jpg",
                     Message = "_Работница ЗАГСа:_ Ну вот и невеста подоспела!",
                     Answers = new[] {
                         new DialogAnswer {
@@ -140,7 +152,6 @@ namespace NewCellBot.Domain.Quest.Stories
                             MoveToDialog = Dialog.MapNastya
                         }
                     },
-                    DisplayMap = true,
                     PreventMove = true,
                     MapIcon = MapIcon.ZagsWorkerfinale
                 },

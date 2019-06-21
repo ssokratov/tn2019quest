@@ -168,7 +168,7 @@ namespace Bot.Quests
             var crowdDialogs = new[] {
                 new DialogQuestion {
                     Name = Dialog.Crowd0,
-                    Photo = "Resources/Crowd_gop.jpg;AgADAgADGKsxG-dMWUjpNceQFaqyvoPKtw8ABIgIW5WVMsnDdBIAAgI",
+                    Photo = "Resources/Crowd_gop.jpg",
                     Message = "Перед вами толпа фанатов Триагрутрики",
                     Answers = new [] {
                         new DialogAnswer {
@@ -187,7 +187,7 @@ namespace Bot.Quests
                 },
                 new DialogQuestion {
                     Name = Dialog.Crowd1,
-                    Photo = "Resources/Crowd_vata.jpg;AgADAgADGasxG-dMWUgDA2Yh1_yHZei9UQ8ABHYQ4rVOnfaZcMIEAAEC",
+                    Photo = "Resources/Crowd_vata.jpg",
                     Message = "Перед вами особо агрессивная толпа фанатов Триагрутрики",
                     Answers = new [] {
                         new DialogAnswer {
@@ -206,7 +206,7 @@ namespace Bot.Quests
                 },
                 new DialogQuestion {
                     Name = Dialog.Crowd2,
-                    Photo = "Resources/Triagrutrika.jpg;AgADAgADGqsxG-dMWUgU85zEe_gY0IvVtw8ABFvJ-AhqptKv2RIAAgI",
+                    Photo = "Resources/Triagrutrika.jpg",
                     Message = "Перед вами какие-то непонятные чуваки",
                     Answers = new [] {
                         new DialogAnswer {
