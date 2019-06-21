@@ -152,6 +152,15 @@
         public const string Okusheva9 = nameof(Okusheva9);
         public const string Okusheva10 = nameof(Okusheva10);
         public const string Okusheva11 = nameof(Okusheva11);
+        public const string Esin1 = nameof(Esin1);
+        public const string Esin2 = nameof(Esin2);
+        public const string Esin3 = nameof(Esin3);
+        public const string Esin4 = nameof(Esin4);
+        public const string Esin5 = nameof(Esin5);
+        public const string Esin6 = nameof(Esin6);
+        public const string Esin7 = nameof(Esin7);
+        public const string Esin8 = nameof(Esin8);
+        public const string Esin9 = nameof(Esin9);
         public const string Repa1 = nameof(Repa1);
         public const string Repa2 = nameof(Repa2);
         public const string Kolyan1 = nameof(Kolyan1);
@@ -210,5 +219,7 @@
         public const string InventoryNastya = nameof(InventoryNastya);
         public const string JournalNastya = nameof(JournalNastya);
         public const string FoundWallNastya = nameof(FoundWallNastya);
+        public const string EsinArrived = nameof(EsinArrived);
+        public const string OkushevaArrived = nameof(OkushevaArrived);
     }
 }

@@ -122,11 +122,24 @@ namespace Bot.Quests
                 },
                 new DialogQuestion {
                     Name = Dialog.FoundRoad,
-                    Message = "Перед вами дорога. Открытых люков на ней больше, чем асфальта, так что на каблуках лучше не соваться.",
+                    Message = "Перед вами дорога. Открытых люков на ней больше, чем асфальта, так что на каблуках " +
+                              "лучше не соваться.",
                     Answers = mapDialog.Answers,
                     DisplayMap = true,
                     PreventMove = true,
                     MapIcon = MapIcon.Road
+                },
+                new DialogQuestion {
+                    Name = Dialog.EsinArrived,
+                    Message = "Спустя пару мгновений на дорогу перед вами приземляется Сокол Тысячелетия с шашечками такси",
+                    Answers = mapDialog.Answers,
+                    DisplayMap = true,
+                },
+                new DialogQuestion {
+                    Name = Dialog.OkushevaArrived,
+                    Message = "На дороге вырисовывается бодрого вида человечек в дешевом костюме",
+                    Answers = mapDialog.Answers,
+                    DisplayMap = true,
                 },
             };
 
@@ -554,17 +567,22 @@ namespace Bot.Quests
                               "оператор примет ваш звонок. Примерное время ожидания 28 минут.",
                     Answers = new [] {
                         new DialogAnswer {
-                            Available = (i, j) => j.IsOpen(Quest.OrderTaxi),
+                            Available = (i, j) => j.IsOpen(Quest.OrderTaxi) && !j.IsKnown(Quest.FindCredits),
                             Message = "Ждать",
                             MoveToDialog = Dialog.Taxofon2,
                         },
                         new DialogAnswer {
-                            Available = (i, j) => j.IsOpen(Quest.OrderTaxi),
+                            Available = (i, j) => j.IsOpen(Quest.OrderTaxi) && !j.IsKnown(Quest.FindCredits),
                             Message = "Нетерпеливо топнуть ножкой",
                             MoveToDialog = Dialog.Taxofon2,
                         },
                         new DialogAnswer {
-                            Available = (i, j) => i.Has(Item.PhoneNumber),
+                            Available = (i, j) => j.IsOpen(Quest.OrderTaxi) && j.IsFinished(Quest.FindCredits),
+                            Message = "Пнуть со всей силы!",
+                            MoveToDialog = Dialog.Taxofon7,
+                        },
+                        new DialogAnswer {
+                            Available = (i, j) => i.Has(Item.PhoneNumber) && !j.IsFinished(Quest.FindCredits),
                             Message = "Набрать корешу",
                             MoveToDialog = Dialog.Taxofon9,
                         },
@@ -572,9 +590,11 @@ namespace Bot.Quests
                             Available = (i, j) => j.IsFinished(Quest.OrderTaxi),
                             Message = "Уже не нужно",
                             MoveToDialog = Dialog.MapNastya,
-                            MoveToPos = (pos, map) => map.PosDown(MapIcon.Taxofon)
+                            MoveToPos = (pos, map) => map.PosRight(MapIcon.Taxofon)
                         }
-                    }
+                    },
+                    DisplayMap = true,
+                    MapIcon = MapIcon.Taxofon
                 },
                 new DialogQuestion {
                     Name = Dialog.Taxofon2,
@@ -643,13 +663,27 @@ namespace Bot.Quests
                 },
                 new DialogQuestion {
                     Name = Dialog.Taxofon7,
-                    Message = "_Таксофон:_ Водитель приедет в ближайшее время! С вас 20 галактических кредитов.",
+                    DynamicMessage = (i,j) => j.IsFinished(Quest.FindCredits)
+                        ? "_Таксофон:_ Водитель приедет в ближайшее время! Рады вам сообщить, что теперь мы " +
+                          "также принимаем к оплате рубли! Ваша поездка будет стоить 20 галактических кредитов, " +
+                          "либо 150 рублей."
+                        : "_Таксофон:_ Водитель приедет в ближайшее время! С вас 20 галактических кредитов.",
                     Answers = new [] {
                         new DialogAnswer {
                             Message = "У меня только рубли",
+                            Available = (i, j) => !j.IsFinished(Quest.FindCredits),
                             MoveToDialog = Dialog.Taxofon8,
                             ChangeJournal = j => j.Open(Quest.FindCredits),
-                            MoveToPos = (pos, map) => map.PosDown(MapIcon.Taxofon)
+                            MoveToPos = (pos, map) => map.PosRight(MapIcon.Taxofon)
+                        },
+                        new DialogAnswer {
+                            Message = "\ud83e\udd26\u200d\u2640\ufe0f Поехали",
+                            Available = (i, j) => j.IsFinished(Quest.FindCredits),
+                            MoveToDialog = Dialog.EsinArrived,
+                            ChangeJournal = j => j.Finish(Quest.OrderTaxi),
+                            MoveToPos = (pos, map) => map.PosRight(MapIcon.Taxofon),
+                            ChangeMap = (pos, map) =>map
+                                .Replace(map.PosUp(map.PosRight(MapIcon.Taxofon)), MapIcon.Esin)
                         }
                     }
                 },
@@ -669,8 +703,8 @@ namespace Bot.Quests
                     Answers = new [] {
                         new DialogAnswer {
                             Message = "Окей...",
-                            MoveToDialog = Dialog.MapNastya,
-                            MoveToPos = (pos, map) => map.PosDown(MapIcon.Taxofon),
+                            MoveToDialog = Dialog.OkushevaArrived,
+                            MoveToPos = (pos, map) => map.PosRight(MapIcon.Taxofon),
                             ChangeMap = (pos, map) => map
                                 .Replace(map.PosUp(map.PosRight(MapIcon.Taxofon)), MapIcon.Okusheva)
                         }
@@ -738,7 +772,7 @@ namespace Bot.Quests
                 },
                 new DialogQuestion {
                     Name = Dialog.Okusheva2,
-                    Message = "Наша компания насчитывает уже более чем двухсотлетнюю историю и зарекомендавала " +
+                    Message = "_Ксения Окушева_: Наша компания насчитывает уже более чем двухсотлетнюю историю и зарекомендавала " +
                               "себя на рынке как настоящий мастодонт среди прочих финансовых компаний. Мы оказываем " +
                               "весь спектр финансовых услуг вплоть до конверсии рубей в галактические кредиты. Для начала " +
                               "мы рекомендуем вам записаться на личную финансовую консультацию к Андрею Сергеевичу, нашему " +
@@ -755,7 +789,7 @@ namespace Bot.Quests
                 },
                 new DialogQuestion {
                     Name = Dialog.Okusheva3,
-                    Message = "Мы вам можем предложить лучшие условия на рынке! Именно наша компания имеет " +
+                    Message = "_Ксения Окушева_: Мы вам можем предложить лучшие условия на рынке! Именно наша компания имеет " +
                               "прямой доступ к галактической бирже. Кстати о биржах, предлагаем вам пройти " +
                               "персональную школу трейдеров \"Греби лопатой\" и тогда вы сможете начать зарабатывать " +
                               "в среднем по 200% в минуту. Сейчас созвонимся с Аркадием Леонидовичем и узнаем когда он " +
@@ -769,7 +803,7 @@ namespace Bot.Quests
                 },
                 new DialogQuestion {
                     Name = Dialog.Okusheva4,
-                    Message = "Хорошо, что ж вы сразу не сказали что Вам необходимо купить кредиты? У нас самый " +
+                    Message = "_Ксения Окушева_: Хорошо, что ж вы сразу не сказали что Вам необходимо купить кредиты? У нас самый " +
                               "лучший курс 1:200. Если вам нужно 20 кредитов, с вас 8000 рублей.",
                     Answers = new [] {
                         new DialogAnswer {
@@ -780,7 +814,7 @@ namespace Bot.Quests
                 },
                 new DialogQuestion {
                     Name = Dialog.Okusheva5,
-                    Message = "Смотрите, здесь всё очень просто. Сейчас я вам всё покажу в моменте. " +
+                    Message = "_Ксения Окушева_: Смотрите, здесь всё очень просто. Сейчас я вам всё покажу в моменте. " +
                               "Сегодня хорошим спросом пользуются собачьи ценные бумаги, предлагаем рассмотреть варианты:\n" +
                               "1. Купить акции Коляна\n" +
                               "2. Купить фьючерсы Репы\n" +
@@ -817,7 +851,7 @@ namespace Bot.Quests
                 },
                 new DialogQuestion {
                     Name = Dialog.Okusheva7,
-                    Message = "Поздравляем! Ваши вложения обесценились за минуту на 25%",
+                    Message = "Поздравляем! Ваши вложения обесценились на 25%",
                     Answers = new [] {
                         new DialogAnswer {
                             Message = "Трейдить дальше",
@@ -847,18 +881,129 @@ namespace Bot.Quests
                 },
                 new DialogQuestion {
                     Name = Dialog.Okusheva10,
-                    Message = "О! Я смотрю вы быстро разобрались, Вам точно надо посетить нашу школу трейдеров. " +
+                    Message = "_Ксения Окушева_: О! Я смотрю вы быстро разобрались, Вам точно надо посетить нашу школу трейдеров. " +
                               "Завтра у нас будет проходить семинар в отеле \"Гранд Будапешт\", вам обязательно " +
-                              "надо его постетить. Держите ваши *20 галактический кредитов* До встречи!",
+                              "надо его постетить. Держите ваши *20 галактический кредитов*. До встречи!",
                     Answers = new [] {
                         new DialogAnswer {
                             Message = "Прощайте",
                             MoveToDialog = Dialog.MapNastya,
                             MoveToPos = (pos, map) => map.PosDown(pos),
                             ChangeJournal = j => j.Finish(Quest.FindCredits),
-                            ChangeMap = (pos, map) => map.Replace(MapIcon.Okusheva, MapIcon.Empty)
+                            ChangeMap = (pos, map) => map.Replace(MapIcon.Okusheva, MapIcon.Road)
                         },
                     },
+                },
+            };
+
+            var esinDialogs = new[] {
+                new DialogQuestion {
+                    Name = Dialog.Esin1,
+                    Message = "Вы поднимаетесь на борт и входите в капитанскую рубку. У штурвала сидит Есин и общается с " +
+                              "видеокамерой, прикреплённой к лобовому стеклу.",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "Сесть рядом",
+                            MoveToDialog = Dialog.Esin2
+                        }
+                    },
+                    MapIcon = MapIcon.Esin
+                },
+                new DialogQuestion {
+                    Name = Dialog.Esin2,
+                    Message = "_Есин_: Други и подруги, всем привет! 21 июня на дворе, поехал я на загрузку на " +
+                              "своём \"Соколе Тысячелетия\", но тут мне подкинули шабашку из ТГК (трансгалактической " +
+                              "компании). Так что встречаем нового пассажира. Анастасия, привет! Поздоровайся с подписчиками.",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "Привет, подписчики",
+                            MoveToDialog = Dialog.Esin3
+                        }
+                    }
+                },
+                new DialogQuestion {
+                    Name = Dialog.Esin3,
+                    Message = "_Есин_: Анастасия, я в прошлом своём видео разыгрывал фирменные галоши by El\'Zn\', " +
+                              "нужно быстро заехать на базу в соседней галактике и завести по адресу.",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "Но у меня свадьба!!!",
+                            MoveToDialog = Dialog.Esin4
+                        }
+                    }
+                },
+                new DialogQuestion {
+                    Name = Dialog.Esin4,
+                    Message = "_Есин_: Не переживай, я на \"Сокол\" поставил новый сверхсветовой гиперускоритель, мы " +
+                              "домчимся за пару секунд. Только нужно приготовить топливо из концентрированной " +
+                              "тёмной материи. Там точно должна быть вода, 1 часть цезия и 2 части чего-то ещё... Забыл, " +
+                              "поэкспериментируй, пожалуйста, с ингридиентами на заднем сидении.",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "Начать эксперимент",
+                            MoveToDialog = Dialog.Esin5
+                        }
+                    }
+                },
+                new DialogQuestion {
+                    Name = Dialog.Esin5,
+                    Message = "Перед вами раствор из 1 части цезия и воды. Добавить 2 части...",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "Урана-235",
+                            MoveToDialog = Dialog.Esin6
+                        },
+                        new DialogAnswer {
+                            Message = "Плутонических кварков",
+                            MoveToDialog = Dialog.Esin7
+                        },
+                        new DialogAnswer {
+                            Message = "Властелина Колец",
+                            MoveToDialog = Dialog.Esin6
+                        },
+                        new DialogAnswer {
+                            Message = "Активированного угля",
+                            MoveToDialog = Dialog.Esin6
+                        }
+                    }
+                },
+                new DialogQuestion {
+                    Name = Dialog.Esin6,
+                    Message = "Раствор никак не реагирует.",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "Продолжить эксперимент",
+                            MoveToDialog = Dialog.Esin5
+                        }
+                    }
+                },
+                new DialogQuestion {
+                    Name = Dialog.Esin7,
+                    Message = "_Есин_: Ну чтож, дорогие подписчики, топливо готово. Самое время испытать новый ускоритель в действии. " +
+                              "Поехали! \n\nЕсин переводит коробку в спорт-режим и давит тапку в пол. Корабль на миг замирает, после чего " +
+                              "вид за бортом превращается застывшую картину из линий света далёких звезд. Через 10 секунд вы оказываетесь " +
+                              "у гавани огромной космической станции шарообразной формы. Есин хватает какую-то коробку и уходит.",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "Ждать",
+                            MoveToDialog = Dialog.Esin8
+                        }
+                    }
+                },
+                new DialogQuestion {
+                    Name = Dialog.Esin8,
+                    Message = "Несколько минут спустя вы слышите шум и звуки выстрелов. Есин забегает в рубку, отшвартовывается " +
+                              "и напрабляет корабль в открытый космос. \n\n" +
+                              "_Есин_: Такс, други и подруги! Тут произошел некоторый казуз. Я забыл, что эта звездная система " +
+                              "контролируется Империей, а они меня, скажем так, не очень любят. Я сейчас при помощи нашей гостьи " +
+                              "постараюсь оторваться от преследующих нас штурмовиков, пока сверхзвуковой ускоритель перезаряжается. " +
+                              "Ну и минут через 5-10 мы, полагаю, сможем сделать прыжок обратно к нашей планете.",
+                    Answers = new [] {
+                        new DialogAnswer {
+                            Message = "Ждать",
+                            MoveToDialog = Dialog.Esin9
+                        }
+                    }
                 },
             };
 
@@ -873,6 +1018,7 @@ namespace Bot.Quests
                 .Concat(bartenderDialogs)
                 .Concat(taxofonDialogs)
                 .Concat(okushevaDialogs)
+                .Concat(esinDialogs)
                 .Concat(repaDialogs)
                 .Concat(randomDialogs)
                 .ToArray();
