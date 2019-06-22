@@ -989,6 +989,7 @@ namespace NewCellBot.Domain.Quest.Stories
             var zagsWorkerDialogs = new[] {
                 new DialogQuestion {
                     Name = Dialog.ZagsWorker1,
+                    Photo = "Resources/Tamada.jpg",
                     Message = "Работница ЗАГСа сидит за столом и поправляет прическу.",
                     Answers = new[] {
                         new DialogAnswer {
