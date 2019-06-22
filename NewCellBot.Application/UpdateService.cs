@@ -130,11 +130,12 @@ namespace NewCellBot.Application
                     _logger.LogInformation($"Received a text message in chat {chatId} from {user}: \n {messageText}");
                 }
 
-                var userValidation = questService.CanPlay(user);
+                // Don't check players anymore
+                /*var userValidation = questService.CanPlay(user);
                 if (!userValidation.CanPlay)
                 {
                     return userValidation.Reason;
-                }
+                }*/
 
                 var currentMove = questService.ProcessAnswer((messageText?.IsSmile() == true)
                     ? messageText.FromSmile().ToString()
